@@ -1,0 +1,14 @@
+{
+  "name": "ratna-supermarket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd Ratna_Supermarket && npm run dev",
+    "backend": "cd Ratna_server && nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
