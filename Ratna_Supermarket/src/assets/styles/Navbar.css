@@ -1,0 +1,110 @@
+
+
+.navbar {
+    background-color: white;
+    width: 100% - 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 120px;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    color: rgb(109, 255, 96);
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+  
+  .nav-menu {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-item {
+    margin-right: 30px;
+  }
+  
+  .nav-link {
+    color: rgb(73, 202, 41);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .nav-link:hover {
+    color: white; 
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 15px;
+  }
+  
+  .mobile-menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #000000;
+    margin: 6px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .mobile-menu-toggle {
+      display: block;
+    }
+  
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100px;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to right, rgb(3, 81, 7), rgb(96, 255, 122));
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+      gap: 10px;
+      padding: 20px;
+      transition: all 1s ease;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+    }
+  
+    .nav-menu.active {
+      display: flex;
+      animation-name: slideIn;
+    }
+  
+    .nav-item {
+      margin-right: 0;
+      text-indent: 30px;
+    }
+  
+    @keyframes slideIn {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  
+    @keyframes slideOut {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+    }
+  }
