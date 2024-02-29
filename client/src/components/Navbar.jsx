@@ -21,6 +21,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  
 
   const options = {
     keys: ["label"],
@@ -154,6 +155,7 @@ const emails = ['minavpkaria@gmail.com', 'user02@gmail.com'];
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
+  const [pincode, setPincode] = useState('');
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -167,7 +169,22 @@ function SimpleDialog(props) {
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Enter your Pincode</DialogTitle>
       <div className=" p-5">
-        <Input placeholder="Enter your Pincode" />
+        <form action="/" onSubmit={(e)=>{
+          e.preventDefault();
+          
+          localStorage.setItem('userPincode', pincode);
+          setPincode('');
+          handleClose();
+        }}>
+          <Input
+          type="text"
+          placeholder="Enter your Pincode"
+          value={pincode}
+          onChange={(e) => setPincode(e.target.value)}
+          className="mb-5"
+        />
+          <Button variant="contained" color="primary">Submit</Button>
+        </form>
       </div>
     
     </Dialog>
