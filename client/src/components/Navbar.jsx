@@ -119,9 +119,13 @@ const Navbar = () => {
             />
 
             {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 mt-1 p-2 bg-white shadow-lg rounded w-full">
+              <div className="absolute top-full left-0 mt-1 p-2 bg-white shadow-lg rounded w-full z-50">
                 {searchResults.map((result) => (
-                  <div key={result.label} className="p-2 hover:bg-gray-200 cursor-pointer">
+                  <div key={result.label} className="p-2 hover:bg-gray-200 cursor-pointer" onClick={()=>{
+                    setSearchTerm(`${result.label}`);
+                    setSearchResults([]);
+
+                  }}>
                     {result.label}
                   </div>
                 ))}
@@ -183,6 +187,7 @@ function SimpleDialog(props) {
           onChange={(e) => setPincode(e.target.value)}
           className="mb-5"
         />
+       
           <Button variant="contained" color="primary">Submit</Button>
         </form>
       </div>

@@ -44,14 +44,14 @@ const Carousel = () => {
       </div>
       <button
         type="button"
-        className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="absolute top-0 start-0 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
         onClick={goToPrev}
       >
         <span className="text-2xl">&lt;</span>
       </button>
       <button
         type="button"
-        className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="absolute top-0 end-0 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
         onClick={goToNext}
       >
         <span className=" text-2xl">&gt;</span>
