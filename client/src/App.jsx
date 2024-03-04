@@ -2,12 +2,15 @@
 import './App.css';
 import {createBrowserRouter,RouterProvider,Route,Link } from "react-router-dom";
 import router from './configs/route';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
   
   return (
     <>
-      <RouterProvider router={router}/>
+      <GoogleOAuthProvider clientId="1024591027781-7a07fpb7aflgaoqc8tgv9qsrd8ka8tdc.apps.googleusercontent.com">
+        <RouterProvider router={router}/>
+      </GoogleOAuthProvider>
     </>
   )
 }

@@ -1,5 +1,5 @@
 
-import React,{ useState } from "react";
+import React,{ useState,useEffect } from "react";
 import Fuse from "fuse.js";
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
@@ -157,41 +157,87 @@ export default Navbar;
 
 const emails = ['minavpkaria@gmail.com', 'user02@gmail.com'];
 
+
 function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
   const [pincode, setPincode] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      try {
+        if (pincode.length === 6) {
+          const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+          const data = await response.json();
+
+          if (data[0]?.Status === 'Success') {
+            const areaSuggestions = data[0]?.PostOffice?.map((office) => office.Name) || [];
+            setSuggestions(areaSuggestions);
+          } else {
+            setSuggestions([]);
+          }
+        } else {
+          setSuggestions([]);
+        }
+      } catch (error) {
+        console.error('Error fetching suggestions:', error);
+        setSuggestions([]);
+      }
+    };
+
+    fetchSuggestions();
+  }, [pincode]);
+
   const handleListItemClick = (value) => {
     onClose(value);
   };
 
+  const handleInputChange = (e) => {
+    setPincode(e.target.value);
+  };
+
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Enter your Pincode</DialogTitle>
-      <div className=" p-5">
-        <form action="/" onSubmit={(e)=>{
-          e.preventDefault();
-          
-          localStorage.setItem('userPincode', pincode);
-          setPincode('');
-          handleClose();
-        }}>
-          <Input
-          type="text"
-          placeholder="Enter your Pincode"
-          value={pincode}
-          onChange={(e) => setPincode(e.target.value)}
-          className="mb-5"
-        />
-       
-          <Button variant="contained" color="primary">Submit</Button>
-        </form>
-      </div>
-    
-    </Dialog>
+    <>
+      <Dialog onClose={handleClose} open={open}>
+        <DialogTitle>Enter your Pincode</DialogTitle>
+        <div className=" p-5">
+          <form
+            action="/"
+            onSubmit={(e) => {
+              e.preventDefault();
+              localStorage.setItem('userPincode', pincode);
+              setPincode('');
+              handleClose();
+            }}
+          >
+            <Input
+              type="text"
+              placeholder="Enter your Pincode"
+              value={pincode}
+              onChange={handleInputChange}
+              className="mb-5"
+            />
+
+            <div>
+              <ul className="absolute z-50 bg-white w-10/12 shadow-lg">
+                {suggestions.map((suggestion, index) => (
+                  <li key={index} onClick={() => handleListItemClick(suggestion)}>
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <Button variant="contained" color="primary" type="submit">
+              Submit
+            </Button>
+          </form>
+        </div>
+      </Dialog>
+    </>
   );
 }

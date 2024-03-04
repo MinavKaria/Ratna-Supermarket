@@ -18,6 +18,7 @@ const router = createBrowserRouter([
       path:"/sign",
       element:(
         <>
+          <Navbar/>
           <Signup/>
         </>
       )
