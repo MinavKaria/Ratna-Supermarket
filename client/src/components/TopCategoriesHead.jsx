@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import './styles.css';
 
-function TopCategoriesHead() {
+function TopCategoriesHead({ title, greenTitle }) {
   const containerVariants = {
     hidden: { opacity: 0, y:10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.25 } },
@@ -23,8 +23,8 @@ function TopCategoriesHead() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }}
           >
-            Top From{" "}
-            <span className=' text-green-500 relative z-10'>Top Categories</span>
+            {title}{" "}
+            <span className=' text-green-500 relative z-10'>{greenTitle}</span>
           </motion.h1>
         </div>
       </motion.div>

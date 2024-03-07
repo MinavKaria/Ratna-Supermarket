@@ -6,6 +6,11 @@ import { Input, Typography } from "@mui/material";
 import { useState } from "react";
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from "react-router-dom";
+import  { auth, googleProvider } from '../configs/firebase.js';
+import { signInWithPopup } from "firebase/auth";
+// import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+// import {provider} from '../configs/firebase.js';
+
 
 const UserDataContainer = styled('form')({
   height: '80vh',
@@ -40,6 +45,35 @@ function Signup() {
   });
   const [validPhone, setValidPhone] = useState(false);
   const navigate = useNavigate();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      // Sign in with Google
+      const result = await signInWithPopup(auth, googleProvider);
+      
+      const user = result.user;
+      console.log("Google sign-in success:", user);
+      navigate("/");
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+    }
+  };
+
+  // const handleGithubSignIn = async () => {
+  //   const auth = getAuth();
+  //   signInWithPopup(auth, GithubAuthProvider)
+  //     .then((result) => {
+  //       // Handle successful GitHub sign-in
+  //       const user = result.user;
+  //       console.log("GitHub sign-in success:", user);
+  //       // Navigate to the desired page or update UI accordingly
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       // Handle GitHub sign-in error
+  //       console.error("GitHub sign-in error:", error);
+  //     });
+  // };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -145,6 +179,20 @@ function Signup() {
                   text='signup_with'
 
             />
+
+                  <button
+                    className="bg-red-500 w-52 p-2 mt-3  text-white"
+                    type="button"
+                    onClick={handleGoogleSignIn}
+                  >
+                    Firebase Google Sign In
+                  </button>
+
+                {/* 
+                  <button onClick={handleGithubSignIn} type="button" className="bg-red-500 w-32 p-2 mt-3 rounded-2xl">
+                    Sign In with GitHub
+                  </button> */}
+
 
           </UserDataContainer>
       

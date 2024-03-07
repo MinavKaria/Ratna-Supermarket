@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+  const carouselRef = useRef(null);
+
   const images = ['/carousel.png', '/carousel2.png', '/carousel3.png', '/carousel.png'];
 
   const goToPrev = () => {
@@ -16,8 +20,37 @@ const Carousel = () => {
     setActiveIndex(index);
   };
 
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX && touchEndX) {
+      const deltaX = touchEndX - touchStartX;
+
+      if (deltaX > 50) {
+        goToPrev(); // Swipe right, go to the previous image
+      } else if (deltaX < -50) {
+        goToNext(); // Swipe left, go to the next image
+      }
+    }
+
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
   return (
-    <div className="relative w-full">
+    <div
+      className="relative w-full"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      ref={carouselRef}
+    >
       <div className="relative h-[40vh] overflow-hidden rounded-lg w-full">
         {images.map((image, index) => (
           <div
@@ -30,7 +63,7 @@ const Carousel = () => {
           </div>
         ))}
       </div>
-      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2 z-50">
+      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2 z-40">
         {images.map((_, index) => (
           <button
             key={index}
@@ -42,20 +75,20 @@ const Carousel = () => {
           />
         ))}
       </div>
-      <div className='absolute top-0 h-[40vh] w-full'>
+      <div className="absolute top-0 h-[40vh] w-full">
         <button
           type="button"
-          className="absolute top-0 start-0 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          className="absolute top-0 start-0 md:flex sm:hidden items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
           onClick={goToPrev}
         >
           <span className="text-2xl">&lt;</span>
         </button>
         <button
           type="button"
-          className="absolute top-0 end-0 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          className="absolute top-0 end-0 md:flex sm:hidden items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
           onClick={goToNext}
         >
-          <span className=" text-2xl">&gt;</span>
+          <span className="text-2xl">&gt;</span>
         </button>
       </div>
     </div>

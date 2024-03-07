@@ -67,15 +67,15 @@ const Navbar = () => {
 
   return (
     <>
-    <nav className="bg-white p-4 shadow-md">
-      <div className="container mx-auto flex items-center justify-start relative">
-        <div className="text-white text-2xl font-bold mb-4 md:mb-0 md:mr-4 cursor-pointer" onClick={()=>{
+    <nav className="bg-white p-4 shadow-md fixed top-0 z-50 w-full">
+      <div className="container mx-auto md:flex items-center justify-start relative sm:block ">
+        <div className="text-white text-2xl font-bold mb-4 md:mb-0 md:mr-4 cursor-pointer  sm:flex sm:justify-center sm:items-center" onClick={()=>{
           navigate('/');
         }}>
-          <img src="/logo.svg" alt="" className="w-[175px]" />
+          <img src="/logo.svg" alt="" className="md:w-[175px] sm:w-[100px] " />
         </div>
 
-        <div className="flex justify-start items-start w-6/12">
+        <div className="md:flex md:justify-start md:items-start md:w-6/12 sm:hidden">
           <button className="mb-4 md:mb-0 md:mr-4 flex flex-row justify-center items-center gap-3 bg-gray-100 rounded-l-full rounded-r-full p-3" onClick={handleClickOpen}>
             <img src="/location.svg" alt="" />
             <div className="flex justify-start text-left text-base flex-col">
@@ -94,7 +94,7 @@ const Navbar = () => {
         </div>
 
         <button
-          className="text-white md:hidden focus:outline-none"
+          className="text-white focus:outline-none hidden"
           onClick={toggleMobileMenu}
         >
           <svg
@@ -109,9 +109,7 @@ const Navbar = () => {
         </button>
 
         <div
-          className={`flex justify-end md:flex gap-5 w-full ${
-            isMobileMenuOpen ? "block" : "hidden"
-          } relative`}
+          className={`flex md:justify-end md:flex gap-5 w-full relative sm:block sm:w-full`}
         >
           <div className="flex-grow bg-slate-100 mb-4 md:mb-0 flex flex-row rounded-r-full rounded-l-full pl-10 pr-10 relative">
             <input
@@ -119,7 +117,7 @@ const Navbar = () => {
               placeholder="Search..."
               value={searchTerm}
               onChange={handleSearch}
-              className="w-full py-2 rounded bg-transparent text-black focus:outline-none"
+              className="w-full py-2 rounded bg-transparent text-black focus:outline-none sm:w-full"
             />
 
             {searchResults.length > 0 && (
@@ -135,15 +133,20 @@ const Navbar = () => {
                 ))}
               </div>
             )}
+
+
           </div>
-             <button className="p-2 bg-white shadow-md rounded">
+             <button className="p-2 bg-white shadow-md rounded sm:hidden">
               <img src="/search.svg" alt="" />
             </button>
 
-          <div className="flex items-center space-x-4">
-            <button className=" " onClick={()=>{
+          <div className="md:flex items-center space-x-4 sm:hidden">
+            <button 
+            className=" " 
+            onClick={()=>{
               navigate('/sign');
             }}>Login</button>
+
             <button className="">Cart</button>
           </div>
         </div>
@@ -239,7 +242,7 @@ function SimpleDialog(props) {
               <ul className="absolute z-50 bg-white w-10/12 shadow-lg">
                 {suggestions.map((suggestion, index) => (
                   <>
-                    <button key={index} onClick={() => handleListItemClick(suggestion)} onClick={(e)=>{
+                    <button key={index} onClick={(e)=>{
                       localStorage.setItem('userArea', suggestion);
                       localStorage.setItem('userPincode', pincode);
                       setSuggestions([]);
