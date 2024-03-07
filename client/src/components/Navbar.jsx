@@ -16,11 +16,13 @@ import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import { Input } from '@mui/material';
+import {useNavigate} from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
   
 
   const options = {
@@ -67,7 +69,9 @@ const Navbar = () => {
     <>
     <nav className="bg-white p-4 shadow-md">
       <div className="container mx-auto flex items-center justify-start relative">
-        <div className="text-white text-2xl font-bold mb-4 md:mb-0 md:mr-4">
+        <div className="text-white text-2xl font-bold mb-4 md:mb-0 md:mr-4 cursor-pointer" onClick={()=>{
+          navigate('/');
+        }}>
           <img src="/logo.svg" alt="" className="w-[175px]" />
         </div>
 
@@ -75,8 +79,8 @@ const Navbar = () => {
           <button className="mb-4 md:mb-0 md:mr-4 flex flex-row justify-center items-center gap-3 bg-gray-100 rounded-l-full rounded-r-full p-3" onClick={handleClickOpen}>
             <img src="/location.svg" alt="" />
             <div className="flex justify-start text-left text-base flex-col">
-              <span className="font-bold m-0">Mulund, Mumbai </span>
-              <span className="m-0">400080</span>
+              <span className="font-bold m-0">{localStorage.getItem('userArea') || 'Mumbai'} </span>
+              <span className="m-0">{localStorage.getItem('userPincode') || '400001'}</span>
             </div>
             <img src="/dropdown_nav.svg" alt="" />
           </button>
@@ -137,7 +141,9 @@ const Navbar = () => {
             </button>
 
           <div className="flex items-center space-x-4">
-            <button className=" ">Login</button>
+            <button className=" " onClick={()=>{
+              navigate('/sign');
+            }}>Login</button>
             <button className="">Cart</button>
           </div>
         </div>
@@ -222,20 +228,29 @@ function SimpleDialog(props) {
               className="mb-5"
             />
 
-            <div>
-              <ul className="absolute z-50 bg-white w-10/12 shadow-lg">
-                {suggestions.map((suggestion, index) => (
-                  <li key={index} onClick={() => handleListItemClick(suggestion)}>
-                    {suggestion}
-                  </li>
-                ))}
-              </ul>
-            </div>
+           
 
             <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>
           </form>
+
+          <div>
+              <ul className="absolute z-50 bg-white w-10/12 shadow-lg">
+                {suggestions.map((suggestion, index) => (
+                  <>
+                    <button key={index} onClick={() => handleListItemClick(suggestion)} onClick={(e)=>{
+                      localStorage.setItem('userArea', suggestion);
+                      localStorage.setItem('userPincode', pincode);
+                      setSuggestions([]);
+                    }}>
+                      {suggestion}
+                    </button>
+                  <br />
+                  </>
+                ))}
+              </ul>
+            </div>
         </div>
       </Dialog>
     </>

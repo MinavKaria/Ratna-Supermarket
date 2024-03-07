@@ -1,5 +1,6 @@
  
 import './App.css';
+import "@fontsource/poppins/400.css";
 import {createBrowserRouter,RouterProvider,Route,Link } from "react-router-dom";
 import router from './configs/route';
 import { GoogleOAuthProvider } from '@react-oauth/google';
