@@ -18,7 +18,6 @@ const UserDataContainer = styled('form')({
   flexDirection: 'column',
   justifyContent: 'center',
   width: '100%',
-  padding: '100px',
 });
 
 const UserSignContainer = styled('div')({
@@ -76,6 +75,7 @@ function Signup() {
   // };
 
   return (
+    <div className="container mx-auto flex justify-start items-center">
     <Box sx={{ flexGrow: 1, marginTop:'100px'}}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
@@ -205,6 +205,7 @@ function Signup() {
         </Grid>
       </Grid>
     </Box>
+    </div>
   );
 }
 

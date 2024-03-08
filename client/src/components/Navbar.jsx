@@ -17,6 +17,8 @@ import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import { Input } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
+import {useCart} from '../actions/CartControl';
+import SimpleDialog from "./SimpleDialog";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -50,7 +52,7 @@ const Navbar = () => {
     }
   };
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = useState(emails[1]);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,12 +60,13 @@ const Navbar = () => {
 
   const handleClose = (value) => {
     setOpen(false);
-    setSelectedValue(value);
   };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const { cartItems, addToCart } = useCart();
 
   return (
     <>
@@ -140,23 +143,33 @@ const Navbar = () => {
               <img src="/search.svg" alt="" />
             </button>
 
-          <div className="md:flex items-center space-x-4 sm:hidden">
-            <button 
-            className=" " 
-            onClick={()=>{
-              navigate('/sign');
-            }}>Login</button>
-
-            <button className="">Cart</button>
+          <div className="md:flex items-center space-x-4 sm:hidden mx-10 gap-5">
+            <div className="flex" onClick={()=>{
+                navigate('/sign');
+              }}>
+              <img src="user.svg" alt="" />
+              <button 
+              className=" " 
+              >Login</button>
+            </div>
+            <div className="flex" onClick={()=>{
+              // addToCart({id:1, name:'Product 1', price:100, qty:1});
+              navigate('/cart');
+            }}>
+            <img src="cart.svg" alt="" />
+            <button className="" >
+                Cart ({cartItems.length})
+            </button>
+            </div>
           </div>
         </div>
       </div>
     </nav>
       <SimpleDialog
-        selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
       />
+      
     </>
   );
 };
@@ -164,98 +177,4 @@ const Navbar = () => {
 export default Navbar;
 
 
-const emails = ['minavpkaria@gmail.com', 'user02@gmail.com'];
 
-
-function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
-  const [pincode, setPincode] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      try {
-        if (pincode.length === 6) {
-          const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
-          const data = await response.json();
-
-          if (data[0]?.Status === 'Success') {
-            const areaSuggestions = data[0]?.PostOffice?.map((office) => office.Name) || [];
-            setSuggestions(areaSuggestions);
-          } else {
-            setSuggestions([]);
-          }
-        } else {
-          setSuggestions([]);
-        }
-      } catch (error) {
-        console.error('Error fetching suggestions:', error);
-        setSuggestions([]);
-      }
-    };
-
-    fetchSuggestions();
-  }, [pincode]);
-
-  const handleListItemClick = (value) => {
-    onClose(value);
-  };
-
-  const handleInputChange = (e) => {
-    setPincode(e.target.value);
-  };
-
-  return (
-    <>
-      <Dialog onClose={handleClose} open={open}>
-        <DialogTitle>Enter your Pincode</DialogTitle>
-        <div className=" p-5">
-          <form
-            action="/"
-            onSubmit={(e) => {
-              e.preventDefault();
-              localStorage.setItem('userPincode', pincode);
-              setPincode('');
-              handleClose();
-            }}
-          >
-            <Input
-              type="text"
-              placeholder="Enter your Pincode"
-              value={pincode}
-              onChange={handleInputChange}
-              className="mb-5"
-            />
-
-           
-
-            <Button variant="contained" color="primary" type="submit">
-              Submit
-            </Button>
-          </form>
-
-          <div>
-              <ul className="absolute z-50 bg-white w-10/12 shadow-lg">
-                {suggestions.map((suggestion, index) => (
-                  <>
-                    <button key={index} onClick={(e)=>{
-                      localStorage.setItem('userArea', suggestion);
-                      localStorage.setItem('userPincode', pincode);
-                      setSuggestions([]);
-                    }}>
-                      {suggestion}
-                    </button>
-                  <br />
-                  </>
-                ))}
-              </ul>
-            </div>
-        </div>
-      </Dialog>
-    </>
-  );
-}

@@ -13,6 +13,7 @@ import TopCategoriesHead from "../components/TopCategoriesHead";
 import TopCategoriesList from "../components/TopCategoriesList";
 import NotFound from "../components/NotFound";
 import CategoryList from "../components/CategoryList";
+import Cart from "../pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,15 @@ const router = createBrowserRouter([
         <CategoryList/>
       </>
     )
+  },{
+    path: "/cart",
+    element: (
+      <>
+        <Navbar />
+        <Cart />
+        <Footer />
+      </>
+    ),
   },
   {
     path: "*",
