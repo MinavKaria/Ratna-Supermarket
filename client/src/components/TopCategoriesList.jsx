@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 function TopCategoriesList() {
   const categories = [
@@ -10,6 +11,8 @@ function TopCategoriesList() {
     { name: 'Snacks & Munchies', image: 'snacks.png'},
     { name: 'Icy Delights', image: 'ice-cream.png'}
   ];
+
+  const navigate = useNavigate();
 
   const listItemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -30,6 +33,9 @@ function TopCategoriesList() {
                 key={index}
                 className='flex flex-col items-center'
                 variants={listItemVariants}
+                onClick={()=>{
+                  navigate(`/categories/${encodeURIComponent(category.name.toLowerCase())}`);
+                }}
               >
                 <img
                   src={`/images/${category.image}`}

@@ -16,11 +16,9 @@ collection = db["login_data"]
 def signup():
     data = request.get_json()
 
-    # Assuming the data contains 'username' and 'password'
     username = data.get('username')
     password = data.get('password')
 
-    # Save login data to MongoDB
     login_data = {'username': username, 'password': password}
     result = collection.insert_one(login_data)
 
@@ -35,11 +33,9 @@ def trail():
 def login():
     data = request.get_json()
 
-    # Assuming the data contains 'username' and 'password'
     username = data.get('username')
     password = data.get('password')
 
-    # Check if login data exists in MongoDB
     login_data = collection.find_one({'username': username, 'password': password})
 
     if login_data:

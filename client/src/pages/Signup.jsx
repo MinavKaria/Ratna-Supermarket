@@ -76,7 +76,7 @@ function Signup() {
   // };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginTop:'100px'}}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
 

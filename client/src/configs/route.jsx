@@ -12,6 +12,7 @@ import Signup from "../pages/Signup";
 import TopCategoriesHead from "../components/TopCategoriesHead";
 import TopCategoriesList from "../components/TopCategoriesList";
 import NotFound from "../components/NotFound";
+import CategoryList from "../components/CategoryList";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <Home />
+        <Footer />
       </>
     ),
   },
@@ -33,12 +35,12 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/categories",
+    path: "/categories/:categoryName",
     element: (
       <>
-        <Navbar />
+        <CategoryList/>
       </>
-    ),
+    )
   },
   {
     path: "*",
