@@ -1,9 +1,11 @@
 import React from 'react';
 import { useCart } from '../actions/CartControl';
 import Payment from '../components/Payment';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const { cartItems, addToCart, removeFromCart } = useCart();
+  const navigate = useNavigate();
 
   return (
     <div className='mt-48 mx-auto max-w-md p-6 bg-white rounded-lg shadow-md'>
@@ -34,10 +36,11 @@ function Cart() {
             </li>
           ))}
         </ul>
-        <button className="text-white bg-black p-3 rounded-lg mb-5">
+        <button className="text-white bg-black p-3 rounded-lg mb-5" onClick={()=>{
+          navigate('/checkout')
+        }}>
             Proceed to Checkout
        </button>
-       <Payment/>
        </>
       )}
       

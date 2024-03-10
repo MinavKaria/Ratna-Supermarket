@@ -72,7 +72,7 @@ export default function Payment() {
     return (
         <div style={{ maxWidth: "750px", minHeight: "200px" }}>
             <PayPalScriptProvider options={{ clientId: "test", components: "buttons", currency: "USD" }}>
-                <ButtonWrapper showSpinner={false} />
+                    <PayPalButtons style={{ layout: "horizontal" }} />
             </PayPalScriptProvider>
         </div>
     );

@@ -14,6 +14,7 @@ import TopCategoriesList from "../components/TopCategoriesList";
 import NotFound from "../components/NotFound";
 import CategoryList from "../components/CategoryList";
 import Cart from "../pages/Cart";
+import Checkout from "../components/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,15 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <Cart />
+        <Footer />
+      </>
+    ),
+  },{
+    path: "/checkout",
+    element: (
+      <>
+        <Navbar />
+        <Checkout/>
         <Footer />
       </>
     ),
