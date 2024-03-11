@@ -34,9 +34,9 @@ const steps = [
                 <img src="/delivery_4.svg" alt="" className={`${activeStep <4 ? 'filter grayscale opacity-50' : ''}`}/>
             </div>
 
-            {/* <button className=' bg-red-600 px-3 text-white' onClick={()=>{
+            <button className=' bg-red-600 px-3 text-white' onClick={()=>{
                 setActiveStep((prevActiveStep) =>( prevActiveStep + 1))
-            }}>Check</button> */}
+            }}>Check</button>
         </div>
     </>
   );
