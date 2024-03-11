@@ -1,44 +1,53 @@
 function Footer() {
   return (
     <>
-      <div className="w-full bg-slate-200 p-4 shadow-md mt-10 px-4 md:px-10">
-        <div className="flex flex-col gap-4 md:flex-row md:gap-[5vw] container justify-start items-center mx-auto ">
-          <div className="flex flex-col gap-2 items-start justify-items-start w-full md:w-auto">
-            <p className="text-1xl text-center md:text-left">Download GMart ready for Mobile App Now!!</p>
+      <div className='bg-[#f7f7f7] rounded-t-[3rem] px-[4vw] py-[4vh] mt-[5vh]'>
+        <div className='flex flex-row justify-center md:justify-between'>
 
-            <div className="flex flex-col md:flex-row gap-4 md:gap-0 md:items-center">
-              <img className="h-16 md:h-20" src="./gpp.png" alt="Google Play Logo" />
-              <img className="h-11 my-auto" src="./gpp4.png" alt="App Store Logo" />
-            </div>
-
-            <div className="flex space-x-4">
-              <img src="visa_gpp.png" className="h-4" />
-              <img src="rupay_gpp.png" className="h-5" />
-              <img src="mastercard1_gpp.png" className="h-6" />
-              <img src="rupee_gpp.png" className="h-5" />
-            </div>
+          <div className='flex flex-col gap-[1.5vh]'>
+            <img src='/logo.svg' className="h-[8vh] md:w-[12vw] md:h-auto"></img>
+            <p className="font-medium text-center md:text-left">Connoisseurs in the aloo-pyaj industry</p>
+            <ul className="flex flex-row  gap-2 mx-auto md:mx-0">
+              <li><img src="/SocialMedia/Facebook.svg" className="h-[3vh]"></img></li>
+              <li><img src="/SocialMedia/Instagram.svg" className="h-[3vh]"></img></li>
+              <li><img src="/SocialMedia/LinkedIn.svg" className="h-[3vh]"></img></li>
+              <li><img src="/SocialMedia/Twitter.svg" className="h-[3vh]"></img></li>
+              <li><img src="/SocialMedia/YouTube.svg" className="h-[3vh]"></img></li>
+            </ul>
           </div>
 
-          <div className="flex flex-col gap-[0vh] md:flex-row md:w-full md:justify-between">
-            <div className="flex flex-col gap-[0vh] w-full md:w-48">
-              <p>FAQs</p>
-              <p>Privacy Policy</p>
-              <p>Pricing, Delivery, Return </p>
-              <p>Refund Policy</p>
-              <p>Terms and Conditions</p>
-            </div>
-
-            <div className="flex flex-col gap-[0vh]">
-              <p>Contact Us</p>
-              <p>About Us</p>
-              <p>Pickup Points</p>
-              <p>Disclaimer</p>
-            </div>
+          <div className="hidden md:flex md:flex-row align-center items-start gap-5 my-auto">
+            <p className="font-bold text-[#54b22c]">Contact Us</p>
+            <span className="flex flex-row gap-2">
+              <span>
+                <img src="/Contacts/Email.svg"></img>
+              </span>
+              <span>rhythm.juneja@somaiya.com</span>
+            </span>
+            <span className="flex flex-row gap-2">
+              <span>
+                <img src="/Contacts/Phone.svg"></img>
+              </span>
+              <span>+91 96256 45274</span>
+            </span>
+            <span className="flex flex-row gap-2">
+              <span>
+                <img src="/Contacts/Mark.svg"></img>
+              </span>
+              <span>KJSCE, Somaiya Vidyavihaar University,<br></br>Mumbai, 400067</span>
+            </span>
           </div>
         </div>
-
-        <hr className="w-full border-[0.03vh] border-[#000000] mx-auto my-[2vh]" />
-        <div className="text-center">&copy; 2024 Avenue E-Commerce Limited(AEL) All Rights Reserved.</div>
+         
+          <div>
+            <hr className="border-[0.25vh] border-[#888888] w-[90%] mx-auto my-[4vh]"></hr>
+          <p className='copyrightContainer'>
+          <div className="flex flex-row justify-between">
+            <span>&copy; Copyright 2024 - Redisitic Productions.</span>
+            <span className="hidden md:block">All rights reserved. For more information on our Terms and Conditions Click Here</span>
+          </div>
+          </p>
+        </div>
       </div>
     </>
   );
