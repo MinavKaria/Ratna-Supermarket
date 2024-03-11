@@ -15,6 +15,7 @@ import NotFound from "../components/NotFound";
 import CategoryList from "../components/CategoryList";
 import Cart from "../pages/Cart";
 import Checkout from "../components/Checkout";
+import Tracking from "../components/Tracking";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,18 @@ const router = createBrowserRouter([
         <Footer />
       </>
     ),
+  },
+  {
+    path:'/tracking',
+    element: (
+      <>
+        <Navbar />
+        <div className="">
+          <Tracking/>
+        </div>
+        <Footer />
+      </>
+    )
   },
   {
     path: "*",

@@ -28,7 +28,7 @@ function Footer() {
               <span>
                 <img src="/Contacts/Phone.svg"></img>
               </span>
-              <span>+91 96256 45274</span>
+              <span>1-800-9625-45274</span>
             </span>
             <span className="flex flex-row gap-2">
               <span>
@@ -43,7 +43,7 @@ function Footer() {
             <hr className="border-[0.25vh] border-[#888888] w-[90%] mx-auto my-[4vh]"></hr>
           <p className='copyrightContainer'>
           <div className="flex flex-row justify-between">
-            <span>&copy; Copyright 2024 - Redisitic Productions.</span>
+            <span>&copy; Copyright 2024 - Brutally Productions.</span>
             <span className="hidden md:block">All rights reserved. For more information on our Terms and Conditions Click Here</span>
           </div>
           </p>
