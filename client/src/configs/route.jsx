@@ -20,69 +20,76 @@ import Tracking from "../components/Tracking";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <Navbar />
-        <Home />
-        <Footer />
-      </>
-    ),
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: (
+          <>
+       
+            <Home />
+     
+          </>
+        ),
+      },
+      {
+        path: "/sign",
+        element: (
+          <>
+            <Signup />
+          </>
+        ),
+      },
+      {
+        path: "/categories/:categoryName",
+        element: (
+          <>
+            <CategoryList/>
+          </>
+        )
+      },{
+        path: "/cart",
+        element: (
+          <>
+            
+            <Cart />
+            
+          </>
+        ),
+      },{
+        path: "/checkout",
+        element: (
+          <>
+          
+            <Checkout/>
+            
+          </>
+        ),
+      },
+      {
+        path:'/tracking',
+        element: (
+          <>
+     
+            <div className="">
+              <Tracking/>
+            </div>
+         
+          </>
+        )
+      },
+      {
+        path: "*",
+        element: (
+          <>
+             <NotFound/>
+          </>
+        ),
+      },
+    ],
   },
-  {
-    path: "/sign",
-    element: (
-      <>
-        <Navbar />
-        <Signup />
-      </>
-    ),
-  },
-  {
-    path: "/categories/:categoryName",
-    element: (
-      <>
-        <CategoryList/>
-      </>
-    )
-  },{
-    path: "/cart",
-    element: (
-      <>
-        <Navbar />
-        <Cart />
-        <Footer />
-      </>
-    ),
-  },{
-    path: "/checkout",
-    element: (
-      <>
-        <Navbar />
-        <Checkout/>
-        <Footer />
-      </>
-    ),
-  },
-  {
-    path:'/tracking',
-    element: (
-      <>
-        <Navbar />
-        <div className="">
-          <Tracking/>
-        </div>
-        <Footer />
-      </>
-    )
-  },
-  {
-    path: "*",
-    element: (
-      <>
-         <NotFound/>
-      </>
-    ),
-  },
+
+
 ]);
 
 export default router;

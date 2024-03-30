@@ -19,6 +19,7 @@ import { Input } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import {useCart} from '../actions/CartControl';
 import SimpleDialog from "./SimpleDialog";
+import SimpleDialog2 from "./SimpleDialog2";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -51,7 +52,16 @@ const Navbar = () => {
       setSearchResults([]);
     }
   };
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  }
+
+  const handleClose2 = (value) => {
+    setOpen2(false);
+  };
 
 
   const handleClickOpen = () => {
@@ -87,9 +97,9 @@ const Navbar = () => {
             </div>
             <img src="/dropdown_nav.svg" alt="" />
           </button>
-          <button className="mb-4 md:mb-0 md:mr-4 flex flex-row justify-center items-center gap-3 bg-gray-100 rounded-l-full rounded-r-full p-3 h-[70px]">
+          <button className="mb-4 md:mb-0 md:mr-4 flex flex-row justify-center items-center gap-3 bg-gray-100 rounded-l-full rounded-r-full p-3 h-[70px]" onClick={handleClickOpen2}>
             <div className="flex justify-start text-left text-base flex-col">
-              <span className="font-bold m-0 w-">Delivery</span>
+              <span className="font-bold m-0 w-">{localStorage.getItem('orderType')||'Delivery'}</span>
             </div>
             <img src="/dropdown_nav.svg" alt="" />
             <img src="carbon_delivery.svg" alt="" />
@@ -168,6 +178,15 @@ const Navbar = () => {
       <SimpleDialog
         open={open}
         onClose={handleClose}
+      />
+
+    <SimpleDialog2
+        open={open2}
+        onClose={handleClose2}
+        handleOption={(value)=>{
+          localStorage.setItem('orderType',value);
+          handleClickOpen2();
+        }}
       />
       
     </>
