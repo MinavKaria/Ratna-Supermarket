@@ -23,7 +23,6 @@ function Layout() {
   useEffect(() => {
     async function fetchData() {
       setOpenedLocation([...openedLocation, location.pathname]);
-      console.log(openedLocation);
       const countOpenedLocation = await countWordOccurrences(
         openedLocation,
         location.pathname
@@ -34,7 +33,7 @@ function Layout() {
           setLoading(true);
         } else {
           setLoading(true);
-          console.log("Not an Easter Egg");
+       
         }
       } else {
         setLoading(true);
@@ -43,7 +42,7 @@ function Layout() {
       const timeoutId = setTimeout(() => {
         setLoading(false);
         setEaster(false);
-      }, 2000);
+      }, 500);
 
       return () => {
         clearTimeout(timeoutId);
@@ -54,10 +53,14 @@ function Layout() {
   }, [location]);
 
   const excludedPathsNavbar = [];
-  const excludedPathsFooter = ["/sign"];
+  const excludedPathsFooter = ["/sign",'/categories/:categoryName'];
 
   const isExcludedPathNavbar = excludedPathsNavbar.includes(location.pathname);
-  const isExcludedPathFooter = excludedPathsFooter.includes(location.pathname);
+ 
+  const isExcludedPathFooter = excludedPathsFooter.some((path) =>
+    path.includes(":categoryName") ? location.pathname.startsWith("/categories/") : path === location.pathname
+  );
+
 
   return loading ? (
     easter ? (

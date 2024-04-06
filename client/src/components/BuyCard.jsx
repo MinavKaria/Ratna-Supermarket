@@ -1,8 +1,18 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState,useEffect} from 'react';
+import { useCart } from '../actions/CartControl';
 
 function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id, cart, setCart, setTotal, total}) {
  const [count, setCount] = useState(0);
+  const {addToCart, removeFromCart, cartItems} = useCart();
+
+  useEffect(() => {
+    const cartItem = cartItems.find(item => item.id === id);
+    if (cartItem) {
+      setCount(cartItem.count);
+    }
+  }, []);
+
   return (
     <>
           <div className='card w-56  flex justify-center align-middle flex-col border-2 rounded-[15px] relative'>
@@ -26,6 +36,7 @@ function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id,
                     {count==0 && (
                         <div className='mr-2' onClick={()=>{
                             setCount(count+1)
+                            addToCart({id, productName, discountPrice, imageUrl, count: count+1})
                         }}>
                        <button style={{
                         backgroundColor: '#F3F9FB',
@@ -46,7 +57,7 @@ function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id,
                       }} onClick={()=>{
                         if(count>=1 && count<10)
                         setCount(count+1)
-                      
+                        addToCart({id, productName, discountPrice, imageUrl, count: count+1})
                       }}>+</span>
                       <div><input type="text" className='w-6 border-2 indent-1' value={count}/></div>    
                       <span 
@@ -58,14 +69,15 @@ function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id,
                       onClick={()=>{
                         if(count>=1){
                           setCount(count-1)
+                          removeFromCart({id})
                         }
-                      }}>-</span>
+                      }}> - </span>
                     </div>
                     )}
                   
                     
                 </div>
-                <div className='absolute z-50' style={{
+                <div className='absolute' style={{
                     top: '0',
                     left: '80%',
                     backgroundColor: '#54B22C',

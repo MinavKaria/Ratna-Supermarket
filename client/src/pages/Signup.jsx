@@ -10,7 +10,8 @@ import  { auth, googleProvider } from '../configs/firebase.js';
 import { signInWithPopup } from "firebase/auth";
 // import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 // import {provider} from '../configs/firebase.js';
-
+import { useCart } from "../actions/CartControl.jsx";
+import { GoogleLoginButton } from "react-social-login-buttons";
 
 const UserDataContainer = styled('form')({
   height: '80vh',
@@ -51,12 +52,18 @@ function Signup() {
       const result = await signInWithPopup(auth, googleProvider);
       
       const user = result.user;
+      setIsLogin(true);
+      setName(user.displayName);
+      setUserDetails(user);
       console.log("Google sign-in success:", user);
       navigate("/");
     } catch (error) {
       console.error("Google sign-in error:", error);
     }
   };
+
+  const {isLogin, setIsLogin,name,setName,userDetails, setUserDetails } = useCart();
+
 
   // const handleGithubSignIn = async () => {
   //   const auth = getAuth();
@@ -75,6 +82,7 @@ function Signup() {
   // };
 
   return (
+    <div className="mt-5 px-10">
     <div className="container mx-auto flex justify-start items-center">
     <Box sx={{ flexGrow: 1, marginTop:'100px'}}>
       <Grid container spacing={2}>
@@ -170,7 +178,7 @@ function Signup() {
                 {isSignup ? 'Sign Up' : 'Sign In'}
               </button>
               <br/>
-              <GoogleLogin
+              {/* <GoogleLogin
                   onSuccess={()=>{
                     
                   }}
@@ -178,15 +186,18 @@ function Signup() {
                   size='large'
                   text='signup_with'
 
-            />
+            /> */}
 
-                  <button
+                  {/* <button
                     className="bg-red-500 w-52 p-2 mt-3  text-white"
                     type="button"
                     onClick={handleGoogleSignIn}
                   >
                     Firebase Google Sign In
-                  </button>
+                  </button> */}
+                  <div className="w-72">
+                  <GoogleLoginButton type="button" onClick={handleGoogleSignIn} size="50px"  />
+                  </div>
 
                 {/* 
                   <button onClick={handleGithubSignIn} type="button" className="bg-red-500 w-32 p-2 mt-3 rounded-2xl">
@@ -205,6 +216,7 @@ function Signup() {
         </Grid>
       </Grid>
     </Box>
+    </div>
     </div>
   );
 }

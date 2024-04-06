@@ -4,21 +4,41 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Shoes', price: 20 },
-    { id: 2, name: 'Shirt', price: 10 },
+   
   ]);
-
+ 
+  const [isLogin, setIsLogin] = useState(false);
+  const [name,setName] = useState('');
+  const [userDetails,setUserDetails] = useState({});
   const addToCart = (item) => {
-    setCartItems((prevItems) => [...prevItems, item]);
+   
+    setCartItems((prevItems)=>{
+      const exist = prevItems.find((x)=> x.id === item.id);
+
+      if(exist){
+        return  prevItems.map((x) => x.productName === item.productName  ? {...x, count: x.count + 1} : x);
+      }else{
+        return [...prevItems, item];
+      }
+    })
+    console.log('addToCart:', item);
   };
 
-  const removeFromCart = ({id}) => {
-    console.log('removeFromCart:', id);
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  }
+  const removeFromCart = ({ id }) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id
+          ? item.count > 1
+            ? { ...item, count: item.count - 1 }
+            : null
+          : item
+      ).filter(Boolean)
+    );
+  };
+  
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart,removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart,removeFromCart, isLogin, setIsLogin,name,setName,userDetails, setUserDetails }}>
       {children}
     </CartContext.Provider>
   );

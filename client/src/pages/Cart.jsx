@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Cart() {
   const { cartItems, addToCart, removeFromCart } = useCart();
   const navigate = useNavigate();
-
+  console.log(cartItems);
   return (
     <div className='mt-48 mx-auto max-w-md p-6 bg-white rounded-lg shadow-md'>
       <h1 className='text-3xl font-semibold mb-4'>Shopping Cart</h1>
@@ -17,17 +17,19 @@ function Cart() {
         <>
         <ul className='divide-y divide-gray-300'>
           {cartItems.map((item) => (
+            console.log(item),
             <li key={item.id} className='py-2'>
               <div className='flex items-center justify-between'>
                 <div>
-                  <h2 className='text-lg font-semibold'>{item.name}</h2>
-                  <p className='text-gray-600'>{item.price}</p>
+                  <h2 className='text-lg font-semibold'>{item.productName}</h2>
+                  <p className='text-gray-600'>{item.discountPrice}</p>
+                  <p className='text-gray-600'>Quantity: {item.count}</p>
                 </div>
                 <button
                   className='text-red-600'
                   onClick={() => {
                     console.log('remove item', item);
-                    removeFromCart(item)
+                    removeFromCart({ id: item.id })
                     }}
                 >
                     Remove

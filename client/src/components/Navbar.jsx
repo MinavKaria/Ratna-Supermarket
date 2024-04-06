@@ -20,6 +20,8 @@ import {useNavigate} from 'react-router-dom';
 import {useCart} from '../actions/CartControl';
 import SimpleDialog from "./SimpleDialog";
 import SimpleDialog2 from "./SimpleDialog2";
+import SimpleDialog3 from "./SimpleDialog3";
+
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,9 +56,14 @@ const Navbar = () => {
   };
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
 
   const handleClickOpen2 = () => {
     setOpen2(true);
+  }
+
+  const handleClickOpen3 = () => {
+    setOpen3(true);
   }
 
   const handleClose2 = (value) => {
@@ -67,16 +74,23 @@ const Navbar = () => {
   const handleClickOpen = () => {
     setOpen(true);
   };
+  
 
   const handleClose = (value) => {
     setOpen(false);
   };
 
+  const handleClose3 = () => {
+    setOpen3(false);
+  };
+
+
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const { cartItems, addToCart } = useCart();
+  const { cartItems, addToCart,isLogin, setIsLogin,name,setName,userDetails,setUserDetails } = useCart();
 
   return (
     <>
@@ -154,14 +168,37 @@ const Navbar = () => {
             </button>
 
           <div className="md:flex items-center space-x-4 sm:hidden mx-10 gap-5">
-            <div className="flex" onClick={()=>{
+           
+              {!isLogin ? (
+                <>
+                <div className="flex" onClick={()=>{
                 navigate('/sign');
               }}>
-              <img src="user.svg" alt="" />
-              <button 
-              className=" " 
-              >Login</button>
-            </div>
+                  <img src="user.svg" alt="" />
+                  <button 
+                  className=" " 
+                  >Login</button>
+                    </div>
+                </>
+              ):(
+                <>
+                <div className="flex" onClick={()=>{
+                setOpen3(true);
+                }}>
+                  <img src={userDetails.photoURL} alt="" className=" rounded-full w-10 mr-5" />
+                  <button 
+                  className=" "
+                  onClick={()=>{
+                    
+                  
+                  }} 
+                  >{name}</button>
+                    </div>
+                </>
+              
+              )}
+             
+          
             <div className="flex" onClick={()=>{
               // addToCart({id:1, name:'Product 1', price:100, qty:1});
               navigate('/cart');
@@ -188,6 +225,13 @@ const Navbar = () => {
           handleClickOpen2();
         }}
       />
+
+    <SimpleDialog3
+        open={open3}
+        onClose={handleClose3}
+        setIsLogin={setIsLogin}
+        />
+
       
     </>
   );
