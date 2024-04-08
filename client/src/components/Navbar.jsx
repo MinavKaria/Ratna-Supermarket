@@ -28,6 +28,13 @@ const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user){
+      setIsLogin(true);
+    }
+  },[]);
   
 
   const options = {
@@ -91,6 +98,7 @@ const Navbar = () => {
   };
 
   const { cartItems, addToCart,isLogin, setIsLogin,name,setName,userDetails,setUserDetails } = useCart();
+  const userDetail = JSON.parse(localStorage.getItem('user'));
 
   return (
     <>
@@ -185,14 +193,14 @@ const Navbar = () => {
                 <div className="flex" onClick={()=>{
                 setOpen3(true);
                 }}>
-                  <img src={userDetails.photoURL} alt="" className=" rounded-full w-10 mr-5" />
+                  <img src={userDetail.photoURL} alt="" className=" rounded-full w-10 mr-5" />
                   <button 
                   className=" "
                   onClick={()=>{
                     
                   
                   }} 
-                  >{name}</button>
+                  >{userDetail.displayName}</button>
                     </div>
                 </>
               

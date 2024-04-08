@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
+import Easter from "../components/Easter";
 
 async function countWordOccurrences(array, word) {
   let count = 0;
@@ -27,27 +28,38 @@ function Layout() {
         openedLocation,
         location.pathname
       );
-      if (openedLocation.includes(location.pathname)) {
-        if (countOpenedLocation == 7) {
+      if (openedLocation.includes(location.pathname)) 
+      {
+        if (countOpenedLocation === 7) 
+        {
+          console.log("Easter Egg, You were on "+location.pathname+" page 7 times");
+          console.log(openedLocation);
           setEaster(true);
-          setLoading(true);
-        } else {
-          setLoading(true);
-       
+          setTimeout(() => {
+            setEaster(false);
+            console.log("Easter Egg Closed");
+          }, 11000);
+
+        } 
+        else 
+        {
+          
+          setLoading(false);
+          setTimeout(() => {
+            setLoading(false);
+          }, 500);
+          console.log("Not a Easter Egg");
         }
-      } else {
+      }else
+      { 
+        console.log("Preloader is set for loading once per page for cache purpose");
         setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       }
-
-      const timeoutId = setTimeout(() => {
-        setLoading(false);
-        setEaster(false);
-      }, 500);
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
     }
+
 
     fetchData();
   }, [location]);
@@ -62,10 +74,11 @@ function Layout() {
   );
 
 
-  return loading ? (
-    easter ? (
-      <div>Boo this is an easterEgg</div>
-    ) : (
+  return easter ? (
+    <Easter />
+  ) :
+  (loading ? (
+     (
       <Preloader />
     )
   ) : (
@@ -74,7 +87,7 @@ function Layout() {
       <Outlet />
       {!isExcludedPathFooter && <Footer />}
     </div>
-  );
+  ));
 }
 
 export default Layout;
