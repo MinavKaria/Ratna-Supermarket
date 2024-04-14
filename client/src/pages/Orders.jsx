@@ -13,7 +13,13 @@ function Orders() {
                 const user = JSON.parse(localStorage.getItem('user'));
                 const userID = user.uid;
 
-                const response = await axios.get(`https://ratna-supermarket.vercel.app/allOrder/${userID}`);
+                const response = await axios.get(`https://ratna-supermarket.vercel.app/allOrder/${userID}`, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET',
+                        'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept'
+                    }
+                });
                 const ordersGot = response.data;
                 setOrders(ordersGot);
             } catch (error) {

@@ -24,6 +24,7 @@ function CategoryList() {
           {filteredCardData.map((card, index) => (
             <BuyCard
               key={index}
+              id={card.id}
               productName={card.productName}
               mrp={card.mrp}
               discountPrice={card.discountPrice}

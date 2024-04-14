@@ -32,12 +32,26 @@ function Checkout() {
                 onClick={async () => {
                   
                   try {
-                    await axios.post(
-                      "https://ratna-supermarket.vercel.app/orderItems",
-                      { id: userID, order: cartItems ,orderStage:1},
-                      { headers: { "Content-Type": "application/json" } }
-                      
-                    );
+                    try {
+                      await axios.post(
+                        "https://ratna-supermarket.vercel.app/orderItems",
+                        { id: userID, order: cartItems, orderStage: 1 },
+                        {
+                          headers: {
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Origin": "*",
+                          },
+                        }
+                      );
+
+                      console.log("Order Placed");
+                      setTimeout(() => {
+                        navigate("/orders");
+                      }, 3000);
+                      setPaymentSuccess(true);
+                    } catch (err) {
+                      console.log(err);
+                    }
 
                     console.log("Order Placed");
                     setTimeout(() => {
