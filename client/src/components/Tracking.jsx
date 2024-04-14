@@ -27,7 +27,7 @@ const steps = [
   useEffect(() => {
     const fetchData = async () => {
       try {
-          const response = await axios.get(`http://localhost:3000/order/${orderID}`);
+          const response = await axios.get(`https://ratna-supermarket.vercel.app/order/${orderID}`);
           const order = response.data;
           console.log(order.orderStage);
           setActiveStep(order.orderStage);

@@ -33,7 +33,7 @@ function Checkout() {
                   
                   try {
                     await axios.post(
-                      "http://localhost:3000/orderItems",
+                      "https://ratna-supermarket.vercel.app/orderItems",
                       { id: userID, order: cartItems ,orderStage:1},
                       { headers: { "Content-Type": "application/json" } }
                       

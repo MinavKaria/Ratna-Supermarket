@@ -13,7 +13,7 @@ function Orders() {
                 const user = JSON.parse(localStorage.getItem('user'));
                 const userID = user.uid;
 
-                const response = await axios.get(`http://localhost:3000/allOrder/${userID}`);
+                const response = await axios.get(`https://ratna-supermarket.vercel.app/allOrder/${userID}`);
                 const ordersGot = response.data;
                 setOrders(ordersGot);
             } catch (error) {
