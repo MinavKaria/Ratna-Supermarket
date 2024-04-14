@@ -1,20 +1,125 @@
 [
   {
-    "productName": "Tomato",
-    "mrp": "200",
+    "productName": "Hybrid Tomato 500g",
+    "mrp": "20",
     "bogo": true,
+    "discountPrice": "10",
     "category": "vegetable",
     "imageUrl":"/tomato.png"
   },
   {
-    "productName": "Potato",
-    "mrp": "100",
-    "discountPrice": "80",
+    "productName": "Potato 1Kg",
+    "mrp": "40",
+    "discountPrice": "30",
     "bogo": false,
     "category": "vegetable",
     "imageUrl":"/potato.png"
+},
+  {
+  "productName": "Onion 1Kg",
+  "mrp": "60",
+  "bogo": true,
+  "discountPrice": "40",
+  "category": "vegetable",
+  "imageUrl":"/onion.png"
   },
+  {
+    "productName": "Green chillies 100g",
+    "mrp": "20",
+    "bogo": true,
+    "category": "vegetable",
+    "discountPrice": "15",
+    "imageUrl":"/green_chilli.png"
+  },
+  {
+    "productName": "Lady Finger 250g",
+    "mrp": "50",
+    "discountPrice": "30",
+    "bogo": false,
+    "category": "vegetable",
+    "imageUrl":"/lady_finger.png"
+},
+  {
+    "productName": "Mr. Makhana Himalayan Salt & Pepper",
+    "mrp": "70",
+    "bogo": true,
+    "category": "snacks & munchies",
+    "discountPrice": "50",
+    "imageUrl":"/salt.png"
+  },
+  {
+    "productName": "Lijjat Papad Urad Papad",
+    "mrp": "90",
+    "bogo": true,
+    "category": "snacks & munchies",
+    "discountPrice": "70",
+    "imageUrl":"/lijjat.png"
+  },
+  {
+    "productName": "Kurkure Masala Munch Crisps X3",
+    "mrp": "60",
+    "bogo": true,
+    "category": "snacks & munchies",
+    "discountPrice": "50",
+    "imageUrl":"/kurkure.png"
+  },
+  {
+    "productName": "Dorritos Cheese Nachos",
+    "mrp": "150",
+    "bogo": true,
+    "category": "snacks & munchies",
+    "discountPrice": "100",
+    "imageUrl":"/doritos.png"
+  },
+  {
+    "productName": "Chheda's Maharaja Delight Gift Pack",
+    "mrp": "400",
+    "bogo": true,
+    "category": "snacks & munchies",
+    "discountPrice": "350",
+    "imageUrl":"/gift_back.png"
+  },
+    {
+      "productName": "Maaza Mango Drink 1.2l",
+      "mrp": "60",
+      "bogo": true,
+      "category": "cold drinks & juices",
+      "discountPrice": "40",
+      "imageUrl":"/maaza.png"
+    },
+    {
+      "productName": "B-Natural Mixed Fruit",
+      "mrp": "70",
+      "bogo": true,
+      "category": "cold drinks & juices",
+      "discountPrice": "50",
+      "imageUrl":"/juice.svg"
+    },
+    {
+      "productName": "Storia 100% Tender Coconut Water ",
+      "mrp": "70",
+      "bogo": true,
+      "category": "cold drinks & juices",
+      "discountPrice": "50",
+      "imageUrl":"/storia.png"
+    },
+    {
+      "productName": "Bisleri Packaged Water 5l",
+      "mrp": "120",
+      "bogo": true,
+      "category": "cold drinks & juices",
+      "discountPrice": "90",
+      "imageUrl":"/bisleri_5l.png"
+    },
+    {
+      "productName": "Sting Energy drink Pack of 2",
+      "mrp": "50",
+      "bogo": true,
+      "category": "cold drinks & juices",
+      "discountPrice": "40",
+      "imageUrl":"/sting.png"
+    }
+ 
 
-  
 
 ]
