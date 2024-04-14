@@ -1,124 +1,20 @@
 [
-    {
-      "productName": "Product abcd",
-      "mrp": "200",
-      "discountPrice": "150",
-      "bogo": true,
-      "category": "vegetable"
-    },
-    {
-      "productName": "Product 2",
-      "mrp": "250",
-      "discountPrice": "200",
-      "category": "fruit"
-    },
-    {
-      "productName": "Product 3",
-      "mrp": "180",
-      "discountPrice": "140",
-      "category": "vegetable"
-    },
-    {
-      "productName": "Product 4",
-      "mrp": "150",
-      "discountPrice": "120",
-      "category": "fruit"
-    },
-    {
-      "productName": "Product 5",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "vegetable"
-    },
-    {
-      "productName": "Product 6",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "fruit"
-    },
-    {
-      "productName": "Product 7",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "vegetable"
-    },
-    {
-      "productName": "Product 8",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "fruit"
-    },
-    {
-      "productName": "Product 9",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "egg, meat & fish"
-    },
-    {
-      "productName": "Product 10",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "egg, meat & fish"
-    },
-    {
-      "productName": "Product 11",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "bath & body"
-    },
-    {
-      "productName": "Product 12",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "cold drinks & juices"
-    },
-    {
-      "productName": "Product 13",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "snacks & munchies"
-    },
-    {
-      "productName": "Product 14",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "cold drinks & juices"
-    },
-    {
-      "productName": "Product 15",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "icy delights"
-    },
-    {
-      "productName": "Product 16",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "bath & body"
-    },
-    {
-      "productName": "Product 17",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "snacks & munchies"
-    },
-    {
-      "productName": "Product 18",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "icy delights"
-    },
-    {
-      "productName": "Product 19",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "bath & body"
-    },
-    {
-      "productName": "Product 20",
-      "mrp": "300",
-      "discountPrice": "250",
-      "category": "snacks & munchies"
-    }
-  ]
+  {
+    "productName": "Tomato",
+    "mrp": "200",
+    "bogo": true,
+    "category": "vegetable",
+    "imageUrl":"/tomato.png"
+  },
+  {
+    "productName": "Potato",
+    "mrp": "100",
+    "discountPrice": "80",
+    "bogo": false,
+    "category": "vegetable",
+    "imageUrl":"/potato.png"
+  },
+
   
+
+]

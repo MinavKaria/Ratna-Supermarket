@@ -17,7 +17,7 @@ function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id,
     <>
           <div className='card w-56  flex justify-center align-middle flex-col border-2 rounded-[15px] relative'>
                 <div className='bg-slate-200 w-full flex justify-center rounded-t-[15px] align-top'>
-                    <img src="/super_saver/juice.svg" alt=""/>
+                <img src={imageUrl} alt=""/>
                 </div>
                 <div className='p-2 flex-1'>
                 <span className="flex-grow">{productName}</span>
@@ -36,7 +36,7 @@ function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id,
                     {count==0 && (
                         <div className='mr-2' onClick={()=>{
                             setCount(count+1)
-                            addToCart({id, productName, discountPrice, imageUrl, count: count+1})
+                            addToCart({id, productName, discountPrice, count: count+1, imageUrl})
                         }}>
                        <button style={{
                         backgroundColor: '#F3F9FB',
@@ -57,7 +57,7 @@ function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id,
                       }} onClick={()=>{
                         if(count>=1 && count<10)
                         setCount(count+1)
-                        addToCart({id, productName, discountPrice, imageUrl, count: count+1})
+                        addToCart({id, productName, discountPrice, imageUrl, count: count+1, imageUrl})
                       }}>+</span>
                       <div><input type="text" className='w-6 border-2 indent-1' value={count}/></div>    
                       <span 

@@ -97,8 +97,12 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  
+
   const { cartItems, addToCart,isLogin, setIsLogin,name,setName,userDetails,setUserDetails } = useCart();
   const userDetail = JSON.parse(localStorage.getItem('user'));
+
+  
 
   return (
     <>
@@ -207,13 +211,25 @@ const Navbar = () => {
               )}
              
           
-            <div className="flex" onClick={()=>{
+            <div className="flex relative" onClick={()=>{
               // addToCart({id:1, name:'Product 1', price:100, qty:1});
               navigate('/cart');
             }}>
             <img src="cart.svg" alt="" />
-            <button className="" >
-                Cart ({cartItems.length})
+            <button className="pr-5 " >
+                Cart 
+            </button>
+            <div className=" absolute top-0 right-0 w-4 bg-lime-400 rounded-full h-4 text-xs text-center ">
+            {cartItems.length}
+            </div>
+            </div>
+            
+            <div className="flex gap-2">
+            <img src="my-orders-icon.svg" alt="" className="w-5" />
+            <button className="" onClick={()=>{
+              navigate('/orders');
+            }}>
+                My Orders
             </button>
             </div>
           </div>

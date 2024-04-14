@@ -4,7 +4,7 @@ import Payment from '../components/Payment';
 import { useNavigate } from 'react-router-dom';
 
 function Cart() {
-  const { cartItems, addToCart, removeFromCart } = useCart();
+  const { cartItems, addToCart, removeFromCart, isLogin } = useCart();
   const navigate = useNavigate();
   console.log(cartItems);
   return (
@@ -22,7 +22,7 @@ function Cart() {
               <div className='flex items-center justify-between'>
                 <div>
                   <h2 className='text-lg font-semibold'>{item.productName}</h2>
-                  <p className='text-gray-600'>{item.discountPrice}</p>
+                  <p className='text-gray-600'>₹ {item.discountPrice}</p>
                   <p className='text-gray-600'>Quantity: {item.count}</p>
                 </div>
                 <button
@@ -35,11 +35,18 @@ function Cart() {
                     Remove
                 </button>
               </div>
+              <hr />
             </li>
           ))}
         </ul>
         <button className="text-white bg-black p-3 rounded-lg mb-5" onClick={()=>{
-          navigate('/checkout')
+          if(isLogin){
+            navigate('/checkout')
+          }
+          else{
+            navigate('/sign')
+          }
+        
         }}>
             Proceed to Checkout
        </button>

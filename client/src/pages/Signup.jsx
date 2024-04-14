@@ -56,8 +56,9 @@ function Signup() {
       setName(user.displayName);
       setUserDetails(user);
       const uid=user.uid;
-      console.log("Google sign-in success:", user);
       localStorage.setItem('user', JSON.stringify(user));
+      console.log("Google sign-in success:", user);
+      
       navigate("/");
     } catch (error) {
       console.error("Google sign-in error:", error);

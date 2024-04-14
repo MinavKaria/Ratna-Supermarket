@@ -44,6 +44,7 @@ const SimpleDialog3 = ({ onClose, open, setIsLogin }) => {
                 console.log(error);
               });
             setIsLogin(false);
+            localStorage.removeItem('user');
         }}>
             Logout
         </Button>

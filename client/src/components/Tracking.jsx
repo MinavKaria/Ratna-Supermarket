@@ -4,6 +4,9 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import { useState } from 'react';
+import { useParams } from "react-router-dom";
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const steps = [
   'Payment Successful',
@@ -12,12 +15,33 @@ const steps = [
   'Order Delivered',
 ];
 
- function Tracking() {
+ function Tracking() 
+ {
   const [activeStep, setActiveStep] = useState(0);
+  const [order, setOrder] = useState([{}]);
+  const params = useParams();
+
+
+  const orderID = params.id;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          const response = await axios.get(`http://localhost:3000/order/${orderID}`);
+          const order = response.data;
+          console.log(order.orderStage);
+          setActiveStep(order.orderStage);
+          setOrder(order.order);
+      } catch (error) {
+          console.error('Error fetching order:', error);
+      }
+    }
+    fetchData();
+  }, [])
   return (
     <>
        <div className='container mx-auto mt-44 '>
-            <h1 className='px-[11rem] text-4xl mb-14 font-bold'>Order Tracking</h1>
+            <h2 className='px-[11rem] text-2xl mb-14 font-bold'>Order Tracking for Order ID {orderID}</h2>
             <Box sx={{ width: '100%' }}>
             <Stepper activeStep={activeStep} alternativeLabel>
                 {steps.map((label) => (
@@ -34,9 +58,22 @@ const steps = [
                 <img src="/delivery_4.svg" alt="" className={`${activeStep <4 ? 'filter grayscale opacity-50' : ''}`}/>
             </div>
 
-            <button className=' bg-red-600 px-3 text-white' onClick={()=>{
+            {order.map((item) => (
+                <div key={item._id} className='flex justify-between items-center border-b-2 py-4'>
+                    <div className='flex gap-4'>
+                        <img src={"/"+item.imageUrl} alt="" className='w-20 h-20 object-contain'/>
+                        <div>
+                            <h3 className='font-bold'>{item.name}</h3>
+                            <p>Price: ₹ {item.discountPrice}</p>
+                            <p>Quantity: {item.count}</p>
+                        </div>
+                    </div>
+                    <p>Subtotal: ₹ {item.discountPrice * item.count}</p>
+                </div>
+            ))}
+            {/* <button className=' bg-red-600 px-3 text-white' onClick={()=>{
                 setActiveStep((prevActiveStep) =>( prevActiveStep + 1))
-            }}>Check</button>
+            }}>Check</button> */}
         </div>
     </>
   );

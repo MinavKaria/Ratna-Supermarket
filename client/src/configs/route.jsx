@@ -14,8 +14,10 @@ import TopCategoriesList from "../components/TopCategoriesList";
 import NotFound from "../components/NotFound";
 import CategoryList from "../components/CategoryList";
 import Cart from "../pages/Cart";
-import Checkout from "../components/Checkout";
+import Checkout from "../pages/Checkout";
 import Tracking from "../components/Tracking";
+import Vender from "../pages/Vendor";
+import Orders from "../pages/Orders";
 
 const router = createBrowserRouter([
   {
@@ -67,7 +69,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:'/tracking',
+        path:'/tracking/:id',
         element: (
           <>
      
@@ -77,6 +79,23 @@ const router = createBrowserRouter([
          
           </>
         )
+      },
+      {
+        path: '/orders',
+        element: (
+          <>
+            <Orders/>
+          </>
+        )
+      },
+      {
+        path: "/vendor",
+        element: (
+          <>
+            <Vender/>
+          </>
+        ),
+
       },
       {
         path: "*",
