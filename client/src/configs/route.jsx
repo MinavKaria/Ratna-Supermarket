@@ -18,6 +18,7 @@ import Checkout from "../pages/Checkout";
 import Tracking from "../components/Tracking";
 import Vender from "../pages/Vendor";
 import Orders from "../pages/Orders";
+import ProductPage from "../pages/ProductPage";
 
 const router = createBrowserRouter([
   {
@@ -96,6 +97,14 @@ const router = createBrowserRouter([
           </>
         ),
 
+      },{
+        path:'/product/:id',
+        element:
+        (
+        <>
+          <ProductPage/>
+        </>
+        ),
       },
       {
         path: "*",

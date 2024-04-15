@@ -63,6 +63,7 @@ app.get('/allVendor', async (req, res) => {
 });
 
 app.get('/allOrder/:id', async (req, res) => {
+  console.log('allOrder')
   try {
     const orders = await Order.find({ id: req.params.id });
     res.send(orders);
