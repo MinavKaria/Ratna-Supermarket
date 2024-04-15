@@ -1,10 +1,12 @@
 import React from 'react'
 import {useState,useEffect} from 'react';
 import { useCart } from '../actions/CartControl';
+import { useNavigate } from 'react-router-dom';
 
 function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id, cart, setCart, setTotal, total}) {
  const [count, setCount] = useState(0);
   const {addToCart, removeFromCart, cartItems} = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const cartItem = cartItems.find(item => item.id === id);
@@ -15,7 +17,9 @@ function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id,
 
   return (
     <>
-          <div className='card w-56  flex justify-center align-middle flex-col border-2 rounded-[15px] relative'>
+          <div className='card w-56  flex justify-center align-middle flex-col border-2 rounded-[15px] relative' onClick={()=>{
+              navigate(`/product/${id}`)
+          }}>
                 <div className='bg-slate-200 w-full flex justify-center rounded-t-[15px] align-top'>
                 <img src={imageUrl} alt=""/>
                 </div>

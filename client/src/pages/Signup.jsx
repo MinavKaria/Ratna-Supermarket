@@ -12,6 +12,7 @@ import { signInWithPopup } from "firebase/auth";
 // import {provider} from '../configs/firebase.js';
 import { useCart } from "../actions/CartControl.jsx";
 import { GoogleLoginButton } from "react-social-login-buttons";
+import axios from 'axios';
 
 const UserDataContainer = styled('form')({
   height: '80vh',
@@ -40,8 +41,10 @@ function Signup() {
   const [isSignup, setIsSignup] = useState(false);
   const [user, setUser] = useState({
     firstName: '',
-    lastName: '',
-    phoneNumber: '',
+    lastname: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
   const [validPhone, setValidPhone] = useState(false);
   const navigate = useNavigate();
@@ -83,6 +86,25 @@ function Signup() {
   //       console.error("GitHub sign-in error:", error);
   //     });
   // };
+  const createUser=async()=>{
+    
+
+    const response=await axios.post('http://localhost:3000/signUp', user)
+  }
+  const signInUser=async()=>{
+    console.log("user");
+    const response=await axios.post('http://localhost:3000/signIn', {email:user.email, password:user.password})
+    console.log(response);
+    const data=response.data;
+    const name=data.result.name;
+    const token=data.token;
+    setIsLogin(true);
+    setName(user.name);
+    localStorage.setItem('user', JSON.stringify(data.result));
+    navigate('/');
+
+  }
+    
 
   return (
     <div className="mt-5 px-10">
@@ -91,9 +113,39 @@ function Signup() {
       <Grid container spacing={2}>
         <Grid item xs={6}>
 
-          <UserDataContainer onSubmit={(e)=>{
+          <UserDataContainer onSubmit={async (e)=>{
             e.preventDefault();
-            navigate('/')
+            if(!isSignup)
+                {
+                  if(user.password!==user.confirmPassword)
+                  {
+                    alert("Passwords don't match");
+                    return;
+                  }
+                  else if(user.password.length<6)
+                  {
+                    alert("Password must be at least 6 characters long");
+                    return;
+                  }
+                  else
+                  {
+                    await createUser();
+                  }
+                }
+                else
+                {
+                  if(user.password.length<6)
+                  {
+                    alert("Password must be at least 6 characters long");
+                    return;
+                  }
+                  else
+                  {
+                    await signInUser();
+                  }
+                }
+               
+
           }}>
             <Typography variant="h4" gutterBottom>
               {isSignup ? "Sign Up" : "Sign In"}
@@ -107,6 +159,7 @@ function Signup() {
                   className=" w-96"
                   pattern="[A-Za-z]+"
                   title="Please enter a valid First Name"
+                  onChange={(e)=>{setUser({...user, firstName: e.target.value})}}
                   required
                 />
                 <br />
@@ -118,37 +171,21 @@ function Signup() {
                   pattern="[A-Za-z]+"
                   title="Please enter a valid Last Name"
                   onChange={(e)=>{
-                    setUser({...user, lastName: e.target.value})
+                    setUser({...user, lastname: e.target.value})
                   }}
                 />
                 <br />
               </>
             )}
-            <Input
-              type="tel"
-              placeholder="Phone Number"
-              className=" w-96"
-              pattern="[0-9]{10}"
-              required={user.phoneNumber.length === 0 ? false : true}
-              title="Please enter a valid 10-digit Phone Number"
-              onChange={(e)=>{
-                setUser({...user, phoneNumber: e.target.value});
-                if(e.target.value.length === 10 || e.target.value.length === 0 || typeof e.target.value === 'number'){
-                  setValidPhone(false);
-                }
-                else
-                  setValidPhone(true);
-                
-              }}
-            />
+            
             {validPhone && (
             <div className="bg-red-500 w-96 text-white">
               Please enter a valid 10-digit Phone Number
             </div>
             )}
-            <br />
-            <h1>OR</h1>
-            <br />
+
+        
+
             <Input 
               type="email" 
               className="w-96"
@@ -165,6 +202,35 @@ function Signup() {
               Please enter a valid Email Address
             </div>
             <br />
+            <Input  
+              type="password"
+              className="w-96"
+              placeholder="Password"
+              pattern=".{6,}"
+              title="Password must be at least 6 characters long"
+              onChange={(e)=>{
+                setUser({...user, password: e.target.value});
+              }}
+            >
+            </Input>
+            <br />
+   
+            {!isSignup&&(
+              <>
+              <Input
+              type="password"
+              className="w-96"
+              placeholder="Confirm Password"
+              pattern=".{6,}"
+              title="Password must be at least 6 characters long"
+              onChange={(e)=>{
+                setUser({...user, confirmPassword: e.target.value});
+              }}
+            >
+            </Input>
+            <br />
+ 
+            </>)}
             <button
               className=" text-left text-blue-800"
               onClick={() => {
@@ -172,11 +238,15 @@ function Signup() {
               }}
               type="button"
             >
+          
+         
               {isSignup ? 'Create an Account' : 'Already have an account?'} 
             </button>
-              <button className=" bg-green-600 w-32 p-2  mt-7 rounded-2xl text-white" type='submit' onClick={(e)=>{
+            <br />
+              <button className=" bg-green-600 w-32 p-2  rounded-2xl text-white" type='submit' onClick={(e)=>{
                 // e.preventDefault();
                 // navigate('/');
+                
               }}>
                 {isSignup ? 'Sign Up' : 'Sign In'}
               </button>
