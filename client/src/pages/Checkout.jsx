@@ -45,12 +45,16 @@ function Checkout() {
                       );
 
                       console.log("Order Placed");
+                      
+                    } catch (err) {
+                      console.log(err);
+                    }
+                    finally{
+                      console.log("Order Placed");
                       setTimeout(() => {
                         navigate("/orders");
                       }, 3000);
                       setPaymentSuccess(true);
-                    } catch (err) {
-                      console.log(err);
                     }
 
                     console.log("Order Placed");
