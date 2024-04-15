@@ -9,7 +9,7 @@ dotenv.config();
 app.use(cors({
   origin: ['*', 'http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Methods','Access-Control-Allow-Origin'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Methods','Access-Control-Allow-Origin', 'Access-Control-Allow-Headers'],
 }));
 
 
