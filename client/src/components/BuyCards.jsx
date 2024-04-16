@@ -24,13 +24,11 @@ function BuyCards({ bogo }) {
                 productName={item.productName}
                 mrp={item.mrp}
                 discountPrice={item.discountPrice}
-                imageUrl={item.imageUrl}
-              />
-            
+                imageUrl={item.imageUrl}>
+                
+              </BuyCard>
             ))
-            
             }
-            
           </div>
         </div>
       </div>
