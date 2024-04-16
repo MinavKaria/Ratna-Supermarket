@@ -89,11 +89,11 @@ function Signup() {
   const createUser=async()=>{
     
 
-    const response=await axios.post('http://localhost:3000/signUp', user)
+    const response=await axios.post('https://ratna-supermarket.vercel.app/signUp', user)
   }
   const signInUser=async()=>{
     console.log("user");
-    const response=await axios.post('http://localhost:3000/signIn', {email:user.email, password:user.password})
+    const response=await axios.post('https://ratna-supermarket.vercel.app/signIn', {email:user.email, password:user.password})
     console.log(response);
     const data=response.data;
     const name=data.result.name;

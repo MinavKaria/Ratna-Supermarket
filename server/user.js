@@ -51,7 +51,7 @@ export const createNewUser = async (req, res) => {
                 
      
                 const secretKey = process.env.JWT_SECRET; 
-                 var token = jwt.sign({ email: newUser.email, id: newUser._id,name:`${firstName} ${lastname}`}, secretKey, { expiresIn: "1h" }); 
+                 var token = jwt.sign({ email: newUser.email, uid: newUser._id,name:`${firstName} ${lastname}`}, secretKey, { expiresIn: "1h" }); 
                  
                  res.status(200).json({result:newUser,token});
             }
@@ -92,7 +92,7 @@ export const signInUser = async (req,res)=>{
             else
             {
                 const secretKey = process.env.JWT_SECRET; 
-                var token = jwt.sign({ email: existingUser.email, id: existingUser._id,name:existingUser.name}, secretKey, { expiresIn: "1h" }); 
+                var token = jwt.sign({ email: existingUser.email, uid: existingUser._id,name:existingUser.name}, secretKey, { expiresIn: "1h" }); 
                 
                 res.status(200).json({result:existingUser,token});
             }

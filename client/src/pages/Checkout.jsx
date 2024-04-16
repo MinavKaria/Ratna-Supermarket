@@ -8,7 +8,7 @@ import axios from "axios";
 
 function Checkout() {
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useCart();
+  const { cartItems, addToCart, removeFromCart,setCartItems } = useCart();
   const totalAmount = cartItems.reduce(
     (acc, item) => acc + item.discountPrice * item.count,
     0
@@ -55,6 +55,7 @@ function Checkout() {
                         navigate("/orders");
                       }, 3000);
                       setPaymentSuccess(true);
+                      setCartItems([]);
                     }
 
                     console.log("Order Placed");
