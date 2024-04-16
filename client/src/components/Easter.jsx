@@ -11,9 +11,9 @@ function Easter() {
         </video>
       </div> */}
       <div>
-        <img src="preload.jpg" alt="" srcset="" className='h-full'/>
-        <div>
-          Advertisement
+        {/* <img src="preload.jpg" alt="" srcset="" className='h-full'/> */}
+        <div className='text-[20vh] font-black text-red-400 duration-300 hover:text-blue-400 hover:duration-300'>
+          DEFNIATLEE AN EASSTER EGG.
         </div>
       </div>
     </>

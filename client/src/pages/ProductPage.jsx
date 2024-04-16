@@ -4,10 +4,15 @@ import CategoriesHead from '../components/TopCategoriesHead'
 import TopCategoriesList from '../components/TopCategoriesList'
 import BuyCard from '../components/BuyCards'
 import { useParams } from 'react-router-dom'
-
+import productsData from '../data/product.json'
 function ProductPage() {
   const { id } = useParams()
   console.log(id)
+  // const data=JSON.parse()
+  console.log(productsData)
+  const getimgURL=(id)=>{
+    productsData
+  }
   return (
     <>
         <div className='mt-[120px] flex'>
@@ -43,6 +48,7 @@ function ProductPage() {
         <TopCategoriesList/>
         <CategoriesHead title="Supersaver" greenTitle="Up to 50% off"/>
         <BuyCard/>
+        
       </div>
     </>
   )
