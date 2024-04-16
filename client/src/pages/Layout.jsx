@@ -38,7 +38,7 @@ function Layout() {
           setTimeout(() => {
             setEaster(false);
             console.log("Easter Egg Closed");
-          }, 30000);
+          }, 5000);
 
         } 
         else 
