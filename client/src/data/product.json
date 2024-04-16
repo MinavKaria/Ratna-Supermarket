@@ -133,5 +133,60 @@
     "category": "cold drinks & juices",
     "discountPrice": "40",
     "imageUrl": "/sting.png"
-  }
+  },
+  {
+    "id": 16,
+    "productName": "Eggs 1 dozen",
+    "mrp": "60",
+    "category": "egg, meat & fish",
+    "discountPrice": "40",
+    "imageUrl": "/eggs.png"
+  },
+  {
+    "id": 17,
+    "productName": "Chicken 1 kg",
+    "mrp": "200",
+    "category": "egg, meat & fish",
+    "discountPrice": "150",
+    "imageUrl": "/chicken.png"
+  },
+  {
+    "id": 18,
+    "productName": "Fish  ",
+    "mrp": "100",
+    "category": "egg, meat & fish",
+    "discountPrice": "70",
+    "imageUrl": "/fish.png"
+  },
+  {
+    "id": 19,
+    "productName": "Mutton",
+    "mrp": "400",
+    "category": "egg, meat & fish",
+    "discountPrice": "300",
+    "imageUrl": "/mutton.png"
+  },
+  {
+    "id": 20,
+    "productName": "Beef ",
+    "mrp": "80",
+    "category": "egg, meat & fish",
+    "discountPrice": "60",
+    "imageUrl": "/beef.png"
+  },
+  {
+    "productName": "Dove Shampoo",
+    "mrp": "300",
+    "discountPrice": "250",
+    "imageUrl": "/dove_shampoo.png",
+    "category": "bath & body"
+  },
+  {
+    "productName": "Cinthol Soap",
+    "mrp": "150",
+    "discountPrice": "100",
+    "imageUrl": "/cinthol.png",
+    "category": "bath & body"
+  }  
+
 ]
