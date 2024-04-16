@@ -13,11 +13,14 @@ const dirname = '../client/public/';
 const app = express();
 dotenv.config();
 app.use(fileUpload())
+
+
 app.use(cors({
-  origin: ['*', 'http://localhost:5173','https://ratna-supermaket.web.app/','https://localhost:5173/'],
+  origin: ['*', 'http://localhost:5173', 'https://ratna-supermaket.web.app', 'https://localhost:5173'],
   methods: ['GET', 'POST', 'PUT'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Methods','Access-Control-Allow-Origin', 'Access-Control-Allow-Headers'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Headers'],
 }));
+
 
 
 
