@@ -60,6 +60,7 @@ function Orders() {
                             </div>
                         </div>
                     ))}
+                    {orders.length === 0 && <p>No orders found</p>}
                 </div>
             </div>
         </>

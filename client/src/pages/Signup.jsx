@@ -88,8 +88,22 @@ function Signup() {
   // };
   const createUser=async()=>{
     
+    console.log(user);
+    try{
+      const response=await axios.post('https://ratna-supermarket.vercel.app/signUp', user)
+      console.log(response.result);
+    }
+    catch(err)
+    {
+      console.log(err);
+    }
+    finally{
+      console.log("User created");
+      navigate('/');
+    }
 
-    const response=await axios.post('https://ratna-supermarket.vercel.app/signUp', user)
+    
+    
   }
   const signInUser=async()=>{
     console.log("user");

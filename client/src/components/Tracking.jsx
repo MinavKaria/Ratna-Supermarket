@@ -60,7 +60,7 @@ const steps = [
 
             {order.map((item) => (
                 <div key={item._id} className='flex justify-between items-center border-b-2 py-4'>
-                    <div className='flex gap-4'>
+                    <div className='flex gap-4 '>
                         <img src={"/"+item.imageUrl} alt="" className='w-20 h-20 object-contain'/>
                         <div>
                             <h3 className='font-bold'>{item.name}</h3>
