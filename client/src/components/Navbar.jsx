@@ -227,7 +227,13 @@ const Navbar = () => {
             <div className="flex gap-2">
             <img src="my-orders-icon.svg" alt="" className="w-5" />
             <button className="" onClick={()=>{
-              navigate('/orders');
+              if(!isLogin){
+                navigate('/sign');
+              }
+              else
+              {
+                navigate('/orders');
+                }
             }}>
                 My Orders
             </button>

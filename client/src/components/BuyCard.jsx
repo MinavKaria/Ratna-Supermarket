@@ -17,10 +17,10 @@ function BuyCard({bogo, mrp, discountPrice, imageUrl, productName, discount, id,
 
   return (
     <>
-          <div className='card w-56  flex justify-center align-middle flex-col border-2 rounded-[15px] relative' onClick={()=>{
+          <div className='card w-56  flex justify-center align-middle flex-col border-2 rounded-[15px] relative' >
+                <div className='bg-slate-200 w-full flex justify-center rounded-t-[15px] align-top' onClick={()=>{
               navigate(`/product/${id}`)
-          }}>
-                <div className='bg-slate-200 w-full flex justify-center rounded-t-[15px] align-top'>
+              }}>
                 <img src={imageUrl} alt=""/>
                 </div>
                 <div className='p-2 flex-1'>

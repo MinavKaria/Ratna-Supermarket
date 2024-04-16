@@ -64,8 +64,8 @@ function Layout() {
     fetchData();
   }, [location]);
 
-  const excludedPathsNavbar = [];
-  const excludedPathsFooter = ["/sign",'/categories/:categoryName'];
+  const excludedPathsNavbar = ['/vendor','/vendor/orders','/vendor/products'];
+  const excludedPathsFooter = ["/sign",'/categories/:categoryName','/vendor','/vendor/orders','/vendor/products'];
 
   const isExcludedPathNavbar = excludedPathsNavbar.includes(location.pathname);
  

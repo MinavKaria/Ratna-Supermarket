@@ -4,10 +4,17 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import Order from './cartOrderSchema.js';
+import fileUpload from 'express-fileupload';
+import {createNewUser,signInUser} from './user.js';
+import path from 'path';
+
+const dirname = '../client/public/';
+
 const app = express();
 dotenv.config();
+app.use(fileUpload())
 app.use(cors({
-  origin: ['*', 'http://localhost:5173'],
+  origin: ['*', 'http://localhost:5173','https://ratna-supermaket.web.app/'],
   methods: ['GET', 'POST', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Methods','Access-Control-Allow-Origin', 'Access-Control-Allow-Headers'],
 }));
@@ -101,6 +108,28 @@ app.get('/order/:id', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+app.post("/uploadImage", (req, res) => {
+  // Check if file is not available return message with status 400.
+  if (req.files === null) {
+    return res.status(400).json({ msg: "No file uploaded" });
+  }
+  const file = req.files.file;
+  // Unique name is required for every uploaded file so we are renaming it with date string we can also use unique ID generators like UUID etc.
+  const UFileName = `${new Date().getTime()}-${file.name.replaceAll(" ", "-")}`;
+  // This line of code will save our file in public/uploads folder in our
+  //appliction and will retrun err if any error found if no error found then return pathname of file.
+  file.mv(`${dirname} ${UFileName}`, (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+    res.json({ fileName: UFileName, filePath: `/${UFileName}` });
+  });
+});
+
+app.post('/signUp',createNewUser);
+app.post('/signIn',signInUser);
 
 
 app.listen(PORT, () => {

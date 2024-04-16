@@ -19,6 +19,8 @@ import Tracking from "../components/Tracking";
 import Vender from "../pages/Vendor";
 import Orders from "../pages/Orders";
 import ProductPage from "../pages/ProductPage";
+import VendorOrders from "../pages/VendorOrders";
+import VendorProducts from "../pages/VendorProducts";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +107,21 @@ const router = createBrowserRouter([
           <ProductPage/>
         </>
         ),
+      },{
+        path:'/vendor/orders',
+        element:(
+          <>
+            <VendorOrders/>
+          </>
+        )
+      },
+      {
+        path: '/vendor/products',
+        element: (
+          <>
+            <VendorProducts/>
+          </>
+        )
       },
       {
         path: "*",
