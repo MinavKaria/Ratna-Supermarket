@@ -92,7 +92,7 @@ export const signInUser = async (req,res)=>{
             else
             {
                 const secretKey = process.env.JWT_SECRET; 
-                var token = jwt.sign({ email: existingUser.email, id: existingUser._id,name:existingUser.name}, secretKey, { expiresIn: "1h" }); 
+                var token = jwt.sign({ email: existingUser.email, uid: existingUser._id,name:existingUser.name}, secretKey, { expiresIn: "1h" }); 
                 
                 res.status(200).json({result:existingUser,token});
             }
