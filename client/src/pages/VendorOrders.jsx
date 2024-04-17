@@ -38,6 +38,8 @@ function VendorOrders() {
             <tr>
               <th>Order ID</th>
               <th>Customer ID</th>
+              <th>Address and Pincode</th>
+              <th>Delivery Type</th>
               <th>Date</th>
               <th>Products</th>
               <th>Action</th>
@@ -49,6 +51,8 @@ function VendorOrders() {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td className="vendor-nowrap">{order.id}</td>
+                <td className="vendor-nowrap">{order.address} {order.pinCode}</td>
+                <td className="vendor-nowrap">{order.deliveryType}</td>
                 <td className="vendor-nowrap">{order.date}</td>
                 <td>
                   <table className='vendor-products-table'>
@@ -63,7 +67,7 @@ function VendorOrders() {
                     <tbody>
                       {order.order.map(product => (
                         <tr key={product._id}>
-                          <td><img src={'/'+product.imageUrl} alt={product.productName} className='vendor-product-image' /></td>
+                          <td><img src={product.imageUrl} alt={product.productName} className='vendor-product-image' /></td>
                           <td>{product.productName}</td>
                           <td>{product.discountPrice}</td>
                           <td>{product.count}</td>

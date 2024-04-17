@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
 import BuyCard from "./BuyCard";
-import productsData from '../data/product.json'// Import products data from JSON file
+import axios from "axios";
+// Import products data from JSON file
 
 function CategoryList() {
   const params = useParams();
+  const [productsData, setProductsData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from JSON file
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/allProducts");
+        console.log(response.data);
+        setProductsData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+
+  }, []);
 
   // Function to handle checkbox change
   const handleCheckboxChange = (event) => {

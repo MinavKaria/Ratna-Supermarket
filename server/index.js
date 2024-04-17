@@ -7,6 +7,7 @@ import Order from './cartOrderSchema.js';
 import fileUpload from 'express-fileupload';
 import {createNewUser,signInUser} from './user.js';
 import path from 'path';
+import Product from './productSchema.js';
 
 const dirname = '../client/public/';
 
@@ -46,7 +47,10 @@ app.post('/orderItems',async (req, res) => {
     order: req.body.order,
     date: new Date(),
     orderStage: 1,
-    imageLink: req.body.imageLink
+    imageLink: req.body.imageLink,
+    address: req.body.address,
+    pinCode: req.body.pinCode,
+    deliveryType: req.body.deliveryType
   });
 
   await newOrder.save();
@@ -133,6 +137,44 @@ app.post("/uploadImage", (req, res) => {
 
 app.post('/signUp',createNewUser);
 app.post('/signIn',signInUser);
+
+app.get('/allProducts', async (req, res) => {
+  try
+  {
+    const order = await Product.find({ });
+    res.send(order);
+    if (!order) {
+      res.status(404).send('Product not found');
+    }
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.post('/addProduct', async (req, res) => {
+  console.log(req.body);
+  const newProduct = new Product({
+    productName: req.body.productName,
+    mrp: req.body.mrp,
+    bogo: req.body.bogo,
+    discountPrice: req.body.discountPrice,
+    category: req.body.category,
+    imageUrl: req.body.imageUrl
+  });
+
+  await newProduct.save();
+
+  try {
+    // Add your code here to handle the order request
+
+    res.send('Product added successfully');
+  } catch (error) {
+    console.error(error); 
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 
 app.listen(PORT, () => {

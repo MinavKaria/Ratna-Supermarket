@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId, // Automatically generated unique identifier
@@ -11,6 +11,6 @@ const productSchema = new mongoose.Schema({
   imageUrl: String
 });
 
-const Product = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Products', productSchema);
 
-module.exports = Product;
+export default Product;

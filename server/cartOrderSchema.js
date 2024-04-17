@@ -31,6 +31,21 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     default: new Date()
   },
+  address:
+  {
+    type: String,
+    required: true
+  },
+  pinCode:
+  {
+    type: String,
+    required: true
+  },
+  deliveryType:
+  {
+    type: String,
+    required: true
+  },
   orderStage:{
     type: Number,
     default: 1,
