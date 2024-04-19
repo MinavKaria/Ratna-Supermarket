@@ -30,7 +30,7 @@ function Checkout() {
       console.log("Pincode: ",pincode);
       console.log("Delivery Type: ",deliveryType);
       await axios.post(
-        "http://localhost:3000/orderItems",
+        "https://ratna-supermarket.vercel.app/orderItems",
         {
           id: userID,
           order: cartItems,
@@ -69,13 +69,26 @@ function Checkout() {
             <>
               <h1>Total Amount: ₹ {totalAmount}</h1>
               {/* Input field for the address */}
+              
+              <Payment />
+
+              <h1>Enter your address below</h1>
               <input
                 type="text"
                 placeholder="Enter your address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+                style={{ width: "100%",
+                padding: "12px 20px",
+                margin: "8px 0",
+                display: "inline-block",
+                border: "1px solid #ccc", 
+                borderRadius: "4px",
+                boxSizing: "border-box",
+                }}
               />
-              <Payment />
+              <br />
+              <br />
               <button
                 className="bg-red-500 text-white rounded-lg"
                 onClick={handlePayment}

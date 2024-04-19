@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 function TopCategoriesList() {
   const categories = [
-    { name: 'Vegetable', image: 'veg.png' },
-    { name: 'Fruit', image: 'fruit.png' },
+    { name: 'Fruits & Vegetables', image: 'veg.png' },
+    { name: 'Dairy & Breakfast', image: 'fruit.png' },
     { name: 'Egg, Meat & Fish', image: 'egg-fish.png' },
     { name: 'Bath & Body', image: 'bath-body.png' },
     { name: 'Cold drinks & Juices', image: 'juice.png'},

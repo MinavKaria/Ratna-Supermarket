@@ -60,7 +60,7 @@ function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id
               }} onClick={() => {
                 if (count >= 1 && count < 10)
                   setCount(count + 1);
-                addToCart({ id, productName, discountPrice, imageUrl, count: count + 1, imageUrl });
+                addToCart({ id, productName, discountPrice, imageUrl, count: count + 1 });
               }}>+</span>
             <div><input type="text" className='w-6 border-2 indent-1' value={count} /></div>
             <span

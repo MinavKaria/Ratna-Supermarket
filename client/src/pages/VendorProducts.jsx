@@ -9,7 +9,7 @@ function VendorProducts() {
     // Fetch data from JSON file
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/allProducts");
+        const response = await axios.get("https://ratna-supermarket.vercel.app/allProducts");
         console.log(response.data);
         setProductsData(response.data);
       } catch (error) {

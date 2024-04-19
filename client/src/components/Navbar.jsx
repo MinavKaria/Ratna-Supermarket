@@ -21,12 +21,14 @@ import {useCart} from '../actions/CartControl';
 import SimpleDialog from "./SimpleDialog";
 import SimpleDialog2 from "./SimpleDialog2";
 import SimpleDialog3 from "./SimpleDialog3";
+import axios from 'axios';
 
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [datas, setData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,6 +36,18 @@ const Navbar = () => {
     if(user){
       setIsLogin(true);
     }
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://ratna-supermarket.vercel.app/allProducts");
+        console.log(response.data);
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   },[]);
   
 
@@ -44,9 +58,13 @@ const Navbar = () => {
   };
 
   const data = [
-    { label: "Item 1" },
-    { label: "Item 2" },
+  
   ];
+
+  for(let i=0;i<datas.length;i++){
+    data.push({label:datas[i].productName, id:datas[i].id});
+  }
+
 
   const fuse = new Fuse(data, options);
 
@@ -165,7 +183,7 @@ const Navbar = () => {
                   <div key={result.label} className="p-2 hover:bg-gray-200 cursor-pointer" onClick={()=>{
                     setSearchTerm(`${result.label}`);
                     setSearchResults([]);
-
+                    navigate(`/product/${result.id}`);
                   }}>
                     {result.label}
                   </div>

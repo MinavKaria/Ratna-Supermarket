@@ -176,6 +176,19 @@ app.post('/addProduct', async (req, res) => {
   }
 });
 
+app.get('/product/:id', async (req, res) => {
+  try {
+    const order = await Product.findOne({ id: req.params.id });
+    if (!order) {
+      res.status(404).send('Product not found');
+    }
+    res.send(order);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port: http://localhost:${PORT}`);
