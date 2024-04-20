@@ -11,7 +11,7 @@ import Product from './productSchema.js';
 
 const dirname = '../client/public/';
 
-const app = express();
+const app = express(); 
 dotenv.config();
 app.use(fileUpload())
 

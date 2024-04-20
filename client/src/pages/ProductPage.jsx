@@ -12,12 +12,14 @@ import { useCart } from '../actions/CartControl';
 function ProductPage() {
   const { id } = useParams();
   const [products, setProducts] = useState({});
+  const { addToCart, removeFromCart, cartItems } = useCart();
   // console.log(id);
   // // const data=JSON.parse()
   // console.log(productsData);
   // const getimgURL = (id) => {
   //   productsData;
   // };
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     async function getimgURL() {
@@ -34,9 +36,14 @@ function ProductPage() {
     }
 
     getimgURL();
+
+    const cartItem = cartItems.find(item => item.id === id);
+    if (cartItem) {
+      setCount(cartItem.count);
+    }
     
       
-  }, []);
+  }, [cartItems, id]);
   
   return (
     <>
@@ -49,37 +56,67 @@ function ProductPage() {
             ></img>
             <div className="flex flex-col gap-4">
               <span className="font-black text-[2vw]">{products.productName}</span>
-              <div className="flex flex-col gap-3">
-                <span className="font-[100]">Variants</span>
-                <div className="flex flex-row gap-6">
-                  <button className="bg-green-300 text-green-600 px-[2vw] py-[1vh] font-bold shadow-lg shadow-green-200 border-[1px] rounded-lg">
-                    1 kg
-                  </button>
-                  <button className="bg-green-300 text-green-600 px-[2vw] py-[1vh] font-bold shadow-lg shadow-green-200 border-[1px] rounded-lg">
-                    2 kg
-                  </button>
-                </div>
-              </div>
+         
               <div className="flex flex-col gap-1">
                 <span className="text-[2.5vh]">Our Price:</span>
                 <span className="text-[2.5vh]">
                   ₹{products.discountPrice} <span className="text-[2vh] font-[100] line-through">₹{products.mrp}</span>
                 </span>
               </div>
-              <span>
+              {(count === 0 && (
+              <div className=' mr-2' onClick={() => {
+                setCount(count + 1);
+                addToCart({ id, productName: products.productName, discountPrice: products.discountPrice, count: count + 1, imageUrl: products.imageUrl});
+              }}>
+                <button style={{
+                  backgroundColor: '#F3F9FB',
+                  borderColor: '#54B22C',
+                  color: '#249B3E',
+                  width: '60px',
+                  borderRadius: '5px',
+                  border: '1px solid',
+                }}>ADD</button>
+              </div>
+            ))}
+              {count > 0 && (
+          <div className='mr-2 flex gap-2'>
+            <span
+              style={{
+                cursor: 'pointer',
+                marginTop: '1px',
+                userSelect: 'none'
+              }} onClick={() => {
+                if (count >= 1 && count < 10)
+                  setCount(count + 1);
+                addToCart({ id, productName: products.productName, discountPrice: products.discountPrice, imageUrl: products.imageUrl, count: count + 1});
+              }}>+</span>
+            <div><input type="text" className='w-6 border-2 indent-1' value={count} /></div>
+            <span
+              style={{
+                cursor: 'pointer',
+                marginTop: '1px',
+                userSelect: 'none'
+              }}
+              onClick={() => {
+                if (count >= 1) {
+                  setCount(count - 1);
+                  removeFromCart({ id });
+                }
+              }}> - </span>
+          </div>
+        )}
+              {/* <span>
                 <button className="px-[1.6vw] py-[1.4vh] text-[2.5vh] font-bold text-white flex flex-row gap-3 justify-center align-middle bg-green-500 shadow-lg shadow-green-300 rounded-lg">
                   <img className="w-[1.8vw]" src="/CartWhite.svg"></img>Add to
                   Cart
                 </button>
-              </span>
+              </span> */}
               <span className="font-bold">Description</span>
               <span>
-                Onion is a root which is almost like a staple in Indian food.
-                This is also known to be one of the essential ingredients of raw
-                salads. They come in different colours like white
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas eveniet doloremque magni voluptatum, hic sed excepturi animi aut in debitis.
               </span>
               <span className="font-bold">
-                Origin: <span className="font-normal">ur house</span>
+                Origin: <span className="font-normal">India</span>
               </span>
             </div>
           </div>
