@@ -52,6 +52,10 @@ const orderSchema = new mongoose.Schema({
     min:1,
     max:4
 
+  },
+  feedback:{
+    type: String,
+    default: ''
   }
 });
 
