@@ -1,14 +1,8 @@
-import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Container,
-  styled,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { TextField, Button, Container, Select, MenuItem } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/system";
 
 const BackgroundContainer = styled("div")({
   backgroundImage: `url('https://assets.bonappetit.com/photos/6491b45d047251c7e5ee269b/16:9/w_2560%2Cc_limit/GettyImages-107806725.jpg')`,
@@ -29,12 +23,13 @@ const BackgroundContainer = styled("div")({
 
 function Vendor() {
   const [productData, setProductData] = useState({
-    name: "",
-    quantity: "",
-    price: "",
-    image: "",
-    discount: "",
+    productName: "",
+    mrp: "",
+    bogo: false, // Set initially as false
+    imageUrl: "",
+    discountPrice: "",
     category: "",
+    id: 0,
   });
   const navigator = useNavigate();
 
@@ -46,41 +41,59 @@ function Vendor() {
     }));
   };
 
+  useEffect(() => {
+    console.log(productData); 
+  }, [productData]);
+
   const handleSubmit = async () => {
     try {
-      // Make API call to submit product data
-      await axios.post("/api/products", productData);
-      // Reset form data after submission
+      
+      
+      
+      if(productData.productName === "" || productData.mrp === "" || productData.imageUrl === "" || productData.discountPrice === "" || productData.category === "", productData.id === 0) {
+        alert("Please fill all the fields");
+        return;
+      }
+      else {
+        await axios.post("https://ratna-supermarket.vercel.app/addProduct", productData);
       setProductData({
-        name: "",
-        quantity: "",
-        price: "",
-        image: "",
-        discount: "",
+        productName: "",
+        mrp: "",
+        bogo: false, 
+        imageUrl: "",
+        discountPrice: "",
         category: "",
+        id: 0,
       });
-      // Optionally show success message or redirect
+    }
+      
+     
     } catch (error) {
       console.error("Error submitting product data:", error);
-      // Optionally show error message
+     
     }
   };
 
   return (
     <BackgroundContainer>
-    <div className="flex gap-5 ">
-      <div className="">
-        <button className=" bg-cyan-300 rounded-lg p-5" onClick={()=>{
-          navigator("/vendor/orders")
-        }}>Orders Received</button>
+      <div className="flex gap-5">
+        <button
+          className="bg-cyan-300 rounded-lg p-5"
+          onClick={() => {
+            navigator("/vendor/orders");
+          }}
+        >
+          Orders Received
+        </button>
+        <button
+          className="bg-cyan-300 rounded-lg p-5"
+          onClick={() => {
+            navigator("/vendor/products");
+          }}
+        >
+          Products
+        </button>
       </div>
-      <div>
-        <button className=" bg-cyan-300 rounded-lg p-5" onClick={()=>{
-          navigator("/vendor/products")
-        }}>Products</button>
-
-      </div>
-    </div>
       <div className="mt-[120px]">
         <Container>
           <h2 className="text-5xl m-10 text-bold">Vendor Side</h2>
@@ -91,45 +104,47 @@ function Vendor() {
             autoComplete="off"
           >
             <TextField
-              name="name"
+              name="productName"
               label="Product Name"
               variant="outlined"
-              value={productData.name}
+              value={productData.productName}
               onChange={handleChange}
               className="bg-white"
             />
             <TextField
-              name="quantity"
-              label="Quantity"
-              variant="outlined"
-              value={productData.quantity}
-              onChange={handleChange}
-              className="bg-white"
-            />
-            <TextField
-              name="price"
+              name="mrp"
               label="Price"
               variant="outlined"
-              value={productData.price}
+              value={productData.mrp}
               onChange={handleChange}
               className="bg-white"
+              type="number"
             />
             <TextField
-              name="image"
+              name="imageUrl"
               label="Image URL"
               variant="outlined"
-              value={productData.image}
+              value={productData.imageUrl}
               onChange={handleChange}
               className="bg-white"
             />
             <TextField
-              name="discount"
+              name="discountPrice"
               label="Discount"
               variant="outlined"
-              value={productData.discount}
+              value={productData.discountPrice}
               onChange={handleChange}
               className="bg-white"
             />
+            <TextField
+              name="id"
+              label="ID "
+              variant="outlined"
+              value={productData.id}
+              onChange={handleChange}
+              className="bg-white"
+            />
+            
             <Select
               name="category"
               value={productData.category}
@@ -141,9 +156,33 @@ function Vendor() {
               <MenuItem value="" disabled>
                 Select Category
               </MenuItem>
-              <MenuItem value="Electronics">Electronics</MenuItem>
-              <MenuItem value="Clothing">Clothing</MenuItem>
-              <MenuItem value="Home & Kitchen">Home & Kitchen</MenuItem>
+              <MenuItem value="fruits & vegetables">
+                Fruits & Vegetables
+              </MenuItem>
+              <MenuItem value="bath & body">Bath & Body</MenuItem>
+              <MenuItem value="snacks & munchies">Snacks & Munchies</MenuItem>
+              <MenuItem value="cold drinks & juices">
+                Cold Drinks & Juices
+              </MenuItem>
+              <MenuItem value="egg, meat & fish">Egg, Meat & Fish</MenuItem>
+              <MenuItem value="dairy & breakfast">
+                Dairy & Breakfast
+              </MenuItem>
+              <MenuItem value="icy delights">Icy Delights</MenuItem>
+            </Select>
+            <Select
+              name="bogo"
+              value={productData.bogo ? "true" : "false"} // Convert boolean to string
+              onChange={handleChange}
+              variant="outlined"
+              displayEmpty
+              className="bg-white"
+            >
+              <MenuItem value="" disabled>
+                Select BOGO
+              </MenuItem>
+              <MenuItem value="true">Yes</MenuItem>
+              <MenuItem value="false">No</MenuItem>
             </Select>
             <Button variant="contained" color="primary" onClick={handleSubmit}>
               Submit

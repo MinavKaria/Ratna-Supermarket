@@ -56,7 +56,12 @@ const orderSchema = new mongoose.Schema({
   feedback:{
     type: String,
     default: ''
+  },
+  rating:{
+    type: Number,
+    default: 0
   }
+  
 });
 
 const Order = mongoose.model('Order', orderSchema);

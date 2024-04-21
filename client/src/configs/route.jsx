@@ -21,6 +21,8 @@ import Orders from "../pages/Orders";
 import ProductPage from "../pages/ProductPage";
 import VendorOrders from "../pages/VendorOrders";
 import VendorProducts from "../pages/VendorProducts";
+import Feedback from "../pages/Feedback";
+import VendorFeedback from "../pages/VendorFeedback";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +122,22 @@ const router = createBrowserRouter([
         element: (
           <>
             <VendorProducts/>
+          </>
+        )
+      },
+      {
+        path: 'feedback/:id',
+        element: (
+          <>
+            <Feedback/>
+          </>
+        )
+      },
+      {
+        path:"vendor/feedback",
+        element:(
+          <>
+            <VendorFeedback/>
           </>
         )
       },

@@ -51,12 +51,26 @@ function Orders() {
                             <h3 className="text-sm font-semibold mb-2">Order ID: {order._id}</h3>
                             </div>
                             <div>
-                            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                           { order.orderStage<4&& <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
                              onClick={()=>{
                                 navigate(`/tracking/${order._id}`);
                              }}>
                                 Track
-                            </button>
+                            </button>}
+                            
+                             { (order.orderStage===4 && order.feedback==="")  && (<>
+                                <button onClick={()=>{
+                                    navigate(`/feedback/${order._id}`);
+                                }}
+                                className='bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                                >
+                                    Feedback
+                                </button>
+                             </>)}
+
+                             { (order.orderStage===4 && order.feedback!="")  && (<>
+                                <h1 className='text-bold'>Order Complete</h1>
+                             </>)}
                             </div>
                         </div>
                     ))}

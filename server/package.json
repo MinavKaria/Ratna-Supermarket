@@ -21,6 +21,7 @@
     "mongoose": "^8.3.1",
     "multer-gridfs-storage": "^5.0.2",
     "nodemon": "^3.0.3",
-    "socket.io": "^4.7.4"
+    "socket.io": "^4.7.4",
+    "uuid": "^9.0.1"
   }
 }

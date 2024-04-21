@@ -16,6 +16,7 @@
     "@material-tailwind/react": "^2.1.9",
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.15",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@paypal/react-paypal-js": "^8.1.4",
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.6.7",
@@ -29,7 +30,8 @@
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.0",
     "react-social-login-buttons": "^4.1.0",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

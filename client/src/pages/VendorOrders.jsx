@@ -44,6 +44,7 @@ function VendorOrders() {
               <th>Products</th>
               <th>Action</th>
               <th>Order Stage</th>
+              <th>Rating and Feedback</th>
             </tr>
           </thead>
           <tbody>
@@ -120,6 +121,8 @@ function VendorOrders() {
                   {order.orderStage === 3 && 'Order Shipped'}
                   {order.orderStage === 4 && 'Order Delivered'}
                 </td>
+               {order.feedback!='' && <td>{order.feedback+ " \n"+ order.rating+ '⭐'}</td>}
+               {order.feedback=='' && <td className=' text-red-600'>Feedback not given</td>}
               </tr>
             ))}
           </tbody>
