@@ -9,6 +9,8 @@ import {createNewUser,signInUser} from './user.js';
 import path from 'path';
 import Product from './productSchema.js';
 
+
+
 const dirname = '../client/public/';
 
 const app = express(); 
@@ -154,8 +156,16 @@ app.get('/allProducts', async (req, res) => {
 });
 
 app.post('/addProduct', async (req, res) => {
-  console.log(req.body);
+  
+  
+
+  try {
+    // Add your code here to handle the order request
+    console.log(req.body);
+  
   const newProduct = new Product({
+    _id: new mongoose.Types.ObjectId(),
+    id:Math.floor(10000 + Math.random() * 90000)+req.body.id,
     productName: req.body.productName,
     mrp: req.body.mrp,
     bogo: req.body.bogo,
@@ -164,11 +174,8 @@ app.post('/addProduct', async (req, res) => {
     imageUrl: req.body.imageUrl
   });
 
-  await newProduct.save();
-
-  try {
-    // Add your code here to handle the order request
-
+    await newProduct.save();
+    console.log('Product added successfully');
     res.send('Product added successfully');
   } catch (error) {
     console.error(error); 
@@ -188,6 +195,25 @@ app.get('/product/:id', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+app.put('/updateFeedback/:id', async (req, res) => {
+  console.log(req.body);
+  try {
+    const order = await Order.findOne({ _id: req.params.id });
+    if (!order) {
+      return res.status(404).send('Order not found');
+    }
+    order.feedback = req.body.feedback;
+    order.rating = req.body.rating;
+    await order.save();
+    res.status(200).send('Order stage updated successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 
 
 app.listen(PORT, () => {
