@@ -79,9 +79,10 @@ const Navbar = () => {
       setSearchResults([]);
     }
   };
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
+  const [startflag, setStartFlag] = useState(0);
 
   const handleClickOpen2 = () => {
     setOpen2(true);
@@ -103,6 +104,11 @@ const Navbar = () => {
 
   const handleClose = (value) => {
     setOpen(false);
+    if(startflag === 0){
+    handleClickOpen2();
+    setStartFlag(1);
+    }
+
   };
 
   const handleClose3 = () => {

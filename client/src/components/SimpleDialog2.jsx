@@ -14,13 +14,19 @@ const SimpleDialog2 = ({ onClose, open, handleOption }) => {
         <Typography variant="body1" gutterBottom>
           How would you like to receive your order?
         </Typography>
-        <Button variant="contained" color="primary" fullWidth onClick={() => handleOption('Delivery')}>
+        <Button variant="contained" color="primary" fullWidth onClick={() => {
+          handleOption('Delivery')
+          onClose()
+          }}>
           Delivery
         </Button>
         <Typography variant="body2" align="center" gutterBottom style={{ marginTop: '10px' }}>
           OR
         </Typography>
-        <Button variant="outlined" color="primary" fullWidth onClick={() => handleOption('Pickup')}>
+        <Button variant="outlined" color="primary" fullWidth onClick={() => {
+          handleOption('Pickup')
+          onClose()
+          }}>
           Pickup
         </Button>
       </DialogContent>

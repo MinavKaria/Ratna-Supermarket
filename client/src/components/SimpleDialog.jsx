@@ -10,7 +10,13 @@ function SimpleDialog(props) {
     const [suggestions, setSuggestions] = useState([]);
   
     const handleClose = () => {
+      if(pincode.length === 6 && localStorage.getItem('userArea')){
       onClose();
+      }
+      else
+      {
+        alert("Please enter a valid pincode && select an area from the list.");
+      }
     };
   
     useEffect(() => {
