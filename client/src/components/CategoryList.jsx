@@ -36,9 +36,9 @@ function CategoryList() {
   return (
     <div className="mt-[120px] flex">
       
-      <div className="ml-[20%] w-4/5 pl-5 overflow-y-visible ">
+      <div className="m-auto mt-16 md:mt-6 w-4/5 pl-5 overflow-y-visible ">
       <h2 className=" font-bold capitalize text-2xl ">{params.categoryName}</h2>
-        <div className="p-5 grid grid-cols-4 gap-4">
+        <div className="p-5 grid md:grid-cols-4 justify-center md:justify-normal gird-cols-1 gap-4">
           {filteredCardData.map((card, index) => (
             <BuyCard
               key={index}

@@ -14,7 +14,7 @@ function BuyCards({ bogo }) {
   return (
     <>
       <div className="mt-5 px-10">
-        <div className="container mx-auto mt-5 flex justify-start items-center ">
+        <div className="container mx-auto mt-5 flex justify-center md:justify-start items-center ">
           <div className="grid-box">
             {dummyData.map((item, index) => (
               <BuyCard
