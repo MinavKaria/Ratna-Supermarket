@@ -150,18 +150,21 @@ const Navbar = () => {
           </button>
         </div>
 
-        
+        <button
+          className="text-white focus:outline-none md:hidden"
+          onClick={toggleMobileMenu}
+        >
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+            <path d="M4 18L20 18" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 12L20 12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
 
-        <div className={`flex md:justify-end md:flex gap-5 w-full relative sm:block sm:w-full`}>
-          <div className="flex flex-row justify-center items-center align-middle gap-6 mb-4">
-            <button className="text-white focus:outline-none md:hidden" onClick={toggleMobileMenu}>
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
-                  <path d="M4 18L20 18" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M4 12L20 12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button>
-            <div className="flex-grow bg-slate-100 md:mb-0 flex flex-row rounded-r-full rounded-l-full pl-10 pr-10 relative">
+        <div
+          className={`flex md:justify-end md:flex gap-5 w-full relative sm:block sm:w-full`}
+        >
+          <div className="flex-grow bg-slate-100 mb-4 md:mb-0 flex flex-row rounded-r-full rounded-l-full pl-10 pr-10 relative">
             <input
               type="text"
               placeholder="Search..."
@@ -183,9 +186,9 @@ const Navbar = () => {
                 ))}
               </div>
             )}
+
+
           </div>
-          </div>
-          
              <button className="p-2 bg-white shadow-md rounded sm:hidden">
               <img src="/search.svg" alt="" />
             </button>
