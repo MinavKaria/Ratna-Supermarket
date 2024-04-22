@@ -24,6 +24,7 @@ import SimpleDialog3 from "./SimpleDialog3";
 import axios from 'axios';
 
 
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -79,10 +80,12 @@ const Navbar = () => {
       setSearchResults([]);
     }
   };
-  const [open, setOpen] = useState(true);
+  const { cartItems, addToCart,isLogin, setIsLogin,name,setName,userDetails,setUserDetails,startflag ,setStartFlag } = useCart();
+  const [open, setOpen] = useState(startflag === 0 && !localStorage.getItem('userPincode') ? true : false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
-  const [startflag, setStartFlag] = useState(0);
+
+
 
   const handleClickOpen2 = () => {
     setOpen2(true);
@@ -104,9 +107,10 @@ const Navbar = () => {
 
   const handleClose = (value) => {
     setOpen(false);
+
     if(startflag === 0){
     handleClickOpen2();
-    setStartFlag(1);
+    setStartFlag((prev)=>prev+1);
     }
 
   };
@@ -123,7 +127,7 @@ const Navbar = () => {
 
   
 
-  const { cartItems, addToCart,isLogin, setIsLogin,name,setName,userDetails,setUserDetails } = useCart();
+
   const userDetail = JSON.parse(localStorage.getItem('user'));
 
   

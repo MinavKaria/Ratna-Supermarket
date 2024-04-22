@@ -15,7 +15,7 @@ function SimpleDialog(props) {
       }
       else
       {
-        alert("Please enter a valid pincode && select an area from the list.");
+        alert("Please enter a valid pincode & select an area from the list.");
       }
     };
   
