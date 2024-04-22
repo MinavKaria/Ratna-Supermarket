@@ -133,7 +133,7 @@ const Navbar = () => {
         </div>
 
         <div className="md:flex md:justify-start md:items-start md:w-6/12 sm:hidden">
-          <button className="mb-4 md:mb-0 md:mr-4 flex flex-row justify-center items-center gap-3 bg-gray-100 rounded-l-full rounded-r-full p-3" onClick={handleClickOpen}>
+          <button className="mb-4 md:mb-0 md:mr-4 flex flex-row justify-center align-middle items-center gap-3 bg-gray-100 rounded-l-full rounded-r-full p-4 px-8" onClick={handleClickOpen}>
             <img src="/location.svg" alt="" />
             <div className="flex justify-start text-left text-base flex-col">
               <span className="font-bold m-0">{localStorage.getItem('userArea') || 'Mumbai'} </span>
@@ -141,7 +141,7 @@ const Navbar = () => {
             </div>
             <img src="/dropdown_nav.svg" alt="" />
           </button>
-          <button className="mb-4 md:mb-0 md:mr-4 flex flex-row justify-center items-center gap-3 bg-gray-100 rounded-l-full rounded-r-full p-3 h-[70px]" onClick={handleClickOpen2}>
+          <button className="mb-4 md:mb-0 md:mr-4 flex flex-row justify-center align-middle items-center gap-3 bg-gray-100 rounded-l-full rounded-r-full p-4 px-8 h-[70px]" onClick={handleClickOpen2}>
             <div className="flex justify-start text-left text-base flex-col">
               <span className="font-bold m-0 w-">{localStorage.getItem('orderType')||'Delivery'}</span>
             </div>
@@ -151,17 +151,13 @@ const Navbar = () => {
         </div>
 
         <button
-          className="text-white focus:outline-none hidden"
+          className="text-white focus:outline-none md:hidden"
           onClick={toggleMobileMenu}
         >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+            <path d="M4 18L20 18" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 12L20 12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
 
@@ -204,7 +200,7 @@ const Navbar = () => {
                 <div className="flex" onClick={()=>{
                 navigate('/sign');
               }}>
-                  <img src="user.svg" alt="" />
+                  <img src="user.svg" alt=""/>
                   <button 
                   className=" " 
                   >Login</button>
@@ -217,12 +213,12 @@ const Navbar = () => {
                 }}>
                   <img src={userDetail.photoURL || 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='} alt="" className=" rounded-full w-10 mr-5" />
                   <button 
-                  className=" "
+                  className="w-[2vh] h-[2vh]"
                   onClick={()=>{
                     
                   
                   }} 
-                  >{userDetail.displayName || userDetail.name}</button>
+                  ></button>
                     </div>
                 </>
               
@@ -237,7 +233,7 @@ const Navbar = () => {
             <button className="pr-5 " >
                 Cart 
             </button>
-            <div className=" absolute top-0 right-0 w-4 bg-lime-400 rounded-full h-4 text-xs text-center ">
+            <div className="absolute top-0 right-0 w-4 bg-lime-400 rounded-full h-4 text-xs text-white text-center ">
             {cartItems.length}
             </div>
             </div>
