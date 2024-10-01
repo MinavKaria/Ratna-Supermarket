@@ -2,9 +2,9 @@
 
 Welcome to **Ratna Supermarket** – an online shopping platform that delivers a complete and seamless e-commerce experience. From product browsing to order management, this project simulates a fully functional online store with an intuitive interface.
 
-
-
-![image](https://github.com/user-attachments/assets/187ee773-e25e-41c8-9fea-aa610bf8b03f)
+<div align="center">
+ <img width="60%" src="https://github.com/user-attachments/assets/187ee773-e25e-41c8-9fea-aa610bf8b03f" />
+</div>
 
 <p align="center">
     <a href="https://github.com/MinavKaria/Ratna-Supermarket"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source"></a>
@@ -100,6 +100,37 @@ Ensure that the following software is installed on your system:
 6. **Open the app**:  
    Open your browser and visit `http://localhost:5173` to see the app in action.
 
+## 🤝 Contributing
+We love contributions! 💙 Whether you're a participant in **GSSoC** or an open-source enthusiast, we welcome your input. Here's how you can contribute:
 
+- **📝 Create Issues**: If you find any bugs or have feature suggestions, feel free to open an issue.
+- **🔨 Submit Pull Requests**: Got a fix or new feature? Fork the repo, create a new branch, and submit a pull request.
+
+## 🎯 Open Source Programs
+This project is part of **GirlScript Summer of Code 2024** (GSSoC) Extended, an initiative to help aspiring developers get involved in the open-source community.
+<br>
+<img src="https://github.com/user-attachments/assets/f7abbbe7-1950-4bf9-8456-c812ca630acf" style="width:400px">
+
+## 🌟 Mentors
+Special thanks to our amazing mentors who are guiding this project! 🙌
+
+- **[to be annouce]** - Full Stack Developer
+
+
+##  👀 Our Contributors
+
+- We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating HelpOps-Hub to greater heights.
+- Make sure you show some love by giving ⭐ to our repository
+
+<br>
+<center>
+<div>
+<a href="https://github.com/MinavKaria/Ratna-Supermarket/graphs/contributors">
+  <img width="10%" src="https://contrib.rocks/image?repo=MinavKaria/Ratna-Supermarket" />
+</a>
+
+## ⭐Support 
+
+- ⭐ Star our Repo 
 
 
