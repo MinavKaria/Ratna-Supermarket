@@ -202,8 +202,10 @@ function Signup() {
                
 
           }}>
+
             <Typography variant="h5" className="flex">
               {!isSignup ? "Sign Up" : "Welcome Back!"}
+
             </Typography>
             <hr style={{width:'25%'}}></hr>
             <br />
