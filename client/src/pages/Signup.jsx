@@ -162,7 +162,7 @@ function Signup() {
 
           }}>
             <Typography variant="h4" gutterBottom>
-              {isSignup ? "Sign Up" : "Sign In"}
+              {isSignup ? "Sign In" : "Sign Up"}
             </Typography>
             <br />
             {!isSignup && (
