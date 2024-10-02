@@ -29,6 +29,14 @@ const UserSignContainer = styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   width: '100%',
+  '@media (max-width: 768px)': {
+    display:'none '  
+  },
+
+  '@media (min-width: 769px) and (max-width: 1024px)': {
+    height: '70vh',  
+    padding: '12px',  
+  },
 });
 
 function areAllCharactersNumbers(inputString) {
@@ -124,10 +132,43 @@ function Signup() {
     <div className="mt-5 px-10">
     <div className="container mx-auto flex justify-start items-center">
     <Box sx={{ flexGrow: 1, marginTop:'100px'}}>
-      <Grid container spacing={2}>
+      <Grid 
+      container spacing={2}
+      sx={{
+        padding: '16px',
+        '@media (max-width: 600px)': {
+          padding: '5%',
+          margin:'0% 20%',
+          flexDirection: 'column',  
+        },
+        
+        '@media (min-width: 600px) and (max-width: 960px)': {
+          padding: '10% 15% 0 0',
+          flexDirection: 'row',  
+        },
+       
+        '@media (min-width: 960px)': {
+          padding: '0',
+          flexDirection: 'row',
+        }}}
+      >
+      <Grid item xs={6}>
+          <UserSignContainer style={{marginLeft:'5%'}}>
+            <img src="/sign_in_page.svg" alt="" className=" w-3/4" />
+            <br />
+          </UserSignContainer>
+        </Grid>
         <Grid item xs={6}>
 
-          <UserDataContainer onSubmit={async (e)=>{
+          <UserDataContainer style={{
+            display:'flex',
+            alignItems:'center',
+            
+            // borderRadius: '5%',
+            // boxShadow: '1px 2px 15px #000000',
+            width: '80%',
+            height:'100%'
+          }} onSubmit={async (e)=>{
             e.preventDefault();
             if(!isSignup)
                 {
@@ -161,16 +202,17 @@ function Signup() {
                
 
           }}>
-            <Typography variant="h4" gutterBottom>
-              {isSignup ? "Sign Up" : "Sign In"}
+            <Typography variant="h5" className="flex">
+              {!isSignup ? "Sign Up" : "Welcome Back!"}
             </Typography>
+            <hr style={{width:'25%'}}></hr>
             <br />
             {!isSignup && (
               <>
                 <Input
                   type="text"
                   placeholder="First Name"
-                  className=" w-96"
+                  className=" w-80"
                   pattern="[A-Za-z]+"
                   title="Please enter a valid First Name"
                   onChange={(e)=>{setUser({...user, firstName: e.target.value})}}
@@ -181,7 +223,7 @@ function Signup() {
                   required
                   type="text"
                   placeholder="Last Name"
-                  className=" w-96"
+                  className=" w-80"
                   pattern="[A-Za-z]+"
                   title="Please enter a valid Last Name"
                   onChange={(e)=>{
@@ -193,7 +235,7 @@ function Signup() {
             )}
             
             {validPhone && (
-            <div className="bg-red-500 w-96 text-white">
+            <div className="bg-red-500 w-80 text-white">
               Please enter a valid 10-digit Phone Number
             </div>
             )}
@@ -202,7 +244,7 @@ function Signup() {
 
             <Input 
               type="email" 
-              className="w-96"
+              className="w-80"
               placeholder="Email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               title="Please enter a valid Email Address"
@@ -212,13 +254,13 @@ function Signup() {
             >
 
             </Input>
-            <div className="bg-red-500 w-96 text-white hidden" >
+            <div className="bg-red-500 w-80 text-white hidden" >
               Please enter a valid Email Address
             </div>
             <br />
             <Input  
               type="password"
-              className="w-96"
+              className="w-80"
               placeholder="Password"
               pattern=".{6,}"
               title="Password must be at least 6 characters long"
@@ -233,7 +275,7 @@ function Signup() {
               <>
               <Input
               type="password"
-              className="w-96"
+              className="w-80"
               placeholder="Confirm Password"
               pattern=".{6,}"
               title="Password must be at least 6 characters long"
@@ -246,7 +288,7 @@ function Signup() {
  
             </>)}
             <button
-              className=" text-left text-blue-800"
+              className="text-left text-blue-800 mb-2"
               onClick={() => {
                 setIsSignup(!isSignup);
               }}
@@ -254,17 +296,22 @@ function Signup() {
             >
           
          
-              {isSignup ? 'Create an Account' : 'Already have an account?'} 
+              {isSignup ? 'New User? Create an Account' : 'Already have an account? Sign In Here'} 
             </button>
-            <br />
-              <button className=" bg-green-600 w-32 p-2  rounded-2xl text-white" type='submit' onClick={(e)=>{
+            
+              <button className="w-72 p-2 rounded-2xl text-white mt-2" 
+              style={{backgroundColor:'#3B7721'}}
+              type='submit' onClick={(e)=>{
                 // e.preventDefault();
                 // navigate('/');
                 
               }}>
-                {isSignup ? 'Sign Up' : 'Sign In'}
+                {!isSignup ? 'Sign Up' : 'Sign In'}
               </button>
-              <br/>
+              <p>Or</p>
+            <div className="w-72">
+                  <GoogleLoginButton type="button" onClick={handleGoogleSignIn} size="50px"  />
+              </div>
               {/* <GoogleLogin
                   onSuccess={()=>{
                     
@@ -282,9 +329,7 @@ function Signup() {
                   >
                     Firebase Google Sign In
                   </button> */}
-                  <div className="w-72">
-                  <GoogleLoginButton type="button" onClick={handleGoogleSignIn} size="50px"  />
-                  </div>
+                  
 
                 {/* 
                   <button onClick={handleGithubSignIn} type="button" className="bg-red-500 w-32 p-2 mt-3 rounded-2xl">
@@ -295,12 +340,7 @@ function Signup() {
           </UserDataContainer>
       
         </Grid>
-        <Grid item xs={6}>
-          <UserSignContainer>
-            <img src="/sign_in_page.svg" alt="" className=" w-2/4" />
-            <br />
-          </UserSignContainer>
-        </Grid>
+        
       </Grid>
     </Box>
     </div>
