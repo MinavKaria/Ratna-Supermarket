@@ -119,7 +119,7 @@ Special thanks to our amazing mentors who are guiding this project! 🙌
 
 ##  👀 Our Contributors
 
-- We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating HelpOps-Hub to greater heights.
+- We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating Ratna-Supermarket to greater heights.
 - Make sure you show some love by giving ⭐ to our repository
 
 <br>
