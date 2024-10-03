@@ -49,13 +49,13 @@ function ProductPage() {
     <>
       <div className="mt-[120px] flex">
         <div className="container mx-auto">
-          <div className="mt-[10vh] flex flex-row gap-[7.5vw] justify-center items-center">
+          <div className="flex flex-col md:flex-row mt-[10vh] flex flex-row gap-[7.5vw] justify-center items-center">
             <img
               src={products.imageUrl}
               className="w-[50vw] max-w-lg rounded-2xl shadow-2xl"
             ></img>
             <div className="flex flex-col gap-4">
-              <span className="font-black text-[2vw]">{products.productName}</span>
+              <span className="font-black md:text-[2vw] text-3xl">{products.productName}</span>
          
               <div className="flex flex-col gap-1">
                 <span className="text-[2.5vh]">Our Price:</span>
