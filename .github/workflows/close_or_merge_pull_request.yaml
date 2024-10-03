@@ -12,13 +12,15 @@ jobs:
       - name: Thank the contributor
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.TOKEN }}
           script: |
             const issue_number = context.payload.pull_request.number;
             const user = context.payload.pull_request.user.login;
-            const repo = context.payload.repository.full_name;
-            await github.issues.createComment({
+            const repo = context.repo.repo;
+            const owner = context.repo.owner;
+            await github.rest.issues.createComment({
               issue_number: issue_number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: owner,
+              repo: repo,
               body: `Thank you @${user} for contributing to **${repo}**! 🎉\nDon't forget to give the project a ⭐ if you found it helpful!`
             });
