@@ -56,7 +56,7 @@ function SimpleDialog(props) {
       <>
         <Dialog onClose={handleClose} open={open}>
           <DialogTitle>Enter your Pincode</DialogTitle>
-          <div className=" p-5">
+          <div className=" p-6">
             <form
               action="/"
               onSubmit={(e) => {
@@ -71,7 +71,7 @@ function SimpleDialog(props) {
                 placeholder="Enter your Pincode"
                 value={pincode}
                 onChange={handleInputChange}
-                className="mb-5"
+                className="mb-3"
               />
   
              
@@ -82,7 +82,7 @@ function SimpleDialog(props) {
             </form>
   
             <div>
-                <ul className="absolute z-50 bg-white w-10/12 shadow-lg">
+                <ul className="absolute z-50 p-1 bg-white w-10/12 shadow-lg">
                   {suggestions.map((suggestion, index) => (
                     <>
                       <button key={index} onClick={(e)=>{
