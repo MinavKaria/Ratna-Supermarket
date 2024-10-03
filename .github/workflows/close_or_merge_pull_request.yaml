@@ -1,0 +1,24 @@
+name: Comment on Pull Request Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  comment:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Thank the contributor
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue_number = context.payload.pull_request.number;
+            const user = context.payload.pull_request.user.login;
+            const repo = context.payload.repository.full_name;
+            await github.issues.createComment({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Thank you @${user} for contributing to **${repo}**! 🎉\nDon't forget to give the project a ⭐ if you found it helpful!`
+            });
