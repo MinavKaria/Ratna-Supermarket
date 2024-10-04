@@ -11,13 +11,7 @@ import { useCart } from '../actions/CartControl';
 
 function ProductPage() {
   const { id } = useParams();
-  const [products, setProducts] = useState({imageUrl:'https://tse3.mm.bing.net/th?id=OIP.dJvQNspRUHbsN6EvH866IwHaIq&pid=Api&P=0&h=180',
-    productName: 'Amul Milk',
-    mrp: 100,
-    discountPrice: 80,
-    discount: 20,
-    vendorSide: 'Vendor 1'
-  });
+  const [products, setProducts] = useState();
   const { addToCart, removeFromCart, cartItems } = useCart();
   // console.log(id);
   // // const data=JSON.parse()
