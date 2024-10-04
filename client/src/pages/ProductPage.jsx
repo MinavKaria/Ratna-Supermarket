@@ -11,7 +11,13 @@ import { useCart } from '../actions/CartControl';
 
 function ProductPage() {
   const { id } = useParams();
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState({imageUrl:'https://tse3.mm.bing.net/th?id=OIP.dJvQNspRUHbsN6EvH866IwHaIq&pid=Api&P=0&h=180',
+    productName: 'Amul Milk',
+    mrp: 100,
+    discountPrice: 80,
+    discount: 20,
+    vendorSide: 'Vendor 1'
+  });
   const { addToCart, removeFromCart, cartItems } = useCart();
   // console.log(id);
   // // const data=JSON.parse()
@@ -49,10 +55,10 @@ function ProductPage() {
     <>
       <div className="mt-[120px] flex">
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row mt-[10vh] flex flex-row gap-[7.5vw] justify-center items-center">
+          <div className="flex flex-col md:flex-row mt-[10vh] flex flex-row gap-[7.5vw] justify-center md:mx-32 items-center">
             <img
               src={products.imageUrl}
-              className="w-[50vw] max-w-lg rounded-2xl shadow-2xl"
+              className="w-[40vw] max-w-lg rounded-2xl shadow-2xl"
             ></img>
             <div className="flex flex-col gap-4">
               <span className="font-black md:text-[2vw] text-3xl">{products.productName}</span>
