@@ -52,7 +52,7 @@ function ProductPage() {
           <div className="flex flex-col md:flex-row mt-[10vh] flex flex-row gap-[7.5vw] justify-center md:mx-32 items-center">
             <img
               src={products.imageUrl}
-              className="w-[40vw] max-w-lg rounded-2xl shadow-2xl"
+              className="md:w-[40vw] max-w-lg rounded-2xl shadow-2xl"
             ></img>
             <div className="flex flex-col gap-4">
               <span className="font-black md:text-[2vw] text-3xl">{products.productName}</span>
