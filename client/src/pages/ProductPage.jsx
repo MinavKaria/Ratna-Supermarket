@@ -11,7 +11,7 @@ import { useCart } from '../actions/CartControl';
 
 function ProductPage() {
   const { id } = useParams();
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState({imageUrl:'https://bl-i.thgim.com/public/incoming/a2rbf8/article65774686.ece/alternates/FREE_1200/bl16_amul%20taaza%20milk_pouch%20milk.jpg'});
   const { addToCart, removeFromCart, cartItems } = useCart();
   // console.log(id);
   // // const data=JSON.parse()
@@ -52,7 +52,7 @@ function ProductPage() {
           <div className="flex flex-col md:flex-row mt-[10vh] flex flex-row gap-[7.5vw] justify-center md:mx-32 items-center">
             <img
               src={products.imageUrl}
-              className="w-[40vw] max-w-lg rounded-2xl shadow-2xl"
+              className="md:w-[40vw] max-w-lg rounded-2xl shadow-2xl"
             ></img>
             <div className="flex flex-col gap-4">
               <span className="font-black md:text-[2vw] text-3xl">{products.productName}</span>
