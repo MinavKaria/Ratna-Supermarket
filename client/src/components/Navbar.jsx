@@ -177,10 +177,10 @@ const Navbar = () => {
               <img src="/dropdown_nav.svg" alt="" />
             </button>
             <button
-              className="mb-4 md:mb-0 md:mr-4 flex  pr-2 pl-2  bg-gray-100 flex-row justify-center items-center gap-1 rounded-l-full rounded-r-full p-3 h-[70px]"
+              className="mb-4 md:mb-0 md:mr-4 flex px-4 bg-gray-100 flex-row justify-center items-center rounded-l-full rounded-r-full w-[150px] h-[70px]"
               onClick={handleClickOpen2}
             >
-              <div className="flex justify-start   text-left text-base flex-col">
+              <div className="flex justify-start text-left text-base flex-col">
                 <span className="font-bold m-0  ">
                   {localStorage.getItem("orderType") || "Delivery"}
                 </span>
