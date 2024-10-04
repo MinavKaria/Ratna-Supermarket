@@ -5,7 +5,6 @@ import BuyCard from './../components/BuyCard';
 
 function VendorProducts() {
   const [productsData, setProductsData] = useState([]);
-  
   useEffect(() => {
     // Fetch data from JSON file
     const fetchData = async () => {
