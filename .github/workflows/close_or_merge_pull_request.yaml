@@ -1,26 +1,38 @@
-name: Comment on Pull Request Merge
+name: Auto Comment on PR Merge
 
 on:
   pull_request:
     types: [closed]
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   comment:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    if: github.event.pull_request.merged == true
+
     steps:
-      - name: Thank the contributor
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.TOKEN }}
-          script: |
-            const issue_number = context.payload.pull_request.number;
-            const user = context.payload.pull_request.user.login;
-            const repo = context.repo.repo;
-            const owner = context.repo.owner;
-            await github.rest.issues.createComment({
-              issue_number: issue_number,
-              owner: owner,
-              repo: repo,
-              body: `Thank you @${user} for contributing to **${repo}**! 🎉\nDon't forget to give the project a ⭐ if you found it helpful!`
-            });
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Add Comment to Issue
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      run: |
+        COMMENT=$(cat <<EOF
+        {
+          "body": "🎉 Your pull request has been successfully merged! \n
+          Star ⭐ the repo \n
+          🎉 Thank you for your valuable contribution to our project. Your efforts are greatly appreciated. Feel free to reach out if you have any more contributions or if there's anything else we can assist you with. Keep up the fantastic work! 🚀"
+        }
+        EOF
+        )
+        curl -X POST \
+          -H "Authorization: Bearer $TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+          -d "$COMMENT"
