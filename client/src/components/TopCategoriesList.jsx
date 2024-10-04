@@ -31,7 +31,7 @@ function TopCategoriesList() {
             {categories.map((category, index) => (
               <motion.div
                 key={index}
-                className='flex flex-col items-center'
+                className='flex flex-col items-center cursor-pointer'
                 variants={listItemVariants}
                 onClick={()=>{
                   navigate(`/categories/${encodeURIComponent(category.name.toLowerCase())}`);
@@ -40,9 +40,9 @@ function TopCategoriesList() {
                 <img
                   src={`/images/${category.image}`}
                   alt={category.name}
-                  className=''
+                  className=' transition transform ease-in-out hover:scale-105 duration-300'
                 />
-                <p className='text-center font'>{category.name}</p>
+                <p className='text-center font hover:underline'>{category.name}</p>
               </motion.div>
             ))}
           </motion.div>
