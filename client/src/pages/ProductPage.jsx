@@ -48,8 +48,8 @@ function ProductPage() {
   return (
     <>
       <div className="mt-[120px] flex">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row mt-[10vh] flex flex-row gap-[7.5vw] justify-center items-center">
+        <div className="container flex justify-around md:px-1 px-10">
+          <div className="lg:flex-row mt-[10vh] flex flex-col gap-[7.5vw]  md:mx-32 items-center">
             <img
               src={products.imageUrl}
               className="w-[50vw] max-w-lg rounded-2xl shadow-2xl"
