@@ -1,16 +1,7 @@
 import Layout from "../pages/Layout";
 import Home from "../pages/Home";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { createBrowserRouter } from "react-router-dom";
 import Signup from "../pages/Signup";
-import TopCategoriesHead from "../components/TopCategoriesHead";
-import TopCategoriesList from "../components/TopCategoriesList";
 import NotFound from "../components/NotFound";
 import CategoryList from "../components/CategoryList";
 import Cart from "../pages/Cart";
@@ -33,9 +24,7 @@ const router = createBrowserRouter([
         path: "/",
         element: (
           <>
-       
             <Home />
-     
           </>
         ),
       },
@@ -51,108 +40,102 @@ const router = createBrowserRouter([
         path: "/categories/:categoryName",
         element: (
           <>
-            <CategoryList/>
+            <CategoryList />
           </>
-        )
-      },{
+        ),
+      },
+      {
         path: "/cart",
         element: (
           <>
-            
             <Cart />
-            
           </>
         ),
-      },{
+      },
+      {
         path: "/checkout",
         element: (
           <>
-          
-            <Checkout/>
-            
+            <Checkout />
           </>
         ),
       },
       {
-        path:'/tracking/:id',
+        path: "/tracking/:id",
         element: (
           <>
-     
             <div className="">
-              <Tracking/>
+              <Tracking />
             </div>
-         
           </>
-        )
+        ),
       },
       {
-        path: '/orders',
+        path: "/orders",
         element: (
           <>
-            <Orders/>
+            <Orders />
           </>
-        )
+        ),
       },
       {
         path: "/vendor",
         element: (
           <>
-            <Vender/>
+            <Vender />
           </>
         ),
-
-      },{
-        path:'/product/:id',
-        element:
-        (
-        <>
-          <ProductPage/>
-        </>
+      },
+      {
+        path: "/product/:id",
+        element: (
+          <>
+            <ProductPage />
+          </>
         ),
-      },{
-        path:'/vendor/orders',
-        element:(
-          <>
-            <VendorOrders/>
-          </>
-        )
       },
       {
-        path: '/vendor/products',
+        path: "/vendor/orders",
         element: (
           <>
-            <VendorProducts/>
+            <VendorOrders />
           </>
-        )
+        ),
       },
       {
-        path: 'feedback/:id',
+        path: "/vendor/products",
         element: (
           <>
-            <Feedback/>
+            <VendorProducts />
           </>
-        )
+        ),
       },
       {
-        path:"vendor/feedback",
-        element:(
+        path: "feedback/:id",
+        element: (
           <>
-            <VendorFeedback/>
+            <Feedback />
           </>
-        )
+        ),
+      },
+      {
+        path: "vendor/feedback",
+        element: (
+          <>
+            <VendorFeedback />
+          </>
+        ),
       },
       {
         path: "*",
         element: (
           <>
-             <NotFound/>
+            <NotFound />
           </>
         ),
       },
     ],
   },
-
-
 ]);
 
 export default router;

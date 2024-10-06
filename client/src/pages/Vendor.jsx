@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { TextField, Button, Container, Select, MenuItem } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -42,35 +42,38 @@ function Vendor() {
   };
 
   useEffect(() => {
-    console.log(productData); 
+    console.log(productData);
   }, [productData]);
 
   const handleSubmit = async () => {
     try {
-      
-      
-      
-      if(productData.productName === "" || productData.mrp === "" || productData.imageUrl === "" || productData.discountPrice === "" || productData.category === "", productData.id === 0) {
+      if (
+        (productData.productName === "" ||
+          productData.mrp === "" ||
+          productData.imageUrl === "" ||
+          productData.discountPrice === "" ||
+          productData.category === "",
+        productData.id === 0)
+      ) {
         alert("Please fill all the fields");
         return;
+      } else {
+        await axios.post(
+          "https://ratna-supermarket.vercel.app/addProduct",
+          productData
+        );
+        setProductData({
+          productName: "",
+          mrp: "",
+          bogo: false,
+          imageUrl: "",
+          discountPrice: "",
+          category: "",
+          id: 0,
+        });
       }
-      else {
-        await axios.post("https://ratna-supermarket.vercel.app/addProduct", productData);
-      setProductData({
-        productName: "",
-        mrp: "",
-        bogo: false, 
-        imageUrl: "",
-        discountPrice: "",
-        category: "",
-        id: 0,
-      });
-    }
-      
-     
     } catch (error) {
       console.error("Error submitting product data:", error);
-     
     }
   };
 
@@ -144,7 +147,7 @@ function Vendor() {
               onChange={handleChange}
               className="bg-white"
             />
-            
+
             <Select
               name="category"
               value={productData.category}
@@ -165,9 +168,7 @@ function Vendor() {
                 Cold Drinks & Juices
               </MenuItem>
               <MenuItem value="egg, meat & fish">Egg, Meat & Fish</MenuItem>
-              <MenuItem value="dairy & breakfast">
-                Dairy & Breakfast
-              </MenuItem>
+              <MenuItem value="dairy & breakfast">Dairy & Breakfast</MenuItem>
               <MenuItem value="icy delights">Icy Delights</MenuItem>
             </Select>
             <Select

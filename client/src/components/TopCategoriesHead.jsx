@@ -1,11 +1,10 @@
-// TopCategoriesHead.js
-
-import { motion } from 'framer-motion';
-import './styles.css';
+import { motion } from "framer-motion";
+import "./styles.css";
+import PropTypes from "prop-types";
 
 function TopCategoriesHead({ title, greenTitle }) {
   const containerVariants = {
-    hidden: { opacity: 0, y:10 },
+    hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.25 } },
   };
 
@@ -21,15 +20,24 @@ function TopCategoriesHead({ title, greenTitle }) {
           <motion.h1
             className="font-poppins text-[30px] relative"
             initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.5, delay: 0.2 },
+            }}
           >
             {title}{" "}
-            <span className=' text-green-500 relative z-10'>{greenTitle}</span>
+            <span className="text-green-500 relative z-10">{greenTitle}</span>
           </motion.h1>
         </div>
       </motion.div>
     </>
   );
 }
+
+TopCategoriesHead.propTypes = {
+  title: PropTypes.string.isRequired,
+  greenTitle: PropTypes.string.isRequired,
+};
 
 export default TopCategoriesHead;

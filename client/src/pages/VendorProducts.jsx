@@ -1,7 +1,7 @@
-import React, { useEffect, useState} from 'react'
-import axios from 'axios'
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-import BuyCard from './../components/BuyCard';
+import BuyCard from "./../components/BuyCard";
 
 function VendorProducts() {
   const [productsData, setProductsData] = useState([]);
@@ -9,7 +9,9 @@ function VendorProducts() {
     // Fetch data from JSON file
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://ratna-supermarket.vercel.app/allProducts");
+        const response = await axios.get(
+          "https://ratna-supermarket.vercel.app/allProducts"
+        );
         console.log(response.data);
         setProductsData(response.data);
       } catch (error) {
@@ -19,7 +21,6 @@ function VendorProducts() {
 
     fetchData();
   }, []);
-
 
   return (
     <div>
@@ -39,11 +40,9 @@ function VendorProducts() {
           />
         ))}
       </div>
-        {productsData.length === 0 && <h2>No products found</h2>}
-
-
+      {productsData.length === 0 && <h2>No products found</h2>}
     </div>
-  )
+  );
 }
 
-export default VendorProducts
+export default VendorProducts;
