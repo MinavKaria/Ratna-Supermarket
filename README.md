@@ -30,7 +30,7 @@ Our **Objective** is to create a user-friendly and responsive online shopping pl
   <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="700">
 <center>
 
-# 🌐 **Live Demo:** [Ratna Supermarket](https://ratna-supermaket.web.app/)
+# 🌐 **Live Demo:** [Ratna Supermarket](https://ratna-supermaket.minavkaria.xyz/)
 
 </center>
 <p align="center"> 
