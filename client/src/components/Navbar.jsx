@@ -1,20 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Fuse from "fuse.js";
-import PropTypes from "prop-types";
-import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Dialog from "@mui/material/Dialog";
-import PersonIcon from "@mui/icons-material/Person";
-import AddIcon from "@mui/icons-material/Add";
-import Typography from "@mui/material/Typography";
-import { blue } from "@mui/material/colors";
-import { Input } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../actions/CartControl";
 import SimpleDialog from "./SimpleDialog";
@@ -75,18 +60,7 @@ const Navbar = () => {
       setSearchResults([]);
     }
   };
-  const {
-    cartItems,
-    addToCart,
-    isLogin,
-    setIsLogin,
-    name,
-    setName,
-    userDetails,
-    setUserDetails,
-    startflag,
-    setStartFlag,
-  } = useCart();
+  const { cartItems, isLogin, setIsLogin, startflag, setStartFlag } = useCart();
   const [open, setOpen] = useState(
     startflag === 0 && !localStorage.getItem("userPincode") ? true : false
   );
@@ -97,12 +71,9 @@ const Navbar = () => {
     setOpen2(true);
   };
 
-  const handleClickOpen3 = () => {
-    setOpen3(true);
-  };
-
   const handleClose2 = (value) => {
     setOpen2(false);
+    console.log(value);
   };
 
   const handleClickOpen = () => {
@@ -110,6 +81,7 @@ const Navbar = () => {
   };
 
   const handleClose = (value) => {
+    console.log(value);
     setOpen(false);
 
     if (startflag === 0) {

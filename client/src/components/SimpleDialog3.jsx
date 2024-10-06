@@ -1,14 +1,14 @@
-import React from 'react';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { getAuth, signOut } from "firebase/auth";
+import PropTypes from "prop-types";
 
 const SimpleDialog3 = ({ onClose, open, setIsLogin }) => {
-    const auth = getAuth();
+  const auth = getAuth();
 
   return (
     <Dialog onClose={onClose} open={open}>
@@ -32,37 +32,54 @@ const SimpleDialog3 = ({ onClose, open, setIsLogin }) => {
           Cancel
         </Button>
       </DialogActions> */}
-    <DialogContent>
+      <DialogContent>
         <Typography variant="body1" gutterBottom>
-            Do you want to logout or go back?
+          Do you want to logout or go back?
         </Typography>
-        <Button variant="contained" color="primary" fullWidth onClick={()=>{
-            signOut(auth).then(() => {
-                console.log('User signed out');
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={() => {
+            signOut(auth)
+              .then(() => {
+                console.log("User signed out");
                 onClose();
-              }).catch((error) => {
+              })
+              .catch((error) => {
                 console.log(error);
               });
             setIsLogin(false);
-            localStorage.removeItem('user');
-        }}>
-            Logout
+            localStorage.removeItem("user");
+          }}
+        >
+          Logout
         </Button>
-        <Typography variant="body2" align="center" gutterBottom style={{ marginTop: '10px' }}>
-            OR
+        <Typography
+          variant="body2"
+          align="center"
+          gutterBottom
+          style={{ marginTop: "10px" }}
+        >
+          OR
         </Typography>
-        <Button variant="outlined" color="primary" fullWidth onClick={() => handleOption('GoBack')}>
-            Go Back
+        <Button variant="outlined" color="primary" fullWidth onClick={onClose}>
+          Go Back
         </Button>
-    </DialogContent>
-    <DialogActions>
+      </DialogContent>
+      <DialogActions>
         <Button onClick={onClose} color="secondary">
-            Cancel
+          Cancel
         </Button>
-    </DialogActions>
-
+      </DialogActions>
     </Dialog>
   );
-}
+};
+
+SimpleDialog3.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  setIsLogin: PropTypes.func.isRequired,
+};
 
 export default SimpleDialog3;

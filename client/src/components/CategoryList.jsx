@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BuyCard from "./BuyCard";
 import axios from "axios";
@@ -12,7 +12,9 @@ function CategoryList() {
     // Fetch data from JSON file
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://ratna-supermarket.vercel.app/allProducts");
+        const response = await axios.get(
+          "https://ratna-supermarket.vercel.app/allProducts"
+        );
         console.log(response.data);
         setProductsData(response.data);
       } catch (error) {
@@ -21,23 +23,19 @@ function CategoryList() {
     };
 
     fetchData();
-
   }, []);
 
-  // Function to handle checkbox change
-  const handleCheckboxChange = (event) => {
-    // Handle checkbox change here
-    console.log(event.target.checked);
-  };
-
   // Filter card data based on category
-  const filteredCardData = productsData.filter((card) => card.category === params.categoryName);
+  const filteredCardData = productsData.filter(
+    (card) => card.category === params.categoryName
+  );
 
   return (
     <div className="mt-[120px] flex">
-      
       <div className="m-auto mt-16 md:mt-6 w-4/5 pl-5 overflow-y-visible ">
-      <h2 className=" font-bold capitalize text-2xl ">{params.categoryName}</h2>
+        <h2 className=" font-bold capitalize text-2xl ">
+          {params.categoryName}
+        </h2>
         <div className="p-5 grid md:grid-cols-4 justify-center md:justify-normal gird-cols-1 gap-4">
           {filteredCardData.map((card, index) => (
             <BuyCard

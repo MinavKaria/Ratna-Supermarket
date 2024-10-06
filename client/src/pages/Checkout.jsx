@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Payment from "../components/Payment";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../actions/CartControl";
@@ -21,44 +21,41 @@ function Checkout() {
     if (!address) {
       alert("Please enter the address");
       return;
-    }
-    else
-    {
+    } else {
       try {
-      const pincode=localStorage.getItem("userPincode");
-      const deliveryType=localStorage.getItem("orderType");
-      console.log("Pincode: ",pincode);
-      console.log("Delivery Type: ",deliveryType);
-      await axios.post(
-        "https://ratna-supermarket.vercel.app/orderItems",
-        {
-          id: userID,
-          order: cartItems,
-          orderStage: 1,
-          address: address, 
-          pinCode: pincode,
-          deliveryType: deliveryType,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
+        const pincode = localStorage.getItem("userPincode");
+        const deliveryType = localStorage.getItem("orderType");
+        console.log("Pincode: ", pincode);
+        console.log("Delivery Type: ", deliveryType);
+        await axios.post(
+          "https://ratna-supermarket.vercel.app/orderItems",
+          {
+            id: userID,
+            order: cartItems,
+            orderStage: 1,
+            address: address,
+            pinCode: pincode,
+            deliveryType: deliveryType,
           },
-        }
-      );
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        );
 
-      console.log("Order Placed");
-      setCartItems([]);
-      setPaymentSuccess(true);
-    
-      setTimeout(() => {
-        navigate("/orders");
-      }, 3000);
+        console.log("Order Placed");
+        setCartItems([]);
+        setPaymentSuccess(true);
 
-      
-    } catch (err) {
-      console.log(err);
-    }}
+        setTimeout(() => {
+          navigate("/orders");
+        }, 3000);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   return (
@@ -69,7 +66,7 @@ function Checkout() {
             <>
               <h1>Total Amount: ₹ {totalAmount}</h1>
               {/* Input field for the address */}
-              
+
               <Payment />
 
               <h1>Enter your address below</h1>
@@ -78,13 +75,14 @@ function Checkout() {
                 placeholder="Enter your address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                style={{ width: "100%",
-                padding: "12px 20px",
-                margin: "8px 0",
-                display: "inline-block",
-                border: "1px solid #ccc", 
-                borderRadius: "4px",
-                boxSizing: "border-box",
+                style={{
+                  width: "100%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  display: "inline-block",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  boxSizing: "border-box",
                 }}
               />
               <br />
@@ -100,7 +98,11 @@ function Checkout() {
 
           {paymentSuccess && (
             <>
-              <img src="Animation - 1713010980986.gif" alt="" className="w-25" />
+              <img
+                src="Animation - 1713010980986.gif"
+                alt=""
+                className="w-25"
+              />
               Your Payment is Successful
             </>
           )}
