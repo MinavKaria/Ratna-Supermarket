@@ -38,7 +38,7 @@ function Orders() {
         const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
         const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-        const watermarkImageUrl = '../../public/logo.png'; // Replace with your actual image URL
+        const watermarkImageUrl = '/logo.png'; 
         const watermarkImageResponse = await fetch(watermarkImageUrl);
         const watermarkImageArrayBuffer = await watermarkImageResponse.arrayBuffer();
         const watermarkImage = await pdfDoc.embedPng(watermarkImageArrayBuffer);
