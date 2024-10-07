@@ -13,6 +13,8 @@ import { signInWithPopup } from "firebase/auth";
 import { useCart } from "../actions/CartControl.jsx";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
+
 
 const UserDataContainer = styled('form')({
   height: '80vh',
@@ -69,9 +71,10 @@ function Signup() {
       const uid=user.uid;
       localStorage.setItem('user', JSON.stringify(user));
       console.log("Google sign-in success:", user);
-      
+      toast.success('Google sign-in successful!');
       navigate("/");
     } catch (error) {
+      toast.error('Google sign-in failed!');
       console.error("Google sign-in error:", error);
     }
   };
@@ -100,13 +103,16 @@ function Signup() {
     try{
       const response=await axios.post('https://ratna-supermarket.vercel.app/signUp', user)
       console.log(response.result);
+      toast.success('Signup successful!');
     }
     catch(err)
     {
+      toast.error('Signup failed! Please try again.');
       console.log(err);
     }
     finally{
       console.log("User created");
+      
       navigate('/');
     }
 
@@ -114,7 +120,9 @@ function Signup() {
     
   }
   const signInUser=async()=>{
-    console.log("user");
+    try {
+      
+      console.log("user");
     const response=await axios.post('https://ratna-supermarket.vercel.app/signIn', {email:user.email, password:user.password})
     console.log(response);
     const data=response.data;
@@ -123,7 +131,12 @@ function Signup() {
     setIsLogin(true);
     setName(user.name);
     localStorage.setItem('user', JSON.stringify(data.result));
+    toast.success('Login successful!');
     navigate('/');
+    } catch (error) {
+      console.log(error);
+      toast.error('Login failed! Please check your credentials.');
+    }
 
   }
     
@@ -174,12 +187,16 @@ function Signup() {
                 {
                   if(user.password!==user.confirmPassword)
                   {
-                    alert("Passwords don't match");
+                    toast("Passwords don't match", {
+                      icon: '🧐',
+                    });
                     return;
                   }
                   else if(user.password.length<6)
                   {
-                    alert("Password must be at least 6 characters long");
+                    toast("Password must be at least 6 characters long", {
+                      icon: '🤖',
+                    });
                     return;
                   }
                   else
@@ -191,8 +208,10 @@ function Signup() {
                 {
                   if(user.password.length<6)
                   {
-                    alert("Password must be at least 6 characters long");
-                    return;
+                    toast("Password must be at least 6 characters long", {
+                      icon: '🤖',
+                    });
+                                        return;
                   }
                   else
                   {
