@@ -51,7 +51,9 @@ function Vendor() {
       
       
       if(productData.productName === "" || productData.mrp === "" || productData.imageUrl === "" || productData.discountPrice === "" || productData.category === "", productData.id === 0) {
-        alert("Please fill all the fields");
+        toast("Please fill all the fields",{
+          Icon: '🚨',
+        });
         return;
       }
       else {

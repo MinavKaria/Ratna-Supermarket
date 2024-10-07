@@ -3,7 +3,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import { Input } from '@mui/material';
 import { useState,useEffect } from 'react';
-
+import { toast } from 'react-hot-toast';
 function SimpleDialog(props) {
     const { onClose, open } = props;
     const [pincode, setPincode] = useState('');
@@ -15,7 +15,7 @@ function SimpleDialog(props) {
       }
       else
       {
-        alert("Please enter a valid pincode & select an area from the list.");
+        toast.error("Please enter a valid pincode & select an area from the list.");
       }
     };
   
