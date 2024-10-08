@@ -1,5 +1,4 @@
-.vendor-container {
-
+.vendor- {
   margin: 0 auto;
   padding: 20px;
 }
@@ -8,7 +7,7 @@
   text-align: center;
 }
 
-.vendor-table-container {
+.vendor-table- {
   overflow-x: auto;
 }
 
