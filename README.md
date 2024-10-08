@@ -6,6 +6,8 @@ Welcome to **Ratna Supermarket** – an online shopping platform that delivers a
  <img width="60%" src="https://github.com/user-attachments/assets/187ee773-e25e-41c8-9fea-aa610bf8b03f" />
 </div>
 
+---
+
 <p align="center">
     <a href="https://github.com/MinavKaria/Ratna-Supermarket"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source"></a>
     <a href="https://github.com/MinavKaria/"><img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg?v=103" alt="Maintained"></a>
@@ -22,17 +24,17 @@ Welcome to **Ratna Supermarket** – an online shopping platform that delivers a
 
 **Ratna Supermarket** is designed to provide users with a real-world shopping experience. It includes essential features such as product listings, cart management, user authentication, and order processing. Developed as part of a college project, it showcases a fully-fledged e-commerce platform using modern web development tools.
 
-## 🌐 Demo
+Our **Objective** is to create a user-friendly and responsive online shopping platform that allows customers to explore, add products to their cart, and place orders effortlessly.
 
-🌐 **Live Demo:** [Ratna Supermarket](https://ratna-supermaket.web.app/)
+<p align="center"> 
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="700">
+<center>
 
----
+# 🌐 **Live Demo:** [Ratna Supermarket](https://ratna-supermaket.minavkaria.xyz/)
 
-### 🎯 **Objective:**
-
-To create a user-friendly and responsive online shopping platform that allows customers to explore, add products to their cart, and place orders effortlessly.
-
----
+</center>
+<p align="center"> 
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="700">
 
 ## 🔥 Features
 
@@ -64,21 +66,25 @@ Ensure that the following software is installed on your system:
 
 - [Node.js](https://nodejs.org/) (v14.x or higher)
 - [npm](https://www.npmjs.com/) (Node package manager)
-- [React.js](https://react.dev/)(React JS)
+- [React.js](https://react.dev/) (React JS)
 
-### Installation
+## 📦 Installation
 
-1. **Fork the repository**:  
-   Go to the [Ratna Supermarket GitHub repository](https://github.com/MinavKaria/Ratna-Supermarket), click the "Fork" button in the top-right corner to create your own copy of the repository.
+To set up the **Ratna Supermarket** project on your local machine, follow these detailed instructions for both the frontend and backend.
 
-2. **Clone the repository**:  
-   Clone the forked repository to your local machine:
+### 🔧 Frontend Setup
+
+1. **Fork the Repository:**  
+   Go to the [Ratna Supermarket GitHub repository](https://github.com/MinavKaria/Ratna-Supermarket) and click the "Fork" button in the top-right corner to create your own copy.
+
+2. **Clone the Repository:**  
+   Clone your forked repository to your local machine:
 
    ```bash
    git clone https://github.com/yourusername/Ratna-Supermarket.git
    ```
 
-3. **Navigate to the project directory**:  
+3. **Navigate to the Project Directory:**  
    Change your directory to the cloned project folder:
 
    ```bash
@@ -86,24 +92,91 @@ Ensure that the following software is installed on your system:
    cd client
    ```
 
-4. **Install the dependencies**:  
-   Run the following command to install all the necessary dependencies:
+4. **Install Frontend Dependencies:**  
+   Run the following command to install all necessary frontend dependencies:
 
    ```bash
    npm install
    ```
 
-5. **Start the development server**:  
-   Launch the project in development mode by running:
+5. **Start the Frontend Development Server:**  
+   Launch the frontend in development mode by running:
 
    ```bash
    npm run dev
    ```
 
-6. **Open the app**:  
+6. **Open the App:**  
    Open your browser and visit `http://localhost:5173` to see the app in action.
 
----
+### 🛠️ Backend Setup
+
+1. **Navigate to the Backend Directory:**  
+   Change your directory to the backend folder:
+
+   ```bash
+   cd ../server
+   ```
+
+2. **Install Backend Dependencies:**  
+   Install the necessary backend dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables:**  
+   Create or edit the `.env` file in the backend directory with the following variables:
+
+   ```env
+   MONGO_URI=<your-mongodb-connection-string>
+   DB_NAME=<your-database-name>
+   ```
+
+4. **Start the Backend Server:**  
+   Launch the backend server:
+
+   ```bash
+   node server.js
+   ```
+
+### 🐍 Running py_server Files
+
+Ensure you have the following installed:
+
+- [Python](https://www.python.org/) (version 3.x)
+- [Flask](https://flask.palletsprojects.com/) (for creating the web server)
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/) (for enabling CORS)
+- [PyMongo](https://pymongo.readthedocs.io/en/stable/) (for MongoDB integration)
+
+**Start the Backend Server:**  
+ Launch the backend server:
+
+```bash
+python backend.py
+
+```
+
+## Folder Structure 📂
+
+```
+Ratna-Supermarket/
+├── client/ # React frontend application
+│   ├── src/ # React components and files
+│   ├── public/ # Public static files
+│   ├── package.json # Frontend dependencies
+│   └── vite.config.js # Vite configuration file
+├── server/ # Backend Node.js application
+│   ├── server.js # Main server file
+│   ├── .env # Environment configuration (not included in repo)
+│   ├── package.json # Backend dependencies
+│   └── ... # Other backend files
+├── README.md # This file
+└── ...
+
+```
+
+<br>
 
 ## 📜 Contributing
 
@@ -133,28 +206,23 @@ This project is also part of **Hacktoberfest 2024**. We encourage participants t
 
 ---
 
-## 🌟 Mentors
+## Project Admin ⚡
 
-Special thanks to our amazing mentors who are guiding this project! 🙌
-
-- **[To be announced]** - Full Stack Developer
-
----
-
-## 👀 Our Contributors
-
-- We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating Ratna-Supermarket to greater heights.
-- Make sure you show some love by giving ⭐ to our repository.
-
-<br>
 <center>
-<div>
-<a href="https://github.com/MinavKaria/Ratna-Supermarket/graphs/contributors">
-  <img width="10%" src="https://contrib.rocks/image?repo=MinavKaria/Ratna-Supermarket" />
-</a>
+<table> 
+    <tr> 
+        <td align="center">
+            <a href="https://github.com/MinavKaria/"><img src="https://avatars.githubusercontent.com/u/119132631?v=4" width=150px height=150px /></a>
+            <h4>Minav</h4>
+        </td> 
+    </tr> 
+</table> 
+</center>
 
----
+<div><h2><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Red%20Heart.png" width="35" height="35"> Contributors</h2></div>
 
-## ⭐Support
+We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating Ratna-Supermarket to greater heights.
 
-- ⭐ Star our Repo
+<a href="https://github.com/MinavKaria/Ratna-Supermarket/graphs/contributors"> <img align="center" src="https://contrib.rocks/image?max=100&repo=MinavKaria/Ratna-Supermarket"/> </a>
+
+<p align="right"><a href="#top"><img src="https://img.shields.io/badge/Move%20to%20top-Blue?style=plastic" alt="Back To Top"></a></p>

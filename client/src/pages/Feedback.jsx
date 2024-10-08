@@ -71,7 +71,9 @@ export default function BasicRating() {
             
             onClick={() => {
               if(value===0 && feedback===""){
-                alert("Please provide a rating");
+                toast("Please provide a rating", {
+                  icon: '🙌',
+                });
                 return;
               }
               
