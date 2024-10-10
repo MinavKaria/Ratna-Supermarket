@@ -6,6 +6,8 @@ import router from './configs/route';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { CartProvider } from './actions/CartControl';
 import { Toaster } from 'react-hot-toast';
+import BackToTop from './components/BackToTop.jsx';
+
 function App() {
   
   return (
@@ -15,6 +17,7 @@ function App() {
         <CartProvider>
           <RouterProvider router={router}/>
         </CartProvider>
+        <BackToTop/>
       </GoogleOAuthProvider>
     </>
   )
