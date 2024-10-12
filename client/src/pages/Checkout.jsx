@@ -19,7 +19,9 @@ function Checkout() {
 
   const handlePayment = async () => {
     if (!address) {
-      alert("Please enter the address");
+      toast("Please enter the address", {
+        icon: '👣',
+      });
       return;
     }
     else
