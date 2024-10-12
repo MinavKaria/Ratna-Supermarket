@@ -13,12 +13,12 @@ const BackgroundContainer = styled("div")({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  position: "fixed",
   top: 0,
   left: 0,
   width: "100%",
   zIndex: -1, // Ensure it's behind other content
   backdropFilter: "blur(5px)",
+  padding: "10px 10px 20px 10px"
 });
 
 function Vendor() {
@@ -96,7 +96,7 @@ function Vendor() {
           Products
         </button>
       </div>
-      <div className="mt-[120px]">
+      <div className="mt-[10px]">
         <Container>
           <h2 className="text-5xl m-10 text-bold">Vendor Side</h2>
           <br />
