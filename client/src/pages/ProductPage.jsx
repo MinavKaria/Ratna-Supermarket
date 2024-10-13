@@ -11,7 +11,11 @@ import { useCart } from '../actions/CartControl';
 
 function ProductPage() {
   const { id } = useParams();
+<<<<<<< HEAD
   const [products, setProducts] = useState({imageUrl:'https://bl-i.thgim.com/public/incoming/a2rbf8/article65774686.ece/alternates/FREE_1200/bl16_amul%20taaza%20milk_pouch%20milk.jpg'});
+=======
+  const [products, setProducts] = useState();
+>>>>>>> 1f96ba1c8f1408f12d3bbf3067fd71bc19860b77
   const { addToCart, removeFromCart, cartItems } = useCart();
   // console.log(id);
   // // const data=JSON.parse()
