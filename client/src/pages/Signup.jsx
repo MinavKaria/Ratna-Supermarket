@@ -204,7 +204,7 @@ function Signup() {
           }}>
 
             <Typography variant="h5" className="flex">
-              {!isSignup ? "Sign Up" : "Welcome Back!"}
+              {!isSignup ?<div className="text-center"> Sign Up </div>: <div className="text-center">Welcome Back!</div>}
 
             </Typography>
             <hr style={{width:'25%'}}></hr>
@@ -298,7 +298,7 @@ function Signup() {
             >
           
          
-              {isSignup ? 'New User? Create an Account' : 'Already have an account? Sign In Here'} 
+              {isSignup ? <div className="text-center w-48">New User? Create an Account</div> :<div className="text-center w-48">Already have an account? Sign In Here</div>} 
             </button>
             
               <button className="w-72 p-2 rounded-2xl text-white mt-2" 
