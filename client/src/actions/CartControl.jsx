@@ -37,10 +37,17 @@ export const CartProvider = ({ children }) => {
       ).filter(Boolean)
     );
   };
-  
 
+
+  const decreaseCount = (item) => {
+    if (item.count > 1) {
+      addToCart({ ...item, count: item.count - 1 });
+    } else {
+      removeFromCart(item);
+    }
+  };
   return (
-    <CartContext.Provider value={{ cartItems,setCartItems, addToCart,removeFromCart, isLogin, setIsLogin,name,setName,userDetails, setUserDetails,orderDirect,setOrderDirect, startflag,setStartFlag  }}>
+    <CartContext.Provider value={{ cartItems,setCartItems, addToCart,removeFromCart,decreaseCount, isLogin, setIsLogin,name,setName,userDetails, setUserDetails,orderDirect,setOrderDirect, startflag,setStartFlag  }}>
       {children}
     </CartContext.Provider>
   );
