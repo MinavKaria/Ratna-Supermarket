@@ -8,43 +8,54 @@ function Footer() {
             <img src='/logo.svg' className="h-[8vh] md:w-[12vw] md:h-auto"></img>
             <p className="font-medium text-center md:text-left">Connoisseurs in the aloo-pyaj industry</p>
             <ul className="flex flex-row gap-2 mx-auto md:mx-0">
-              <li>
-                <img 
-                  src="/SocialMedia/Facebook.svg" 
-                  className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
-                  alt="Facebook"
-                />
-              </li>
-              <li>
-                <img 
-                  src="/SocialMedia/Instagram.svg" 
-                  className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
-                  alt="Instagram"
-                />
-              </li>
-              <li>
-                <img 
-                  src="/SocialMedia/LinkedIn.svg" 
-                  className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
-                  alt="LinkedIn"
-                />
-              </li>
-              <li>
-                <img 
-                  src="/SocialMedia/Twitter.svg" 
-                  className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
-                  alt="Twitter"
-                />
-              </li>
-              <li>
-                <img 
-                  src="/SocialMedia/YouTube.svg" 
-                  className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
-                  alt="YouTube"
-                />
-              </li>
-            </ul>
-          </div>
+             <ul className="flex space-x-4">
+  <li>
+    <button onClick={() => window.open('https://www.facebook.com', '_blank')}>
+      <img 
+        src="/SocialMedia/Facebook.svg" 
+        className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
+        alt="Facebook"
+      />
+    </button>
+  </li>
+  <li>
+    <button onClick={() => window.open('https://www.instagram.com', '_blank')}>
+      <img 
+        src="/SocialMedia/Instagram.svg" 
+        className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
+        alt="Instagram"
+      />
+    </button>
+  </li>
+  <li>
+    <button onClick={() => window.open('https://www.linkedin.com', '_blank')}>
+      <img 
+        src="/SocialMedia/LinkedIn.svg" 
+        className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
+        alt="LinkedIn"
+      />
+    </button>
+  </li>
+  <li>
+    <button onClick={() => window.open('https://www.twitter.com', '_blank')}>
+      <img 
+        src="/SocialMedia/Twitter.svg" 
+        className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
+        alt="Twitter"
+      />
+    </button>
+  </li>
+  <li>
+    <button onClick={() => window.open('https://www.youtube.com', '_blank')}>
+      <img 
+        src="/SocialMedia/YouTube.svg" 
+        className="h-[3vh] hover:scale-125 hover:brightness-150 transition-transform duration-500 ease-in-out cursor-pointer"
+        alt="YouTube"
+      />
+    </button>
+  </li>
+</ul>
+
 
           <div className="hidden md:flex md:flex-row align-center items-start gap-5 my-auto">
             <p className="font-bold text-[#54b22c]">Contact Us</p>
