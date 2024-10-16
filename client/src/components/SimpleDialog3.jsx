@@ -7,8 +7,15 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { getAuth, signOut } from "firebase/auth";
 
+
 const SimpleDialog3 = ({ onClose, open, setIsLogin }) => {
     const auth = getAuth();
+    
+    function handleOption(value) {
+      if(value){
+        onClose();
+      }
+    }
 
   return (
     <Dialog onClose={onClose} open={open}>
