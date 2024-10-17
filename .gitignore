@@ -28,3 +28,4 @@ secrets.json
 # Ignore operating system files
 .DS_Store
 Thumbs.db
+mongo_data
