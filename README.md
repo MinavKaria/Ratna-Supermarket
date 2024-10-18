@@ -72,6 +72,43 @@ Ensure that the following software is installed on your system:
 
 To set up the **Ratna Supermarket** project on your local machine, follow these detailed instructions for both the frontend and backend.
 
+### Run With Docker
+
+Don't want to setup with all of the below steps?
+Use Docker Compose (Note: Docker should be installed)
+
+1. **Set ENV File**
+   Use this starter env file for setting up Docker, Client and Server.
+   It should be at root level(In another words at same level where docker-compose.yml is)
+
+   ```bash
+   MONGO_URI=mongodb://mongodb
+   PORT=3000
+   JWT_SECRET=secret
+   MONGODBPORT=27017
+   MONGOEXPPORT=8081
+   SERVERPORT=3000
+   CLIENTPORT=5173
+   ```
+
+2. **Run Docker Compose**
+
+   ```bash
+   docker compose up --watch
+   ```
+
+   Note: --watch paramter helps docker to track changes in files if you don't use it you will not be able to see changes and would have to restart everytime/
+
+3. **Stop Docker**
+
+   ```bash
+   docker compose down
+   ```
+
+   This commands stops docker containers and network and frees all the ports Docker was using.
+
+   For more info on Docker look through this Youtube Video: https://www.youtube.com/watch?v=3c-iBn73dDE
+
 ### 🔧 Frontend Setup
 
 1. **Fork the Repository:**  
