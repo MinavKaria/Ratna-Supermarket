@@ -20,7 +20,7 @@ function SimpleDialog(props) {
           console.log('Latitude:', latitude, 'Longitude:', longitude);
           try {
             // Fetch pincode from coordinates using a reverse geocoding API
-            const apiKey = '2cb216d063584d989098986d97e31962';  // Use your API Key from https://opencagedata.com/
+            const apiKey = 'API_KEY';  // Use your API Key from https://opencagedata.com/
             const response = await fetch(
               `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`
             );
