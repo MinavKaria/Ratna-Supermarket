@@ -1,0 +1,30 @@
+.chatbotHelpContainer {
+    position: fixed;
+    display: flex;
+    bottom: 10px; /* Adjust this to where you want the element */
+    right: 20px; /* Adjust this to where you want the element */
+    z-index: 1000; /* Ensures it stays on top of other elements */
+}
+
+.chatbotHelpContainer svg:nth-of-type(2){
+    transform: translateX(58px);
+    z-index: 888;
+        transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.chatbotHelpContainer svg:nth-of-type(2) circle{
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+    cursor: pointer;
+
+}
+.chatbotHelpContainer svg:nth-of-type(2) circle:hover{
+    fill: black;
+}
+.chatbotHelpContainer svg:nth-of-type(1):hover ~ svg:nth-of-type(2) circle{
+    fill: black;
+}
+.chatbotHelpContainer svg:nth-of-type(1){
+    transform: translate(175px, 85px);
+    z-index: 889;
+    cursor: pointer;
+}
