@@ -3,6 +3,7 @@ import Carousel from '../components/Carousel'
 import CategoriesHead from '../components/TopCategoriesHead'
 import TopCategoriesList from '../components/TopCategoriesList'
 import BuyCard from '../components/BuyCards'
+import ChatbotHelp from '../components/ChatbotHelp'
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
         <CategoriesHead title="Supersaver" greenTitle="Up to 50% off"/>
         <BuyCard/>
       </div>
+      <ChatbotHelp />
     </>
   )
 }
