@@ -30,7 +30,7 @@ app.use(
 );
 
 app.use(bodyParser.json());
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 try {
   mongoose.connect(process.env.MONGO_URI);
