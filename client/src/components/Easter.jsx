@@ -13,7 +13,7 @@ function Easter() {
       <div>
         {/*<img src="preload.jpg" alt="" srcset="" className='h-full'/>*/}
         <div className='text-[20vh] font-black text-red-400 duration-300 hover:text-blue-400 hover:duration-300'>
-        kar har maidaan fateh madarchod
+        This is an Easter egg
         </div> 
       </div>
     </>
