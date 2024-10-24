@@ -26,3 +26,4 @@ body:
           required: true
         - label: "I'm a GSSOC-24-extd contributor"
         - label: "Soon, I'll complete it and create a Pull Request."
+        - label: "I have read other issues and did not find a similar or same issue. Ensuring that, this is a new issue"
