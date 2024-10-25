@@ -5,6 +5,8 @@ import { Input, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState, useEffect } from 'react';
 
+require('dotenv').config();
+
 function SimpleDialog(props) {
   const { onClose, open } = props;
   const [pincode, setPincode] = useState('');
@@ -20,10 +22,11 @@ function SimpleDialog(props) {
           console.log('Latitude:', latitude, 'Longitude:', longitude);
           try {
             // Fetch pincode from coordinates using a reverse geocoding API
-            const apiKey = 'API_KEY';  // Use your API Key from https://opencagedata.com/
+            const apiKey = process.env.PINCODE_API_KEY;  // Use your API Key from https://opencagedata.com/
             const response = await fetch(
               `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`
             );
+            console.log('Response:', response);
             const data = await response.json();
             const locationPincode = data.results[0].components.postcode;
             setPincode(locationPincode);
