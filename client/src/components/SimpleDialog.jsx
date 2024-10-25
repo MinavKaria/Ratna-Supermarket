@@ -5,8 +5,6 @@ import { Input, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState, useEffect } from 'react';
 
-require('dotenv').config();
-
 function SimpleDialog(props) {
   const { onClose, open } = props;
   const [pincode, setPincode] = useState('');
