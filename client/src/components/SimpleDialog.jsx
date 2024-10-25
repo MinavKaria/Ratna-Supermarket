@@ -22,13 +22,15 @@ function SimpleDialog(props) {
           console.log('Latitude:', latitude, 'Longitude:', longitude);
           try {
             // Fetch pincode from coordinates using a reverse geocoding API
-            const apiKey = process.env.PINCODE_API_KEY;  // Use your API Key from https://opencagedata.com/
+            const apiKey = import.meta.env.VITE_PINCODE_API_KEY;  // Use your API Key from https://opencagedata.com/
             const response = await fetch(
               `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`
             );
-            console.log('Response:', response);
+            // console.log('Response:', response);
             const data = await response.json();
+            console.log(data);
             const locationPincode = data.results[0].components.postcode;
+            // console.log(locationPincode);
             setPincode(locationPincode);
             localStorage.setItem('userPincode', locationPincode);
           } catch (error) {
