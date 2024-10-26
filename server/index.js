@@ -8,6 +8,7 @@ import fileUpload from "express-fileupload";
 import { createNewUser, signInUser } from "./user.js";
 import path from "path";
 import Product from "./productSchema.js";
+import nodemailer from "nodemailer";
 
 const dirname = "../client/public/";
 
@@ -32,12 +33,12 @@ app.use(
 app.use(bodyParser.json());
 const PORT = 3000;
 
-try {
-  mongoose.connect(process.env.MONGO_URI);
-  console.log("MongoDB connected successfully");
-} catch (error) {
-  console.error("Error in connecting to MongoDB:", error);
-}
+// try {
+//   mongoose.connect(process.env.MONGO_URI);
+//   console.log("MongoDB connected successfully");
+// } catch (error) {
+//   console.error("Error in connecting to MongoDB:", error);
+// }
 
 app.get("/", (req, res) => {
   res.send("Hello to Ratna Supermarket API");
@@ -205,6 +206,54 @@ app.put("/updateFeedback/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/contactus", async (req, res) => {
+  const { mail, subject, message } = req.body;
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false, // Disable strict SSL verification
+      },
+    });
+
+    const mailOptions = {
+      from: mail,
+      // to: support@ratna.in,
+      to: process.env.EMAIL_USER,
+      subject: subject,
+      text: message,
+    };
+
+    // Send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, mailOptions) => {
+      if (error) {
+        console.error("Error occurred: " + error.message);
+        return res.send(400).json({ error: error.message });
+      }
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: "Your contact request has been successfully received.",
+    });
+  } catch (err) {
+    console.error(`Error at transport: ${err}`);
+    res.status(500).json({
+      status: "error",
+      message:
+        "There was an error sending your message. Please try again later.",
+    });
   }
 });
 
