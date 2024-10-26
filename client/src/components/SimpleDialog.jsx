@@ -20,7 +20,7 @@ function SimpleDialog(props) {
         navigator.geolocation.getCurrentPosition(
           async (position) => {
             const { latitude, longitude } = position.coords;
-            console.log('Latitude:', latitude, 'Longitude:', longitude); // Check the coordinates in the console
+            console.log('Latitude:', latitude, 'Longitude:', longitude);
             try {
               // Fetch pincode from coordinates using a reverse geocoding API
               const apiKey = import.meta.env.VITE_PINCODE_API_KEY; // Use your API Key from https://opencagedata.com/
