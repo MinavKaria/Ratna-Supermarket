@@ -13,46 +13,26 @@ function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id
     if (cartItem) {
       setCount(cartItem.count);
     }
-    
-    // Check if this item is already saved (could be fetched from localStorage or API)
+
+    // Check if this item is already saved (could be fetched from localStorage)
     const savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
     const itemIsSaved = savedItems.some(item => item.id === id);
     setIsSaved(itemIsSaved);
   }, [cartItems, id]);
 
-  const handleSave = async () => {
+  const handleSave = () => {
     const productToSave = { id, productName, discountPrice, imageUrl };
-    
+    const savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
+
     if (isSaved) {
       // Logic to remove the item from saved items
-      const response = await fetch('/remove_saved_item', { // Create this endpoint in your backend
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username: 'current_username', item: productToSave }), // Replace with actual username
-      });
-
-      if (response.ok) {
-        setIsSaved(false);
-        const updatedSavedItems = JSON.parse(localStorage.getItem('savedItems')).filter(item => item.id !== id);
-        localStorage.setItem('savedItems', JSON.stringify(updatedSavedItems));
-      }
+      const updatedSavedItems = savedItems.filter(item => item.id !== id);
+      localStorage.setItem('savedItems', JSON.stringify(updatedSavedItems));
+      setIsSaved(false);
     } else {
       // Logic to save the item
-      const response = await fetch('/save_item', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username: 'current_username', item: productToSave }), // Replace with actual username
-      });
-
-      if (response.ok) {
-        setIsSaved(true);
-        const savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
-        localStorage.setItem('savedItems', JSON.stringify([...savedItems, productToSave]));
-      }
+      localStorage.setItem('savedItems', JSON.stringify([...savedItems, productToSave]));
+      setIsSaved(true);
     }
   };
 
@@ -108,7 +88,7 @@ function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id
               if (count >= 1 && count < 10) setCount(count + 1);
               addToCart({ id, productName, discountPrice, imageUrl, count: count + 1 });
             }}>+</span>
-            <div><input type="text" className='w-6 border-2 indent-1' value={count} /></div>
+            <div><input type="text" className='w-6 border-2 indent-1' value={count} readOnly /></div>
             <span style={{ cursor: 'pointer', marginTop: '1px', userSelect: 'none' }} onClick={() => {
               if (count >= 1) {
                 setCount(count - 1);
