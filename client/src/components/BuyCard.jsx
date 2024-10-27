@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '../actions/CartControl';
 import { useNavigate } from 'react-router-dom';
 
-function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id, cart, setCart, setTotal, total, vendorSide }) {
+function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id }) {
   const [count, setCount] = useState(0);
-  const { addToCart, removeFromCart, cartItems } = useCart();
+  const { addToCart, cartItems } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,70 +15,37 @@ function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id
   }, [cartItems, id]);
 
   return (
-    <div className='card w-56  flex justify-center align-middle flex-col border-2 rounded-[15px] relative hover:scale-105 transition transform ease-in-out duration-300'>
-      <div className='bg-slate-200 w-full flex justify-center rounded-t-[15px] align-top cursor-pointer' onClick={() => {
-        navigate(`/product/${id}`)
-      }}>
-        <img src={imageUrl} alt="" />
+    <div className='card w-full flex flex-col border-2 rounded-[15px] relative hover:scale-105 transition-transform duration-300'>
+      <div className='bg-slate-200 w-full flex justify-center rounded-t-[15px] cursor-pointer' onClick={() => navigate(`/product/${id}`)}>
+        <img 
+          src={imageUrl} 
+          alt={productName} 
+          className="object-contain w-full h-48" // Using object-contain for better aspect ratio handling
+          loading="lazy" // Optional: Enables lazy loading for performance
+          style={{ maxHeight: '300px', width: 'auto' }} // Ensures max height and maintains aspect ratio
+        />
       </div>
       <div className='p-2 flex-1'>
-        <span className="flex-grow cursor-pointer hover:underline" onClick={() => {
-        navigate(`/product/${id}`)
-      }}>{productName}</span>
-        <span style={{
-          color: '#54B22C'
-        }}>{bogo && '(Buy 1 Get 1 FREE)'}</span>
+        <span className="flex-grow cursor-pointer hover:underline" onClick={() => navigate(`/product/${id}`)}>{productName}</span>
+        {bogo && <span style={{ color: '#54B22C' }}>(Buy 1 Get 1 FREE)</span>}
       </div>
       <div className='flex p-2 justify-between mt-5 w-full'>
         <div>
-          {'₹'}{discountPrice || 'Error'}
-          {'   '}
-          <span className='line-through text-xs'>
-            {'₹'}{mrp || 'Error'}
-          </span>
+          {'₹'}{discountPrice || 'Error'} {' '}
+          <span className='line-through text-xs'>{'₹'}{mrp || 'Error'}</span>
         </div>
-        {!vendorSide && (count === 0 && (
-          <div className='mr-2' onClick={() => {
-            setCount(count + 1);
-            addToCart({ id, productName, discountPrice, count: count + 1, imageUrl });
-          }}>
-            <button style={{
-              backgroundColor: '#F3F9FB',
-              borderColor: '#54B22C',
-              color: '#249B3E',
-              width: '60px',
-              borderRadius: '5px',
-              border: '1px solid',
-            }}>ADD</button>
-          </div>
-        ))}
-        {count > 0 && (
-          <div className='mr-2 flex gap-2'>
-            <span
-              style={{
-                cursor: 'pointer',
-                marginTop: '1px',
-                userSelect: 'none'
-              }} onClick={() => {
-                if (count >= 1 && count < 10)
-                  setCount(count + 1);
-                addToCart({ id, productName, discountPrice, imageUrl, count: count + 1 });
-              }}>+</span>
-            <div><input type="text" className='w-6 border-2 indent-1' value={count} /></div>
-            <span
-              style={{
-                cursor: 'pointer',
-                marginTop: '1px',
-                userSelect: 'none'
-              }}
-              onClick={() => {
-                if (count >= 1) {
-                  setCount(count - 1);
-                  removeFromCart({ id });
-                }
-              }}> - </span>
-          </div>
-        )}
+        <div>
+          <button
+            className="bg-[#F3F9FB] border-2 border-[#54B22C] text-[#249B3E] w-20 rounded"
+            onClick={() => {
+              setCount(count + 1);
+              addToCart({ id, productName, discountPrice, count: count + 1, imageUrl });
+            }}
+            disabled={count > 0}
+          >
+            {count === 0 ? 'ADD' : `Added x${count}`}
+          </button>
+        </div>
       </div>
       <div className='absolute' style={{
         top: '0',
