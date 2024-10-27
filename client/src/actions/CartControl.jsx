@@ -4,16 +4,15 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([
-   
+    
   ]);
-  
   const [orderDirect,setOrderDirect] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [name,setName] = useState('');
   const [userDetails,setUserDetails] = useState({});
   const [startflag,setStartFlag] = useState(0);
   const addToCart = (item) => {
-   
+    
     setCartItems((prevItems)=>{
       const exist = prevItems.find((x)=> x.id === item.id);
 
