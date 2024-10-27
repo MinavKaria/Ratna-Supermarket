@@ -1,8 +1,8 @@
 .chatbotHelpContainer {
     position: fixed;
     display: flex;
-    bottom: 10px; /* Adjust this to where you want the element */
-    right: 20px; /* Adjust this to where you want the element */
+    bottom: 10px;
+    right: 20px; 
     z-index: 10; /* Ensures it stays on top of other elements */
 }
 
@@ -189,5 +189,18 @@
     .chatbotFooter button svg {
       width: 14px;
       height: 14px;
+    }
+  }
+
+  @media (min-width:350px){
+    .chatbotHelpContainer svg:nth-of-type(1){
+      transform: translate(175px, 0);
+    }
+  }
+
+  @media (min-width:375px){
+    
+    .chatbotHelpContainer svg:nth-of-type(1){
+      transform: translate(175px, 85px);
     }
   }
