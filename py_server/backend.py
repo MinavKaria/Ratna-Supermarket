@@ -45,6 +45,34 @@ def login():
 
     return jsonify(response)
 
+@app.route('/save_item', methods=['POST'])
+def save_item():
+    data = request.get_json()
+    username = data.get('username')  
+    item = data.get('item')  
+
+    # Update user's saved items in the database
+    result = collection.update_one(
+        {'username': username},
+        {'$addToSet': {'saved_items': item}},  
+        upsert=True 
+    )
+
+    if result.modified_count > 0 or result.upserted_id is not None:
+        return jsonify({'message': 'Item saved successfully!'})
+    else:
+        return jsonify({'message': 'Failed to save item!'}), 500
+
+
+@app.route('/get_saved_items/<username>', methods=['GET'])
+def get_saved_items(username):
+    user_data = collection.find_one({'username': username})
+
+    if user_data and 'saved_items' in user_data:
+        return jsonify(user_data['saved_items'])
+    else:
+        return jsonify([])  
+
 
 if __name__ == '__main__':
     app.run(debug=True)
