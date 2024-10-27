@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 // Validation schema with zod
 const feedbackSchema = z.object({
@@ -27,6 +28,7 @@ export default function FeedbackForm() {
     handleSubmit,
     setValue,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(feedbackSchema),
     defaultValues: {
@@ -41,8 +43,11 @@ export default function FeedbackForm() {
     try {
       const response = await axios.post("https://ratna-supermarket.vercel.app/feedback", data);
       console.log("Feedback submitted successfully:", response.data);
+      toast.success("Feedback submitted successfully!");
+      reset();
     } catch (error) {
       console.error("Error submitting feedback:", error);
+        toast.error("Failed to submit feedback");
     }
   };
 
