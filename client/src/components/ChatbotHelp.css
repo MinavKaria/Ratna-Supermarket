@@ -192,14 +192,15 @@
     }
   }
 
-  @media (min-width:350px){
+  /* above 380px we translate it by 85px. Removed media queries entirely*/
+  @media (min-width: 401px){
+    
     .chatbotHelpContainer svg:nth-of-type(1){
       transform: translate(175px, 0);
     }
   }
 
-  @media (min-width:375px){
-    
+  @media screen and (min-width: 700px){
     .chatbotHelpContainer svg:nth-of-type(1){
       transform: translate(175px, 85px);
     }
