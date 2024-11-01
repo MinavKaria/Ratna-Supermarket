@@ -12,11 +12,12 @@ const CarouselComponent = () => {
     PrevIcon={<NextIcon reverse/>}
     >
       {images.map((imageUrl, index) => (
-        <Paper key={index}>
+        <Paper key={index} style={{borderBottomLeftRadius: '40px',borderBottomRightRadius: '40px'}}>
           <img src={imageUrl} alt="" style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
+            borderBottomLeftRadius: '40px',borderBottomRightRadius: '40px'
           
           }}/>
         </Paper>
