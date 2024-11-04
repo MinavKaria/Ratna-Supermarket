@@ -8,11 +8,14 @@ import fileUpload from "express-fileupload";
 import { createNewUser, signInUser } from "./user.js";
 import path from "path";
 import Product from "./productSchema.js";
+import Feedback from "./feedbackSchema.js";
 
 const dirname = "../client/public/";
 
 const app = express();
-dotenv.config();
+dotenv.config({
+  path: ".env",
+});
 app.use(fileUpload());
 
 app.use(
@@ -207,6 +210,47 @@ app.put("/updateFeedback/:id", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+app.post("/submit-feedback", async (req, res) => {
+  console.log(req.body);
+  try {
+    const feedback = await Feedback.create({
+      name: req.body.name,
+      email: req.body.email,
+      rating: req.body.rating,
+      feedback: req.body.feedback,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Feedback submitted successfully",
+      data: feedback,
+    })
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    })
+  }
+});
+
+app.get("/all-feedback", async (req, res) => {
+  try {
+    const feedback = await Feedback.find({});
+    res.status(200).json({
+      success: true,
+      data: feedback,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port: http://localhost:${PORT}`);

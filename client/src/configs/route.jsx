@@ -23,6 +23,7 @@ import VendorOrders from "../pages/VendorOrders";
 import VendorProducts from "../pages/VendorProducts";
 import Feedback from "../pages/Feedback";
 import VendorFeedback from "../pages/VendorFeedback";
+import FeedbackForm from "../pages/WebsiteFeedback";
 
 const router = createBrowserRouter([
   {
@@ -126,7 +127,15 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: 'feedback/:id',
+        path : '/feedback',
+        element: (
+          <>
+            <FeedbackForm />
+          </>
+        )
+      },
+      {
+        path: '/feedback/:id',
         element: (
           <>
             <Feedback/>

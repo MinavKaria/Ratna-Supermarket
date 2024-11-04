@@ -13,6 +13,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fontsource/poppins": "^5.0.12",
+    "@hookform/resolvers": "^3.9.0",
     "@material-tailwind/react": "^2.1.9",
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.15",
@@ -31,6 +32,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.53.1",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.3.0",
     "react-material-ui-carousel": "^3.4.2",
@@ -38,7 +40,8 @@
     "react-router-dom": "^6.22.0",
     "react-social-login-buttons": "^4.1.0",
     "redux": "^5.0.1",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
