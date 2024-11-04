@@ -146,7 +146,7 @@ const Navbar = () => {
         />
       </div>
 
-      <nav className="md:p-2 shadow-md fixed justify-center z-50 flex  bg-white w-screen">
+      <nav className="md:p-2 shadow-md fixed justify-center z-50 flex  bg-white w-screen mb-11">
         <div className="md:flex items-center  w-full lg:p-4 justify-between gap-0 relative sm:block">
           <div className="flex items-center p-0 gap-2">
             <div

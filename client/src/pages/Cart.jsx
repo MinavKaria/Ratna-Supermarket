@@ -22,7 +22,7 @@ function Cart() {
 
   console.log(cartItems);
   return (
-    <div className='mt-20 mx-auto max-w-4xl p-6 bg-white rounded-lg shadow-md py-12'>
+    <div className='mt-[120px] mx-auto max-w-4xl p-6 bg-white rounded-lg shadow-md py-12'>
       <h1 className='text-2xl md:text-3xl font-semibold mb-4'>Shopping Cart</h1>
       {cartItems.length === 0 ? (
         <p className='text-gray-600'>Your cart is empty.</p>
