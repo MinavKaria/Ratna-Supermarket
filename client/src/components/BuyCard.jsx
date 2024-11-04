@@ -16,7 +16,7 @@ function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id
 
   return (
     <div className='card w-56  flex justify-center align-middle flex-col border-2 rounded-[15px] relative hover:scale-105 transition transform ease-in-out duration-300'>
-      <div className='bg-slate-200 w-full flex justify-center rounded-t-[15px] align-top cursor-pointer' onClick={() => {
+      <div className='bg-slate-200 w-full flex justify-center rounded-t-[12px] align-top cursor-pointer' onClick={() => {
         navigate(`/product/${id}`)
       }}>
         <img src={imageUrl} alt="" />
@@ -47,29 +47,32 @@ function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id
               borderColor: '#54B22C',
               color: '#249B3E',
               width: '60px',
-              borderRadius: '5px',
+              borderRadius: '75px',
               border: '1px solid',
             }}>ADD</button>
           </div>
         ))}
         {count > 0 && (
-          <div className='mr-2 flex gap-2'>
+          <div className='mr-2 flex gap-2 border rounded-full border-green-500'>
             <span
               style={{
                 cursor: 'pointer',
                 marginTop: '1px',
-                userSelect: 'none'
+                userSelect: 'none',
+                paddingLeft:"8px",
+                
               }} onClick={() => {
                 if (count >= 1 && count < 10)
                   setCount(count + 1);
                 addToCart({ id, productName, discountPrice, imageUrl, count: count + 1 });
               }}>+</span>
-            <div><input type="text" className='w-6 border-2 indent-1' value={count} /></div>
+            <div><input type="text" className=' w-8 bg-green-500 text-white  text-center select-none h-full' value={count} /></div>
             <span
               style={{
                 cursor: 'pointer',
                 marginTop: '1px',
-                userSelect: 'none'
+                userSelect: 'none',
+                paddingRight:"8px",
               }}
               onClick={() => {
                 if (count >= 1) {
@@ -86,7 +89,7 @@ function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id
         backgroundColor: '#54B22C',
         color: 'white',
         padding: '5px',
-        borderRadius: '0 17px 0 15px',
+        borderRadius: '0 13px 0 15px',
       }}>
         {discount || parseInt((mrp - discountPrice) / mrp * 100) || '$'}% OFF
       </div>
