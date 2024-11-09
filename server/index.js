@@ -1,51 +1,42 @@
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cors from "cors";
+import axios from 'axios';
+
 import bodyParser from "body-parser";
 import Order from "./cartOrderSchema.js";
 import fileUpload from "express-fileupload";
 import { createNewUser, signInUser } from "./user.js";
 import path from "path";
 import Product from "./productSchema.js";
-import Feedback from "./feedbackSchema.js";
-
-const dirname = "../client/public/";
-
 const app = express();
-dotenv.config({
-  path: ".env",
-});
+app.use(express.json());
+const dirname = "../client/public/";
+dotenv.config();
 app.use(fileUpload());
-
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Access-Control-Allow-Methods",
-      "Access-Control-Allow-Origin",
-      "Access-Control-Allow-Headers",
-    ],
-  })
-);
-
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'Access-Control-Allow-Methods',
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Headers',
+  ],
+}));
 app.use(bodyParser.json());
 const PORT = 3000;
-
 try {
   mongoose.connect(process.env.MONGO_URI);
   console.log("MongoDB connected successfully");
 } catch (error) {
   console.error("Error in connecting to MongoDB:", error);
 }
-
 app.get("/", (req, res) => {
   res.send("Hello to Ratna Supermarket API");
 });
-
 app.post("/orderItems", async (req, res) => {
   console.log(req.body);
   const newOrder = new Order({
@@ -60,9 +51,7 @@ app.post("/orderItems", async (req, res) => {
   });
 
   await newOrder.save();
-
   try {
-    // Add your code here to handle the order request
 
     res.send("Order received successfully");
   } catch (error) {
@@ -122,21 +111,18 @@ app.get("/order/:id", async (req, res) => {
 });
 
 app.post("/uploadImage", (req, res) => {
-  // Check if file is not available return message with status 400.
   if (req.files === null) {
     return res.status(400).json({ msg: "No file uploaded" });
   }
   const file = req.files.file;
-  // Unique name is required for every uploaded file so we are renaming it with date string we can also use unique ID generators like UUID etc.
   const UFileName = `${new Date().getTime()}-${file.name.replaceAll(" ", "-")}`;
-  // This line of code will save our file in public/uploads folder in our
-  //appliction and will retrun err if any error found if no error found then return pathname of file.
-  file.mv(`${dirname} ${UFileName}`, (err) => {
+  const uploadPath = path.join(__dirname, '../client/public', UFileName);
+  file.mv(uploadPath, (err) => {
     if (err) {
       console.error(err);
       return res.status(500).send(err);
     }
-    res.json({ fileName: UFileName, filePath: `/${UFileName}` });
+    res.json({ fileName: UFileName, filePath: `/uploads/${UFileName}` });
   });
 });
 
@@ -158,7 +144,6 @@ app.get("/allProducts", async (req, res) => {
 
 app.post("/addProduct", async (req, res) => {
   try {
-    // Add your code here to handle the order request
     console.log(req.body);
 
     const newProduct = new Product({
@@ -211,47 +196,22 @@ app.put("/updateFeedback/:id", async (req, res) => {
   }
 });
 
-app.post("/submit-feedback", async (req, res) => {
-  console.log(req.body);
+app.post('/recommend', async (req, res) => {
   try {
-    const feedback = await Feedback.create({
-      name: req.body.name,
-      email: req.body.email,
-      rating: req.body.rating,
-      feedback: req.body.feedback,
-    });
+      const searchQuery = req.body.query;  
+      const response = await axios.post('http://127.0.0.1:5001/recommend', {
+          query: searchQuery
+      });
 
-    res.status(200).json({
-      success: true,
-      message: "Feedback submitted successfully",
-      data: feedback,
-    })
+      // Return the recommendation response to the frontend
+      const recommendations = response.data.recommendations;
+      res.json({ recommendations }); // Send recommendations back to the frontend
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-    })
+      console.error("Error making request to Flask API:", error);
+      res.status(500).json({ error: "Error fetching recommendations" });
   }
 });
-
-app.get("/all-feedback", async (req, res) => {
-  try {
-    const feedback = await Feedback.find({});
-    res.status(200).json({
-      success: true,
-      data: feedback,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-    });
-  }
-});
-
-
 app.listen(PORT, () => {
   console.log(`Server running on port: http://localhost:${PORT}`);
 });
