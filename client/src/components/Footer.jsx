@@ -10,9 +10,19 @@ const Footer = () => {
   ];
 
   const contactInfo = [
-    { icon: "/Contacts/Email.svg", text: "support@ratna.in", alt: "Email" },
-    { icon: "/Contacts/Phone.svg", text: "1-800-9625-45274", alt: "Phone" }
-  ];
+  {
+    icon: "/Contacts/Email.svg",
+    text: "support@ratna.in",
+    alt: "Email",
+    link: "mailto:support@ratna.in", // Mailto link for email
+  },
+  {
+    icon: "/Contacts/Phone.svg",
+    text: "1-800-9625-45274",
+    alt: "Phone",
+    link: "tel:1800962545274", // Tel link for phone number
+  },
+];
 
   return (
     <footer className="bg-gray-50 mt-20">
@@ -54,17 +64,20 @@ const Footer = () => {
             <div className="space-y-4">
               {contactInfo.map((contact) => (
                 <div key={contact.alt} className="flex items-center space-x-3">
-                  <div className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
-                    <img 
-                      src={contact.icon}
-                      className="h-5 w-5"
-                      alt={contact.alt}
-                    />
-                  </div>
-                  <span className="text-gray-600 hover:text-gray-900 transition-colors">
-                    {contact.text}
-                  </span>
+                <div className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+                  <img 
+                    src={contact.icon}
+                    className="h-5 w-5"
+                    alt={contact.alt}
+                  />
                 </div>
+                <a
+                  href={contact.link}
+                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  {contact.text}
+                </a>
+              </div>              
               ))}
               
               {/* Location Map */}
