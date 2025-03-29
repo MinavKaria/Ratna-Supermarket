@@ -71,7 +71,7 @@ app.post("/orderItems", async (req, res) => {
   }
 });
 
-app.get("/allVendor", async (req, res) => {
+app.get("/allVendor/:id", async (req, res) => {
   try 
   {
     const orders = await Order.find();
