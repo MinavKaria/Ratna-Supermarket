@@ -42,7 +42,7 @@ try {
   console.error("Error in connecting to MongoDB:", error);
 }
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   res.send("Hello to Ratna Supermarket API");
 });
 
@@ -72,7 +72,8 @@ app.post("/orderItems", async (req, res) => {
 });
 
 app.get("/allVendor", async (req, res) => {
-  try {
+  try 
+  {
     const orders = await Order.find();
     res.send(orders);
   } catch (error) {
