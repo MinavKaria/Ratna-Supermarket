@@ -52,36 +52,50 @@ function BuyCard({ bogo, mrp, discountPrice, imageUrl, productName, discount, id
             }}>ADD</button>
           </div>
         ))}
-        {count > 0 && (
-          <div className='mr-2 flex gap-2 border rounded-full border-green-500'>
-            <span
-              style={{
-                cursor: 'pointer',
-                marginTop: '1px',
-                userSelect: 'none',
-                paddingLeft:"8px",
-                
-              }} onClick={() => {
-                if (count >= 1 && count < 10)
-                  setCount(count + 1);
-                addToCart({ id, productName, discountPrice, imageUrl, count: count + 1 });
-              }}>+</span>
-            <div><input type="text" className=' w-8 bg-green-500 text-white  text-center select-none h-full' value={count} /></div>
-            <span
-              style={{
-                cursor: 'pointer',
-                marginTop: '1px',
-                userSelect: 'none',
-                paddingRight:"8px",
-              }}
-              onClick={() => {
-                if (count >= 1) {
-                  setCount(count - 1);
-                  removeFromCart({ id });
-                }
-              }}> - </span>
-          </div>
-        )}
+       {count > 0 && (
+  <div className='mr-2 flex gap-2 border rounded-full border-green-500 items-center'>
+    {/* Decrement button (-) */}
+    <span
+      style={{
+        cursor: 'pointer',
+        userSelect: 'none',
+        paddingLeft: "8px",
+      }}
+      onClick={() => {
+        if (count >= 1) {
+          setCount(count - 1);
+          removeFromCart({ id });
+        }
+      }}
+    >-</span>
+
+    {/* Count display */}
+    <div>
+      <input 
+        type="text" 
+        className='w-8 bg-green-500 text-white text-center select-none h-full rounded-full' 
+        value={count} 
+        readOnly
+      />
+    </div>
+
+    {/* Increment button (+) */}
+    <span
+      style={{
+        cursor: 'pointer',
+        userSelect: 'none',
+        paddingRight: "8px",
+      }}
+      onClick={() => {
+        if (count >= 1 && count < 10) {
+          setCount(count + 1);
+          addToCart({ id, productName, discountPrice, imageUrl, count: count + 1 });
+        }
+      }}
+    >+</span>
+  </div>
+)}
+
       </div>
       <div className='absolute' style={{
         top: '0',
