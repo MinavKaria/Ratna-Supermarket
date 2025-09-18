@@ -146,11 +146,12 @@ const Navbar = () => {
         />
       </div>
 
-      <nav className="md:p-2 shadow-md fixed justify-center z-50 flex  bg-white w-screen">
-        <div className="md:flex items-center  w-full lg:p-4 justify-between gap-0 relative sm:block">
-          <div className="flex items-center p-0 gap-2">
+      <nav className="md:p-2 shadow-md fixed justify-center z-50 flex bg-white w-screen">
+        <div className="md:flex items-center w-full lg:p-4 justify-between gap-0 relative">
+          {/* Left section with logo and location */}
+          <div className="flex items-center p-2 gap-2">
             <div
-              className="text-white text-2xl font-bold mb-4 md:mb-0 cursor-pointer  sm:w-full md:w-0 lg:w-fit sm:flex sm:justify-center sm:items-center"
+              className="text-white text-2xl font-bold mb-4 md:mb-0 cursor-pointer flex justify-center items-center"
               onClick={() => {
                 navigate("/");
               }}
@@ -158,13 +159,14 @@ const Navbar = () => {
               <img
                 src="/logo.svg"
                 alt=""
-                className="md:w-[0] lg:w-[150px]  sm:w-[100px] "
+                className="md:w-[0] lg:w-[150px] w-[100px]"
               />
             </div>
-            <div className="md:flex gap-2 md:gap-1 md:justify-center md:scale-90 lg:scale-100  md:items-center md:w-fit sm:hidden">
-              {/* Combined Location and Delivery/Pickup Div */}
+            
+            {/* Location button - hidden on small screens to save space */}
+            <div className="hidden md:flex gap-2 md:gap-1 md:justify-center md:scale-90 lg:scale-100 md:items-center md:w-fit">
               <button
-                className="h-12 flex px-4 lg:h-fit py-2 flex-row justify-between items-center lg:scale-100 md:px-2 bg-gray-100 shadow-md rounded-full "
+                className="h-12 flex px-4 lg:h-fit py-2 flex-row justify-between items-center lg:scale-100 md:px-2 bg-gray-100 shadow-md rounded-full"
                 onClick={handleClickOpen}
               >
                 <div className="flex flex-row items-center justify-center gap-2">
@@ -181,7 +183,6 @@ const Navbar = () => {
                         .join(" ") || "Mumbai"}
                     </span>
 
-                    {/* Tooltip for pincode on hover */}
                     <div className="absolute top-12 left-0 text-lg hidden bg-gray-100 group-hover:flex items-center justify-center w-max p-2 text-black border border-gray-300 rounded-lg shadow-xl z-10 transition-transform duration-300 ease-out transform translate-y-0 group-hover:translate-y-2 opacity-0 group-hover:opacity-100">
                       <span className="text-base">
                         {localStorage.getItem("userPincode") || "400001"}
@@ -191,13 +192,11 @@ const Navbar = () => {
                 </div>
                 <img src="/dropdown_nav.svg" alt="Dropdown arrow" />
               </button>
-
-              <button className="p-2 bg-white shadow-md rounded sm:hidden">
-                <img src="/search.svg" alt="" />
-              </button>
             </div>
+            
+            {/* Mobile menu button */}
             <button
-              className="text-white focus:outline-none hidden"
+              className="text-gray-600 focus:outline-none md:hidden ml-auto"
               onClick={toggleMobileMenu}
             >
               <svg
@@ -211,19 +210,21 @@ const Navbar = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
+                  d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
                 />
               </svg>
             </button>
           </div>
-          <div className="flex-grow md:max-w-md lg:max-w-[600px] mx-5 bg-slate-100 mb-4 md:mb-0 flex flex-row items-center rounded-r-full rounded-l-full shadow-md h-14 pl-10 pr-10 relative">
-            <FaSearch className="-ml-7 mr-2 text-lime-400" />
+
+          {/* Search bar - full width on mobile, constrained on larger screens */}
+          <div className="flex-grow md:max-w-md lg:max-w-[600px] mx-2 md:mx-5 bg-slate-100 mb-4 md:mb-0 flex flex-row items-center rounded-r-full rounded-l-full shadow-md h-12 md:h-14 pl-6 md:pl-10 pr-6 md:pr-10 relative">
+            <FaSearch className="-ml-3 md:-ml-7 mr-2 text-lime-400 text-sm md:text-base" />
             <input
               type="text"
               placeholder="Search..."
               value={searchTerm}
               onChange={handleSearch}
-              className="w-full py-2 rounded relative bg-transparent text-black focus:outline-none sm:w-full"
+              className="w-full py-2 rounded relative bg-transparent text-black focus:outline-none text-sm md:text-base"
             />
 
             {searchResults.length > 0 && (
@@ -244,78 +245,171 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <div className="flex md:justify-end md:flex gap-5 w-fit relative sm:block">
-            <div className="md:flex items-center  sm:hidden gap-5">
-              {!isLogin ? (
-                <>
-                  <div
-                    className="flex"
-                    onClick={() => {
-                      navigate("/sign");
-                    }}
-                  >
-                    <img src="user.svg" alt="" />
-                    <button className=" ">Login</button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div
-                    className="flex items-center w-fit h-14justify-center"
-                    onClick={() => {
-                      setOpen3(true);
-                    }}
-                  >
-                    <img
-                      src={
-                        userDetail.photoURL ||
-                        "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
-                      }
-                      alt=""
-                      className=" rounded-full h-10 items-center border-2 border-blue-50 w-10"
-                    />
-                    <button className="p-0 m-0  w-24 " onClick={() => {}}>
-                      {userDetail.displayName || userDetail.name}
-                    </button>
-                  </div>
-                </>
-              )}
 
+          {/* Desktop navigation items */}
+          <div className="hidden md:flex items-center gap-3 lg:gap-5 w-fit relative">
+            {!isLogin ? (
               <div
-                className="flex relative w-fit bg-gray-100 pl-2 lg:px-4 py-2 shadow-md rounded-full"
+                className="flex items-center cursor-pointer"
                 onClick={() => {
-                  // addToCart({id:1, name:'Product 1', price:100, qty:1});
-                  navigate("/cart");
+                  navigate("/sign");
                 }}
               >
-                <img src="cart.svg" alt="" />
-                <button className="pr-5 ">Cart</button>
-                <div className=" absolute top-0 right-0 w-4 bg-lime-400 rounded-full h-4 text-xs text-center ">
+                <img src="user.svg" alt="" className="mr-1" />
+                <button className="text-sm lg:text-base">Login</button>
+              </div>
+            ) : (
+              <div
+                className="flex items-center w-fit cursor-pointer"
+                onClick={() => {
+                  setOpen3(true);
+                }}
+              >
+                <img
+                  src={
+                    userDetail.photoURL ||
+                    "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+                  }
+                  alt=""
+                  className="rounded-full h-8 lg:h-10 border-2 border-blue-50 w-8 lg:w-10 mr-2"
+                />
+                <button className="text-sm lg:text-base max-w-20 truncate">
+                  {userDetail.displayName || userDetail.name}
+                </button>
+              </div>
+            )}
+
+            <div
+              className="flex relative w-fit bg-gray-100 pl-2 lg:px-4 py-2 shadow-md rounded-full cursor-pointer"
+              onClick={() => {
+                navigate("/cart");
+              }}
+            >
+              <img src="cart.svg" alt="" className="w-4 lg:w-5" />
+              <button className="pr-4 lg:pr-5 text-sm lg:text-base">Cart</button>
+              <div className="absolute top-0 right-0 w-4 bg-lime-400 rounded-full h-4 text-xs text-center">
+                {cartItems.length}
+              </div>
+            </div>
+
+            <div className="flex bg-gray-100 rounded-full shadow-md px-2 lg:px-4 gap-2 cursor-pointer">
+              <img src="my-orders-icon.svg" alt="" className="w-4 lg:w-5" />
+              <button
+                className="leading-4 lg:leading-6 text-xs lg:text-sm text-center"
+                onClick={() => {
+                  if (!isLogin) {
+                    navigate("/sign");
+                  } else {
+                    navigate("/orders");
+                  }
+                }}
+              >
+                My Orders
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t z-40">
+            <div className="p-4 space-y-4">
+              {/* Location button for mobile */}
+              <button
+                className="w-full flex px-4 py-3 flex-row justify-between items-center bg-gray-100 shadow-md rounded-full"
+                onClick={() => {
+                  handleClickOpen();
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                <div className="flex flex-row items-center justify-center gap-2">
+                  <img src="/location.svg" alt="Location" />
+                  <div className="flex flex-col justify-start text-left text-base leading-4">
+                    <span className="text-base text-blue-400">
+                      {localStorage.getItem("orderType") || "Delivery"}
+                    </span>
+                    <span className="m-0">
+                      {localStorage
+                        .getItem("userArea")
+                        ?.split(" ")
+                        .slice(0, 2)
+                        .join(" ") || "Mumbai"}
+                    </span>
+                  </div>
+                </div>
+                <img src="/dropdown_nav.svg" alt="Dropdown arrow" />
+              </button>
+
+              {/* Login/User for mobile */}
+              {!isLogin ? (
+                <div
+                  className="flex items-center justify-center py-3 bg-gray-100 rounded-full cursor-pointer"
+                  onClick={() => {
+                    navigate("/sign");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  <img src="user.svg" alt="" className="mr-2" />
+                  <span>Login</span>
+                </div>
+              ) : (
+                <div
+                  className="flex items-center justify-center py-3 bg-gray-100 rounded-full cursor-pointer"
+                  onClick={() => {
+                    setOpen3(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  <img
+                    src={
+                      userDetail.photoURL ||
+                      "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+                    }
+                    alt=""
+                    className="rounded-full h-8 border-2 border-blue-50 w-8 mr-2"
+                  />
+                  <span className="truncate max-w-32">
+                    {userDetail.displayName || userDetail.name}
+                  </span>
+                </div>
+              )}
+
+              {/* Cart for mobile */}
+              <div
+                className="flex items-center justify-center relative py-3 bg-gray-100 rounded-full cursor-pointer"
+                onClick={() => {
+                  navigate("/cart");
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                <img src="cart.svg" alt="" className="mr-2" />
+                <span>Cart</span>
+                <div className="absolute top-1 right-4 w-4 bg-lime-400 rounded-full h-4 text-xs text-center flex items-center justify-center">
                   {cartItems.length}
                 </div>
               </div>
 
-              <div className="flex bg-gray-100 rounded-full shadow-md px-2 lg:px-4 gap-2">
-                <img src="my-orders-icon.svg" alt="" className="w-5" />
-                <button
-                  className="leading-6 md:text-sm lg:text-base "
-                  onClick={() => {
-                    if (!isLogin) {
-                      navigate("/sign");
-                    } else {
-                      navigate("/orders");
-                    }
-                  }}
-                >
-                  My <br></br>Orders
-                </button>
+              {/* My Orders for mobile */}
+              <div
+                className="flex items-center justify-center py-3 bg-gray-100 rounded-full cursor-pointer"
+                onClick={() => {
+                  if (!isLogin) {
+                    navigate("/sign");
+                  } else {
+                    navigate("/orders");
+                  }
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                <img src="my-orders-icon.svg" alt="" className="w-5 mr-2" />
+                <span>My Orders</span>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </nav>
-      <SimpleDialog open={open} onClose={handleClose} />
 
+      <SimpleDialog open={open} onClose={handleClose} />
       <SimpleDialog2
         open={open2}
         onClose={handleClose2}
@@ -324,7 +418,6 @@ const Navbar = () => {
           handleClickOpen2();
         }}
       />
-
       <SimpleDialog3
         open={open3}
         onClose={handleClose3}
