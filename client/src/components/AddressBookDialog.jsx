@@ -16,7 +16,21 @@ const AddressBookDialog = ({ open, onClose, onSelect }) => {
   }, [open]);
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth={false}
+      maxWidth="sm"
+      PaperProps={{
+        sx: {
+          position: 'absolute',
+          top: 16,
+          left: 16,
+          m: 0,
+          transform: 'none'
+        }
+      }}
+    >
       <DialogTitle>Choose a delivery location</DialogTitle>
       <DialogContent>
         {addresses.length === 0 ? (
