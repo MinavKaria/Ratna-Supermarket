@@ -22,6 +22,7 @@ import { useCart } from "../actions/CartControl";
 import SimpleDialog from "./SimpleDialog";
 import SimpleDialog2 from "./SimpleDialog2";
 import SimpleDialog3 from "./SimpleDialog3";
+import AddressBookDialog from "./AddressBookDialog";
 import axios from "axios";
 
 const Navbar = () => {
@@ -94,6 +95,7 @@ const Navbar = () => {
   );
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
+  const [openAddressBook, setOpenAddressBook] = useState(false);
 
   const handleClickOpen2 = () => {
     setOpen2(true);
@@ -108,6 +110,12 @@ const Navbar = () => {
   };
 
   const handleClickOpen = () => {
+    const hasSaved = !!localStorage.getItem("savedAddresses");
+    const hasSelection = localStorage.getItem("userArea") && localStorage.getItem("userPincode");
+    if (hasSaved || hasSelection) {
+      setOpenAddressBook(true);
+      return;
+    }
     setOpen(true);
     handleClickOpen2();
   };
@@ -329,6 +337,17 @@ const Navbar = () => {
         open={open3}
         onClose={handleClose3}
         setIsLogin={setIsLogin}
+      />
+      <AddressBookDialog
+        open={openAddressBook}
+        onClose={() => setOpenAddressBook(false)}
+        onSelect={(sel) => {
+          setOpenAddressBook(false);
+          if (sel && sel.addNew) {
+            setOpen(true);
+            handleClickOpen2();
+          }
+        }}
       />
     </div>
   );

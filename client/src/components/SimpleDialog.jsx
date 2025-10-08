@@ -121,6 +121,20 @@ function SimpleDialog(props) {
                 onSubmit={(e) => {
                   e.preventDefault();
                   localStorage.setItem('userPincode', pincode);
+                  try {
+                    const area = localStorage.getItem('userArea');
+                    if (area && pincode && pincode.length === 6) {
+                      const existing = JSON.parse(localStorage.getItem('savedAddresses') || '[]');
+                      let label = (window.prompt('Label this location (Home, Work, Other):', 'Home') || '').trim();
+                      if (!['Home','Work','Other'].includes(label)) {
+                        label = 'Other';
+                      }
+                      const newEntry = { area, pincode, label };
+                      const exists = existing.some((a) => a.area === newEntry.area && a.pincode === newEntry.pincode);
+                      const updated = exists ? existing : [...existing, newEntry];
+                      localStorage.setItem('savedAddresses', JSON.stringify(updated));
+                    }
+                  } catch (_) {}
                   setPincode('');
                   handleClose();
                 }}
@@ -147,6 +161,17 @@ function SimpleDialog(props) {
                         onClick={(e) => {
                           localStorage.setItem('userArea', suggestion);
                           localStorage.setItem('userPincode', pincode);
+                          try {
+                            const existing = JSON.parse(localStorage.getItem('savedAddresses') || '[]');
+                            let label = (window.prompt('Label this location (Home, Work, Other):', 'Home') || '').trim();
+                            if (!['Home','Work','Other'].includes(label)) {
+                              label = 'Other';
+                            }
+                            const newEntry = { area: suggestion, pincode, label };
+                            const exists = existing.some((a) => a.area === newEntry.area && a.pincode === newEntry.pincode);
+                            const updated = exists ? existing : [...existing, newEntry];
+                            localStorage.setItem('savedAddresses', JSON.stringify(updated));
+                          } catch (_) {}
                           setSuggestions([]);
                         }}
                       >
