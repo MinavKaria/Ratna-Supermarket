@@ -132,7 +132,7 @@ const Navbar = () => {
   const userDetail = JSON.parse(localStorage.getItem("user"));
 
   return (
-    <div className="relative">
+  <div className="relative">
       <div
         className="w-0 h-0 md:flex md:justify-center md:items-center md:h-11 overflow-visible z-[999] mt-2 md:w-full mb-[-10px] lg:w-0 lg:h-0"
         onClick={() => {
@@ -146,11 +146,11 @@ const Navbar = () => {
         />
       </div>
 
-      <nav className="md:p-2 shadow-md fixed justify-center z-50 flex  bg-white w-screen">
-        <div className="md:flex items-center  w-full lg:p-4 justify-between gap-0 relative sm:block">
+  <nav className="md:p-2 shadow-lg fixed justify-center z-50 flex bg-gradient-to-r from-[#003366] via-[#0055a5] to-[#003366] w-screen rounded-b-2xl">
+  <div className="md:flex items-center w-full lg:p-6 justify-between gap-2 relative sm:block">
           <div className="flex items-center p-0 gap-2">
             <div
-              className="text-white text-2xl font-bold mb-4 md:mb-0 cursor-pointer  sm:w-full md:w-0 lg:w-fit sm:flex sm:justify-center sm:items-center"
+              className="text-white text-2xl font-bold mb-4 md:mb-0 cursor-pointer sm:w-full md:w-0 lg:w-fit sm:flex sm:justify-center sm:items-center drop-shadow-lg"
               onClick={() => {
                 navigate("/");
               }}
@@ -158,13 +158,13 @@ const Navbar = () => {
               <img
                 src="/logo.svg"
                 alt=""
-                className="md:w-[0] lg:w-[150px]  sm:w-[100px] "
+                className="md:w-[0] lg:w-[150px] sm:w-[100px] "
               />
             </div>
             <div className="md:flex gap-2 md:gap-1 md:justify-center md:scale-90 lg:scale-100  md:items-center md:w-fit sm:hidden">
               {/* Combined Location and Delivery/Pickup Div */}
               <button
-                className="h-12 flex px-4 lg:h-fit py-2 flex-row justify-between items-center lg:scale-100 md:px-2 bg-gray-100 shadow-md rounded-full "
+                className="h-14 flex px-6 lg:h-fit py-2 flex-row justify-between items-center lg:scale-100 md:px-2 bg-[#002244] shadow-lg rounded-full text-white hover:bg-[#0055a5] transition-colors duration-200"
                 onClick={handleClickOpen}
               >
                 <div className="flex flex-row items-center justify-center gap-2">
@@ -193,7 +193,7 @@ const Navbar = () => {
               </button>
 
               <button className="p-2 bg-white shadow-md rounded sm:hidden">
-                <img src="/search.svg" alt="" />
+                <img src="/search.svg" alt="" className="text-white" />
               </button>
             </div>
             <button
@@ -217,13 +217,13 @@ const Navbar = () => {
             </button>
           </div>
           <div className="flex-grow md:max-w-md lg:max-w-[600px] mx-5 bg-slate-100 mb-4 md:mb-0 flex flex-row items-center rounded-r-full rounded-l-full shadow-md h-14 pl-10 pr-10 relative">
-            <FaSearch className="-ml-7 mr-2 text-lime-400" />
+            <FaSearch className="-ml-7 mr-2 text-yellow-400" />
             <input
               type="text"
               placeholder="Search..."
               value={searchTerm}
               onChange={handleSearch}
-              className="w-full py-2 rounded relative bg-transparent text-black focus:outline-none sm:w-full"
+              className="w-full py-3 rounded-full relative bg-[#002244] text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-200 sm:w-full shadow-inner"
             />
 
             {searchResults.length > 0 && (
@@ -245,23 +245,24 @@ const Navbar = () => {
             )}
           </div>
           <div className="flex md:justify-end md:flex gap-5 w-fit relative sm:block">
-            <div className="md:flex items-center  sm:hidden gap-5">
+            <div className="md:flex items-center sm:hidden gap-6">
               {!isLogin ? (
                 <>
                   <div
-                    className="flex"
+                    className="flex text-white items-center gap-2 hover:text-yellow-400 transition-colors duration-200"
                     onClick={() => {
                       navigate("/sign");
                     }}
                   >
                     <img src="user.svg" alt="" />
                     <button className=" ">Login</button>
+                    <button className="px-4 py-2 rounded-full bg-[#0055a5] hover:bg-yellow-400 hover:text-[#003366] transition-colors duration-200 shadow">Login</button>
                   </div>
                 </>
               ) : (
                 <>
                   <div
-                    className="flex items-center w-fit h-14justify-center"
+                    className="flex items-center w-fit h-14 justify-center text-white gap-2 hover:text-yellow-400 transition-colors duration-200"
                     onClick={() => {
                       setOpen3(true);
                     }}
@@ -274,7 +275,7 @@ const Navbar = () => {
                       alt=""
                       className=" rounded-full h-10 items-center border-2 border-blue-50 w-10"
                     />
-                    <button className="p-0 m-0  w-24 " onClick={() => {}}>
+                    <button className="p-0 m-0 w-24 text-white" onClick={() => {}}>
                       {userDetail.displayName || userDetail.name}
                     </button>
                   </div>
@@ -282,7 +283,7 @@ const Navbar = () => {
               )}
 
               <div
-                className="flex relative w-fit bg-gray-100 pl-2 lg:px-4 py-2 shadow-md rounded-full"
+                className="flex relative w-fit bg-[#002244] pl-2 lg:px-4 py-2 shadow-lg rounded-full text-white hover:bg-[#0055a5] transition-colors duration-200"
                 onClick={() => {
                   // addToCart({id:1, name:'Product 1', price:100, qty:1});
                   navigate("/cart");
@@ -298,7 +299,7 @@ const Navbar = () => {
               <div className="flex bg-gray-100 rounded-full shadow-md px-2 lg:px-4 gap-2">
                 <img src="my-orders-icon.svg" alt="" className="w-5" />
                 <button
-                  className="leading-6 md:text-sm lg:text-base "
+                  className="leading-6 md:text-sm lg:text-base text-white px-4 py-2 rounded-full bg-[#0055a5] hover:bg-yellow-400 hover:text-[#003366] transition-colors duration-200 shadow"
                   onClick={() => {
                     if (!isLogin) {
                       navigate("/sign");
@@ -307,7 +308,7 @@ const Navbar = () => {
                     }
                   }}
                 >
-                  My <br></br>Orders
+                  My <br />Orders
                 </button>
               </div>
             </div>
