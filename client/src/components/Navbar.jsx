@@ -42,7 +42,6 @@ const Navbar = () => {
         const response = await axios.get(
           "https://ratna-supermarket.vercel.app/allProducts"
         );
-        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.error(error);
@@ -51,12 +50,6 @@ const Navbar = () => {
 
     fetchData();
   }, []);
-
-  const options = {
-    keys: ["label"],
-    includeScore: true,
-    threshold: 0.4,
-  };
 
   const data = [];
 
@@ -164,7 +157,8 @@ const Navbar = () => {
             <div className="md:flex gap-2 md:gap-1 md:justify-center md:scale-90 lg:scale-100  md:items-center md:w-fit sm:hidden">
               {/* Combined Location and Delivery/Pickup Div */}
               <button
-                className="h-12 flex px-4 lg:h-fit py-2 flex-row justify-between items-center lg:scale-100 md:px-2 bg-gray-100 shadow-md rounded-full "
+                className="h-12 flex px-4 lg:h-fit py-2 flex-row justify-between items-center lg:scale-100 md:px-2 bg-gray-100 shadow-md rounded-full transition-all duration-200 hover:bg-blue-100 hover:shadow-lg font-semibold text-base"
+                style={{ fontFamily: 'Inter, Poppins, Roboto, sans-serif', letterSpacing: '0.02em' }}
                 onClick={handleClickOpen}
               >
                 <div className="flex flex-row items-center justify-center gap-2">
@@ -192,12 +186,13 @@ const Navbar = () => {
                 <img src="/dropdown_nav.svg" alt="Dropdown arrow" />
               </button>
 
-              <button className="p-2 bg-white shadow-md rounded sm:hidden">
+              <button className="p-2 bg-white shadow-md rounded-full transition-all duration-200 hover:bg-blue-100 hover:shadow-lg" style={{ fontFamily: 'Inter, Poppins, Roboto, sans-serif' }}>
                 <img src="/search.svg" alt="" />
               </button>
             </div>
             <button
-              className="text-white focus:outline-none hidden"
+              className="text-white focus:outline-none hidden rounded-full transition-all duration-200 hover:bg-blue-100 hover:shadow-lg"
+              style={{ fontFamily: 'Inter, Poppins, Roboto, sans-serif' }}
               onClick={toggleMobileMenu}
             >
               <svg
@@ -255,7 +250,7 @@ const Navbar = () => {
                     }}
                   >
                     <img src="user.svg" alt="" />
-                    <button className=" ">Login</button>
+                    <button className="px-4 py-2 rounded-full bg-blue-500 text-white font-semibold shadow-md transition-all duration-200 hover:bg-blue-600 hover:shadow-lg" style={{ fontFamily: 'Inter, Poppins, Roboto, sans-serif' }}>Login</button>
                   </div>
                 </>
               ) : (
@@ -274,7 +269,7 @@ const Navbar = () => {
                       alt=""
                       className=" rounded-full h-10 items-center border-2 border-blue-50 w-10"
                     />
-                    <button className="p-0 m-0  w-24 " onClick={() => {}}>
+                    <button className="px-4 py-2 rounded-full bg-gray-200 text-blue-700 font-semibold shadow transition-all duration-200 hover:bg-blue-100 hover:shadow-lg w-24" style={{ fontFamily: 'Inter, Poppins, Roboto, sans-serif' }} onClick={() => {}}>
                       {userDetail.displayName || userDetail.name}
                     </button>
                   </div>
@@ -289,7 +284,7 @@ const Navbar = () => {
                 }}
               >
                 <img src="cart.svg" alt="" />
-                <button className="pr-5 ">Cart</button>
+                <button className="pr-5 px-4 py-2 rounded-full bg-lime-400 text-white font-semibold shadow-md transition-all duration-200 hover:bg-lime-500 hover:shadow-lg" style={{ fontFamily: 'Inter, Poppins, Roboto, sans-serif' }}>Cart</button>
                 <div className=" absolute top-0 right-0 w-4 bg-lime-400 rounded-full h-4 text-xs text-center ">
                   {cartItems.length}
                 </div>
@@ -298,7 +293,8 @@ const Navbar = () => {
               <div className="flex bg-gray-100 rounded-full shadow-md px-2 lg:px-4 gap-2">
                 <img src="my-orders-icon.svg" alt="" className="w-5" />
                 <button
-                  className="leading-6 md:text-sm lg:text-base "
+                  className="leading-6 md:text-sm lg:text-base px-4 py-2 rounded-full bg-gray-200 text-blue-700 font-semibold shadow transition-all duration-200 hover:bg-blue-100 hover:shadow-lg"
+                  style={{ fontFamily: 'Inter, Poppins, Roboto, sans-serif' }}
                   onClick={() => {
                     if (!isLogin) {
                       navigate("/sign");
@@ -307,7 +303,7 @@ const Navbar = () => {
                     }
                   }}
                 >
-                  My <br></br>Orders
+                  My <br />Orders
                 </button>
               </div>
             </div>
